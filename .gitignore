@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.env
+*.pyc
+data/tickets.db
+data/tickets.db-*
+
+.tools/
+.python/
+.uv-cache/
