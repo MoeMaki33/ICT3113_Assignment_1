@@ -66,6 +66,7 @@ class RequestLoggingMiddleware:
                 "end_time": datetime.now(timezone.utc).isoformat(),
                 "duration_ms": (perf_counter() - timer) * 1000,
                 "status_code": status,
+                "ticket_id": state.get("ticket_id"),
                 "predicted_category": state.get("predicted_category"),
                 "error": error or state.get("error") or (
                     f"HTTP {status}" if status >= 400 else None

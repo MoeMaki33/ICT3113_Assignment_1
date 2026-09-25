@@ -3,6 +3,7 @@ from pathlib import Path
 
 from sqlalchemy import create_engine, func, select
 from sqlalchemy.engine import make_url
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session, sessionmaker
 
 from app.categories import CATEGORIES
@@ -36,8 +37,12 @@ def get_db() -> Iterator[Session]:
 
 def store_ticket(session: Session, narrative: str, category: str, model: str) -> Ticket:
     ticket = Ticket(narrative=narrative, category=category, model=model)
-    session.add(ticket)
-    session.commit()
+    try:
+        session.add(ticket)
+        session.commit()
+    except SQLAlchemyError:
+        session.rollback()
+        raise
     session.refresh(ticket)
     return ticket
 

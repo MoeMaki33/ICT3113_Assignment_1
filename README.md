@@ -101,18 +101,60 @@ Invoke-RestMethod -Uri http://localhost:8000/stats
 ```
 
 `POST /tickets` returns HTTP 201 with `id` and `category`; empty/whitespace-only
-narratives return 422. `GET /search?q=...` returns matching stored ticket records,
+narratives return 400. Missing/null/non-string narratives and malformed JSON also
+return 400. Missing, empty, or whitespace-only search queries return 400. `GET /search?q=...` returns matching stored ticket records,
 including narrative, model, and creation timestamp. Search is a literal substring
 match using the database's collation. `GET /stats` returns counts for all seven
 categories, including zeros.
 
 Every request writes a JSON line to `logs/service.log`, with request ID, UTC
-timestamps, endpoint, method, model, duration, status, predicted category, and
+timestamps, endpoint, method, model, duration, status, ticket ID, predicted category, and
 error where applicable. Responses carry `X-Request-ID` for JMeter correlation.
 Full narratives, query strings, and raw model errors are excluded from these
 logs. Uvicorn access logging is disabled to avoid logging search queries.
 `LOG_LEVEL` controls general application logging; request audit records are
 always retained. Service logs and `.jtl` evidence are not ignored by Git.
+
+## Person 1 backend handoff
+
+The existing classifier implementation is preserved. Person 2 owns
+`app/services/classifier.py:classify_ticket(narrative: str) -> str` and the
+blocking transport in `app/services/ollama_client.py`. Return exactly one of
+`app/categories.py:CATEGORIES`; report expected classification failures using
+`InvalidCategoryError` or `OllamaError`. `app/routes/tickets.py` calls the classifier
+directly, waits for its result, validates the category again, then commits the
+ticket before returning HTTP 201. Failed classification returns a generic 502;
+database failures return a generic JSON 500, and failed commits are rolled back.
+No cache, queue, background job, or CSV ingestion is involved.
+
+API tests replace `app.routes.tickets.classify_ticket` with a mock. To run a
+local development demonstration without Ollama, use this PowerShell command
+instead of the normal Uvicorn command (every submission deliberately gets the
+same mock category; this is not a real classifier or evaluation result):
+
+```powershell
+$env:OLLAMA_MODEL = 'mock-credit-card'
+.\.venv\Scripts\python.exe -c "from app.routes import tickets; tickets.classify_ticket = lambda narrative: 'Credit card'; import uvicorn; uvicorn.run('app.main:app', host='127.0.0.1', port=8000, access_log=False)"
+```
+
+Mock submissions use the configured database and persist like ordinary tickets.
+Use a separate `DATABASE_URL` when keeping mock data apart from later evaluation.
+Stop with Ctrl+C and remove the mock setting before using the real classifier:
+`Remove-Item Env:OLLAMA_MODEL` (then configure the real model in `.env`).
+
+Manual curl checks in PowerShell, from another terminal:
+
+```powershell
+'{"narrative":"I dispute a charge on my credit card."}' | curl.exe -sS -H "Content-Type: application/json" --data-binary '@-' http://localhost:8000/tickets
+curl.exe -sS "http://localhost:8000/search?q=charge"
+curl.exe -sS http://localhost:8000/stats
+```
+
+On a fresh database, call `/stats` first to see all seven counts at zero. Each
+successful POST adds a new ticket, even for repeated identical narratives.
+Existing database contents are preserved on restart; startup never reads the
+assignment CSV. `tests/test_backend.py` checks this with a CSV present before
+startup and verifies that classification completes before storage and response.
 
 ## Team responsibilities
 
