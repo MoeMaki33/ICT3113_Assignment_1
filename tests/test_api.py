@@ -18,7 +18,7 @@ def test_rejects_empty_narrative(client, monkeypatch, payload):
     def unexpected_call(_):
         pytest.fail("Invalid input must not reach the classifier")
     monkeypatch.setattr(tickets, "classify_ticket", unexpected_call)
-    assert client.post("/tickets", json=payload).status_code == 422
+    assert client.post("/tickets", json=payload).status_code == 400
 
 
 def test_submit_store_search_stats_and_log(client, monkeypatch, tmp_path):
@@ -51,6 +51,7 @@ def test_submit_store_search_stats_and_log(client, monkeypatch, tmp_path):
     assert entry["request_id"] == response.headers["x-request-id"]
     assert entry["predicted_category"] == "Credit card"
     assert entry["status_code"] == 201
+    assert entry["ticket_id"] == response.json()["id"]
     assert entry["duration_ms"] >= 0
     assert {"timestamp", "start_time", "end_time", "endpoint", "method", "model", "error"} <= entry.keys()
 
@@ -70,4 +71,4 @@ def test_validation_and_unknown_routes_are_logged(client, tmp_path):
     client.get("/unknown-private-path", params={"q": "private-query"})
     content = (tmp_path / "service.log").read_text()
     assert "unknown-private-path" not in content and "private-query" not in content
-    assert [json.loads(line)["status_code"] for line in content.splitlines()] == [422, 404]
+    assert [json.loads(line)["status_code"] for line in content.splitlines()] == [400, 404]
