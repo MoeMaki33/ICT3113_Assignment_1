@@ -80,5 +80,8 @@ def test_rates_follow_the_documented_formulas():
 
 
 def test_committed_workload_results_match_the_script():
-    committed = json.loads((ROOT / "results" / "workload" / "workload_calc.json").read_text(encoding="utf-8"))
+    path = ROOT / "results" / "workload" / "workload_calc.json"
+    if not path.exists():  # results/ is excluded from the Docker image by .dockerignore
+        pytest.skip("results/workload/workload_calc.json is not present")
+    committed = json.loads(path.read_text(encoding="utf-8"))
     assert committed == json.loads(json.dumps({"inputs": workload_calc.INPUTS, "results": workload_calc.calculate()}))
