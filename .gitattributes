@@ -1,0 +1,5 @@
+# Keep dataset, label sheets and JMeter results byte-for-byte identical on every OS.
+# Line-ending conversion changes multi-line narratives, which changes their
+# SHA-256 ranking in scripts/create_golden_set.py and so the selected sample.
+*.csv -text
+*.jtl -text

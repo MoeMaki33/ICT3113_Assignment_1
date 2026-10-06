@@ -9,8 +9,11 @@ excluding the header, and selects `team_number * 1000` through
 `team_number * 1000 + 999`, inclusive. Pass the exact narrative column name.
 The original course CSV is never modified. The team CSV must contain exactly
 those 1,000 assigned rows and the columns `row,narrative`; `row` retains the
-original zero-based data-row number. The current workspace does not contain the
-course or team CSV, so its source columns have not yet been inspected.
+original zero-based data-row number. The course CSV is
+`data/ict3113_tickets.csv` (50,000 rows; columns `row,source_label,narrative`).
+This is team 7, so `data/team.csv` holds rows 7000-7999. CSV files are stored
+byte-for-byte (`.gitattributes`: `*.csv -text`) so a Windows checkout cannot
+change narratives and, with them, the reproducible selection.
 
 ```powershell
 python scripts/extract_team_data.py data/course.csv data/team.csv --team-number <TEAM_NUMBER> --narrative-column "<COLUMN_NAME>"
@@ -32,6 +35,9 @@ report:
 ```powershell
 python -m scripts.agreement data/labelling/annotator_a.csv data/labelling/annotator_b.csv --disagreements data/labelling/disagreements.csv
 ```
+
+The recorded result for the completed sheets, with the SHA-256 of each input
+sheet, is kept in `results/accuracy/agreement.json`.
 
 The command requires matching row numbers and narratives, and a valid category
 for every ticket from both annotators. It reports total, agreed, disagreed, raw
