@@ -7,7 +7,7 @@ from app.config import Settings
 from app.services import classifier, ollama_client
 
 
-@pytest.mark.parametrize("output", ["Unknown", "Credit card\nMortgage", '"Credit card"'])
+@pytest.mark.parametrize("output", ["Unknown", "Credit card\nMortgage", "This is a Credit card complaint"])
 def test_classifier_rejects_invalid_output(monkeypatch, output):
     monkeypatch.setattr(classifier, "generate", lambda _: output)
     with pytest.raises(classifier.InvalidCategoryError):
@@ -21,7 +21,7 @@ def test_mocked_ollama_cpu_request(monkeypatch):
         payload = json.loads(request.content)
         assert request.url.path == "/api/generate"
         assert payload["stream"] is False
-        assert payload["options"] == {"num_gpu": 0}
+        assert payload["options"] == {"num_gpu": 0, "temperature": 0}
         assert "Complaint" in payload["prompt"]
         return httpx.Response(200, json={"response": "Credit card\n"})
 

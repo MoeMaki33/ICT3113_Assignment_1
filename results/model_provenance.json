@@ -1,0 +1,46 @@
+{
+  "ollama_version": "0.34.4",
+  "recorded_at": "2026-09-29T08:02:03+00:00",
+  "models": [
+    {
+      "tag": "gemma2:2b",
+      "status": "pulled",
+      "digest": "sha256:8ccf136fdd5298f3ffe2d69862750ea7fb56555fa4d5b18c04e3fa4d82ee09d7",
+      "parameter_size": "2.6B",
+      "quantization": "Q4_0",
+      "family": "gemma2",
+      "size_bytes": 1629518495,
+      "licence_first_line": "Gemma Terms of Use "
+    },
+    {
+      "tag": "llama3.2:3b",
+      "status": "pulled",
+      "digest": "sha256:a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "parameter_size": "3.2B",
+      "quantization": "Q4_K_M",
+      "family": "llama",
+      "size_bytes": 2019393189,
+      "licence_first_line": "LLAMA 3.2 COMMUNITY LICENSE AGREEMENT"
+    },
+    {
+      "tag": "qwen2.5:7b",
+      "status": "pulled",
+      "digest": "sha256:845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "parameter_size": "7.6B",
+      "quantization": "Q4_K_M",
+      "family": "qwen2",
+      "size_bytes": 4683087332,
+      "licence_first_line": "Apache License"
+    },
+    {
+      "tag": "llama3.1:8b",
+      "status": "pulled",
+      "digest": "sha256:46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "parameter_size": "8.0B",
+      "quantization": "Q4_K_M",
+      "family": "llama",
+      "size_bytes": 4920753328,
+      "licence_first_line": "LLAMA 3.1 COMMUNITY LICENSE AGREEMENT"
+    }
+  ]
+}

@@ -62,6 +62,24 @@ Open `http://localhost:8000/docs`. SQLite tables are created at startup, without
 seed data. Database access is isolated under `app/database/`; `DATABASE_URL`
 configures the backend (another backend will also need its driver).
 
+## Ollama model backend (candidate models)
+
+Candidates, exact tags and how to record their digests are in `docs/models.md`. The
+model is chosen only by environment variable, so switching needs no code change:
+
+```text
+OLLAMA_MODEL=llama3.2:3b     # exact tag; one of gemma2:2b, llama3.2:3b, qwen2.5:7b, llama3.1:8b
+OLLAMA_URL=http://localhost:11434
+OLLAMA_TIMEOUT_SECONDS=120
+```
+
+Set it in `.env` (or the shell / `docker compose`), pull the tag with `ollama pull`, and
+restart the API. Each stored ticket and every request-log line records the model used.
+Failures return a generic 502 and store nothing; the request log's `error` field names the
+cause (`OllamaUnavailableError`, `OllamaTimeoutError`, `OllamaModelNotFoundError`,
+`OllamaResponseError`, `InvalidCategoryError`). Narratives and raw model output are never
+logged. Record digests on the test machine with `python scripts/record_model_digests.py`.
+
 ## Docker
 
 Start Docker Desktop/Engine and host Ollama. Set `.env` to use
