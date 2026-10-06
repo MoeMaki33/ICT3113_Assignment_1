@@ -187,14 +187,18 @@ startup and verifies that classification completes before storage and response.
 Person 1 calls `classify_ticket(narrative: str) -> str`; Person 2 maintains that
 interface and rejects invalid model output. See `data/README.md` for preparation
 commands and `jmeter/README.md` for future performance test requirements.
-Extraction and blank annotation preparation are usable helpers; agreement,
-accuracy evaluation, and JMeter processing are deliberately unimplemented CLI
-scaffolds. They exit with a TODO message and produce no results.
+Team-row extraction, deterministic golden-set selection, separate blank
+annotator sheets, agreement calculation, disagreement reporting, and
+freeze-protected golden-set finalization are implemented. Accuracy evaluation
+and JMeter processing remain unimplemented CLI scaffolds. See `data/README.md`
+and `docs/labelling_protocol.md` for the human workflow. Labels are never
+generated automatically; agreement is calculated only from completed human
+annotation sheets.
 
 ## Before formal evaluation
 
 **DO NOT RUN FORMAL BENCHMARKS UNTIL:**
-- golden test set is frozen
+- golden test set is finalised and committed
 - labelling work is complete
 - prediction record is complete
 - golden set and prediction record have been committed to Git
