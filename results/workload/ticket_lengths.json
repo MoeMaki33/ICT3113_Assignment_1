@@ -1,0 +1,157 @@
+{
+  "source": "data/team.csv",
+  "source_sha256": "3174ac682d4796ab44a32e809822c3d313cdd21429707def5aaed8b55ff1a99c",
+  "percentile_method": "nearest-rank",
+  "token_estimate": "characters / 4 (heuristic, not a tokenizer count)",
+  "all_rows": {
+    "characters": {
+      "count": 1000,
+      "min": 200,
+      "max": 1988,
+      "mean": 881.5,
+      "median": 756.5,
+      "p50": 755,
+      "p75": 1236,
+      "p90": 1632,
+      "p95": 1791,
+      "p99": 1925
+    },
+    "words": {
+      "count": 1000,
+      "min": 28,
+      "max": 389,
+      "mean": 157.4,
+      "median": 136.0,
+      "p50": 136,
+      "p75": 222,
+      "p90": 290,
+      "p95": 319,
+      "p99": 358
+    },
+    "estimated_tokens": {
+      "count": 1000,
+      "min": 50,
+      "max": 497,
+      "mean": 220.8,
+      "median": 189.5,
+      "p50": 189,
+      "p75": 309,
+      "p90": 408,
+      "p95": 448,
+      "p99": 482
+    },
+    "character_histogram": [
+      {
+        "chars": "0-249",
+        "tickets": 46,
+        "share_pct": 4.6
+      },
+      {
+        "chars": "250-499",
+        "tickets": 224,
+        "share_pct": 22.4
+      },
+      {
+        "chars": "500-999",
+        "tickets": 356,
+        "share_pct": 35.6
+      },
+      {
+        "chars": "1000-1999",
+        "tickets": 374,
+        "share_pct": 37.4
+      },
+      {
+        "chars": "2000-3999",
+        "tickets": 0,
+        "share_pct": 0.0
+      },
+      {
+        "chars": "4000-7999",
+        "tickets": 0,
+        "share_pct": 0.0
+      },
+      {
+        "chars": "8000+",
+        "tickets": 0,
+        "share_pct": 0.0
+      }
+    ]
+  },
+  "subset": {
+    "source": "data/golden_set_final.csv",
+    "characters": {
+      "count": 180,
+      "min": 204,
+      "max": 1974,
+      "mean": 915.4,
+      "median": 872.0,
+      "p50": 870,
+      "p75": 1306,
+      "p90": 1657,
+      "p95": 1792,
+      "p99": 1968
+    },
+    "words": {
+      "count": 180,
+      "min": 34,
+      "max": 382,
+      "mean": 163.4,
+      "median": 152.5,
+      "p50": 152,
+      "p75": 226,
+      "p90": 297,
+      "p95": 324,
+      "p99": 370
+    },
+    "estimated_tokens": {
+      "count": 180,
+      "min": 51,
+      "max": 494,
+      "mean": 229.2,
+      "median": 218.5,
+      "p50": 218,
+      "p75": 327,
+      "p90": 415,
+      "p95": 448,
+      "p99": 492
+    },
+    "character_histogram": [
+      {
+        "chars": "0-249",
+        "tickets": 9,
+        "share_pct": 5.0
+      },
+      {
+        "chars": "250-499",
+        "tickets": 38,
+        "share_pct": 21.1
+      },
+      {
+        "chars": "500-999",
+        "tickets": 61,
+        "share_pct": 33.9
+      },
+      {
+        "chars": "1000-1999",
+        "tickets": 72,
+        "share_pct": 40.0
+      },
+      {
+        "chars": "2000-3999",
+        "tickets": 0,
+        "share_pct": 0.0
+      },
+      {
+        "chars": "4000-7999",
+        "tickets": 0,
+        "share_pct": 0.0
+      },
+      {
+        "chars": "8000+",
+        "tickets": 0,
+        "share_pct": 0.0
+      }
+    ]
+  }
+}
