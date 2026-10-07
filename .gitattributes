@@ -7,3 +7,5 @@
 *.tsv -text
 *.jsonl -text
 *.log -text
+# Search terms are hashed inputs too; preserve their LF bytes on Windows.
+jmeter/data/search_terms.txt -text

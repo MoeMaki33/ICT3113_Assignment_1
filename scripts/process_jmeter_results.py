@@ -131,11 +131,17 @@ def summarise_run(jtl: Path, metadata: dict | None = None) -> dict:
     t0 = int(metadata.get("schedule_start_epoch_ms") or metadata.get("started_epoch_ms")
              or min(s["start_ms"] for s in samples))
     window_start, window_end = t0 + warmup * 1000, t0 + duration * 1000
+    if not 0 <= warmup < duration:
+        raise ValueError("Measured window needs 0 <= warm-up < duration")
     labels = {}
     for label in sorted({s["label"] for s in samples}):
         labels[label] = summarise_label([s for s in samples if s["label"] == label], window_start, window_end)
     return {
         "jtl": jtl.as_posix(),
+        "sample_count": len(samples),
+        "observed_sample_span_s": round((max(s["end_ms"] for s in samples) - min(s["start_ms"] for s in samples)) / 1000, 3),
+        "wrapper_elapsed_s": round((metadata["finished_epoch_ms"] - metadata["started_epoch_ms"]) / 1000, 3)
+        if metadata.get("finished_epoch_ms") is not None and metadata.get("started_epoch_ms") is not None else None,
         "run": metadata.get("run"),
         "model": metadata.get("model"),
         "official": metadata.get("official"),
@@ -165,19 +171,32 @@ def summarise_config(directory: Path, expected_runs: int = EXPECTED_RUNS) -> dic
         jtl = directory / f"run-{number}.jtl"
         metadata = read_json(jtl.with_suffix(".json"))
         if metadata is None:
-            problems.append(f"run-{number}: metadata JSON missing (window falls back to first sample)")
+            problems.append(f"run-{number}: metadata JSON missing; excluded")
+            continue
         elif metadata.get("status") != "completed":
             problems.append(f"run-{number}: status {metadata.get('status')!r}; excluded")
             continue
         reconciliation = read_json(directory / f"run-{number}.reconciliation.json")
         if reconciliation is None:
             problems.append(f"run-{number}: not reconciled with the service log yet")
+            if metadata.get("official"):
+                problems.append(f"run-{number}: official run excluded until reconciliation")
+                continue
         elif not reconciliation.get("reconciled") or reconciliation.get("contaminated"):
             problems.append(f"run-{number}: reconciliation failed (reconciled={reconciliation.get('reconciled')}, "
                             f"contaminated={reconciliation.get('contaminated')}); excluded, kept as evidence")
             continue
+        if metadata.get("official") and not metadata.get("schedule_start_epoch_ms"):
+            problems.append(f"run-{number}: official schedule start timestamp missing; excluded")
+            continue
+        identity = tuple(metadata.get(k) for k in ("model", "kind", "official", "rate_per_hour",
+                                                   "search_rate_per_hour", "warmup_s", "duration_s"))
+        if runs and identity != configuration_identity:
+            problems.append(f"run-{number}: model/workload/window differs from configuration; excluded")
+            continue
         try:
             runs.append(summarise_run(jtl, metadata))
+            configuration_identity = identity
             used.add(number)
         except ValueError as exc:
             problems.append(f"run-{number}: {exc}; excluded")
@@ -203,7 +222,7 @@ def summarise_config(directory: Path, expected_runs: int = EXPECTED_RUNS) -> dic
     return {
         "configuration": directory.as_posix(),
         "model": first.get("model"), "kind": first.get("kind"),
-        "official": all(r.get("official") for r in runs) if runs else None,
+        "official": bool(runs and len(runs) >= expected_runs and all(r.get("official") for r in runs)),
         "rate_per_hour": first.get("offered_rate_setting_per_hour"),
         "search_rate_per_hour": first.get("search_rate_setting_per_hour"),
         "expected_runs": expected_runs, "completed_runs": len(runs),

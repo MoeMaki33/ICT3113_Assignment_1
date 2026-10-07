@@ -11,6 +11,10 @@ with `.venv/bin/python` and use `/` in paths.
    (`data/golden_set_final.csv`) and the prediction record (`docs/prediction_record.md`) are
    committed, unmodified, and the record is no longer marked DRAFT/PROPOSED. Every script enforces
    this (`scripts/perf_common.py:freeze_gate_problems`) and refuses official runs otherwise.
+   The gate also rejects incomplete/invalid golden CSVs, staged-but-uncommitted
+   files, missing per-model numeric predictions and unfinished prediction sign-off.
+   Run `python -m scripts.validate_golden_set` separately and resolve every
+   provenance problem; passing the freeze gate alone does not prove machine readiness.
    `--smoke` exists only to check the tooling. Smoke output goes to `results/smoke/`, is labelled
    *NOT OFFICIAL EVIDENCE*, and must never be reported.
 2. **Baseline protection.** Test the service exactly as committed. Do not add caching, queues,
@@ -67,7 +71,7 @@ $env:OLLAMA_HOST = "0.0.0.0:11434"     # only if the container cannot reach host
 ollama serve
 # second terminal
 ollama pull gemma2:2b; ollama pull llama3.2:3b; ollama pull qwen2.5:7b; ollama pull llama3.1:8b
-.\.venv\Scripts\python.exe scripts\record_model_digests.py --json results\model_provenance.json
+.\.venv\Scripts\python.exe scripts\record_model_digests.py --json results\environment\model-provenance-before-tests.json
 ```
 
 Check that the digests match `docs/models.md`. Keep `OLLAMA_KEEP_ALIVE` at its default and record it.
@@ -207,7 +211,7 @@ it as run-4 (the processing reports all completed runs, and the extra run is exp
    Copy-Item <copied log> results\load\<model-dir>\rate-250_search-450\run-1.service.log
    ```
    (Or keep a single copy and pass it with `--service-log` in the next step.)
-2. Process and reconcile (section 6).
+2. Reconcile first, then process (section 6). Official unreconciled runs are excluded.
 3. Commit the raw files and the summaries on your branch (`git add results/load/<model-dir>`).
 
 ## 5. Accuracy test
@@ -236,8 +240,8 @@ predicts: `single_request_latency_excluding_first` in `metrics.json`.
 ## 6. Processing results and reconciling with logs
 
 ```powershell
-.\.venv\Scripts\python.exe -m scripts.process_jmeter_results results\load       # every configuration
 .\.venv\Scripts\python.exe -m scripts.reconcile_logs results\load\qwen2.5_7b\rate-250_search-450 --service-log <copied service.log>
+.\.venv\Scripts\python.exe -m scripts.process_jmeter_results results\load       # after reconciling every configuration
 ```
 
 ### 6.1 Metric definitions (identical for every run)
@@ -284,6 +288,18 @@ column; the accuracy test writes it to `predictions.csv`. `scripts/reconcile_log
 A run is valid evidence only if `reconciled = true` and `contaminated = false`. The command exits
 non-zero otherwise. A failing run is repeated, not deleted. Every reported number can then be
 traced: summary → `runs.csv` row → `.jtl` sample → `request_id` → service-log line.
+
+Malformed log lines, repeated client IDs, absent expected model and client
+timeouts without a corresponding possible service-log line now fail
+reconciliation. Same-endpoint lines attributed to abandoned clients remain
+possible matches; inspect timestamps/errors and retain that uncertainty.
+
+Official load aggregation excludes missing metadata, missing schedule start,
+missing/failed reconciliation and differing model/workload/window configurations.
+It is marked official only after at least three valid official runs exist.
+Per-run JSON also records sample count, observed first-start-to-last-end span,
+wrapper elapsed time when available, and the configured measured window; these
+are distinct duration definitions.
 
 ## 7. Stress test
 

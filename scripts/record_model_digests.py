@@ -13,6 +13,7 @@ The digest is the full sha256 from Ollama's /api/tags (the ID column of
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -36,6 +37,9 @@ def collect(client: httpx.Client, base_url: str, tags: list[str]) -> dict:
         if entry is None:
             records.append({"tag": tag, "status": "NOT PULLED"})
             continue
+        digest = entry.get("digest")
+        if not isinstance(digest, str) or not re.fullmatch(r"(?:sha256:)?[0-9a-f]{64}", digest):
+            raise ValueError(f"Ollama did not return a full SHA-256 digest for {tag}")
         show = client.post(f"{base}/api/show", json={"model": tag}).raise_for_status().json()
         details = show.get("details") or entry.get("details") or {}
         licence_text = show.get("license") or ""
@@ -79,13 +83,15 @@ def main() -> int:
     try:
         with httpx.Client(timeout=30.0) as client:
             record = collect(client, args.url, tags)
-    except httpx.HTTPError as exc:
+    except (httpx.HTTPError, ValueError) as exc:
         print(f"Could not query Ollama at {args.url}: {type(exc).__name__}. Is `ollama serve` running?", file=sys.stderr)
         return 1
     print(to_markdown(record))
     if args.json:
-        args.json.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
-    return 0
+        args.json.parent.mkdir(parents=True, exist_ok=True)
+        with args.json.open("x", encoding="utf-8") as handle:
+            handle.write(json.dumps(record, indent=2) + "\n")
+    return 0 if all(m["status"] == "pulled" and m.get("digest") for m in record["models"]) else 1
 
 
 if __name__ == "__main__":

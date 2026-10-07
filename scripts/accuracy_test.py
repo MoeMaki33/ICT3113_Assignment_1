@@ -35,7 +35,7 @@ import httpx
 
 from app.categories import CATEGORIES
 from scripts.perf_common import (
-    ROOT, freeze_gate_problems, git_info, model_dir, nearest_rank, read_json, sha256_file, utc_now,
+    ROOT, GOLDEN_SET, freeze_gate_problems, git_info, model_dir, nearest_rank, read_json, sha256_file, utc_now,
     write_json,
 )
 
@@ -55,6 +55,9 @@ def read_golden(path: Path) -> list[dict]:
             raise ValueError(f"Row {record['row']}: invalid golden category {record['final_golden_category']!r}")
         if not record["narrative"].strip():
             raise ValueError(f"Row {record['row']}: empty narrative")
+    ids = [int(r["row"]) for r in records]
+    if len(set(ids)) != len(ids) or any(i < 0 for i in ids):
+        raise ValueError("Golden source rows must be unique nonnegative integers")
     return records
 
 
@@ -77,7 +80,14 @@ def classify(client: httpx.Client, narrative: str) -> dict:
               "start_epoch_ms": start_ms, "elapsed_ms": elapsed, "error": "", "ticket_id": "",
               "predicted_category": FAILED}
     if response.status_code == 201:
-        body = response.json()
+        try:
+            body = response.json()
+        except ValueError:
+            result["error"] = "InvalidJSONResponse"
+            return result
+        if not isinstance(body, dict) or not isinstance(body.get("id"), int) or isinstance(body.get("id"), bool) or body["id"] <= 0:
+            result["error"] = "InvalidTicketResponse"
+            return result
         result.update(ticket_id=body.get("id", ""), predicted_category=body.get("category", FAILED))
         if result["predicted_category"] not in CATEGORIES:
             result.update(error="CategoryOutsideSeven", predicted_category=FAILED)
@@ -119,7 +129,7 @@ def compute_metrics(predictions: list[dict]) -> dict:
         })
     ok = [p for p in predictions if p["predicted_category"] != FAILED]
     latencies = sorted(int(p["elapsed_ms"]) for p in ok)
-    warm = sorted(int(p["elapsed_ms"]) for p in ok[1:])  # first request may include model loading
+    warm = sorted(int(p["elapsed_ms"]) for p in predictions[1:] if p["predicted_category"] != FAILED)
 
     def lat(values: list[int]) -> dict:
         if not values:
@@ -187,6 +197,10 @@ def evaluate(golden_set: Path, api_url: str, model: str, output: Path, smoke: bo
                          + "\nUse --smoke for a tooling check (results go to results/smoke/accuracy/).")
     if limit is not None and not smoke:
         raise SystemExit("--limit is only allowed with --smoke: official runs score every golden ticket")
+    if limit is not None and limit <= 0:
+        raise ValueError("--limit must be positive")
+    if not smoke and sha256_file(golden_set) != sha256_file(ROOT / GOLDEN_SET):
+        raise SystemExit("Official accuracy testing must use the committed data/golden_set_final.csv bytes")
     golden = read_golden(golden_set)[:limit]
     base = (output.parent / "smoke" / output.name if smoke else output) / model_dir(model)
     out = next_run_dir(base)

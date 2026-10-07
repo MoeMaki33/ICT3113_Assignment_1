@@ -6,6 +6,7 @@ from time import perf_counter
 from uuid import uuid4
 
 from starlette.types import ASGIApp, Receive, Scope, Send
+from starlette.responses import JSONResponse
 
 from app.config import settings
 
@@ -37,11 +38,13 @@ class RequestLoggingMiddleware:
         timer = perf_counter()
         status = 500
         error = None
+        response_started = False
         state = scope.setdefault("state", {})
 
         async def capture_send(message):
-            nonlocal status
+            nonlocal status, response_started
             if message["type"] == "http.response.start":
+                response_started = True
                 status = message["status"]
                 message.setdefault("headers", []).append(
                     (b"x-request-id", request_id.encode("ascii"))
@@ -52,7 +55,12 @@ class RequestLoggingMiddleware:
             await self.app(scope, receive, capture_send)
         except Exception as exc:
             error = type(exc).__name__
-            raise
+            if response_started:
+                raise
+            # Keep unexpected failures generic and correlated just like handled errors.
+            await JSONResponse(status_code=500, content={"detail": "Internal server error"})(
+                scope, receive, capture_send
+            )
         finally:
             route = scope.get("route")
             self.logger.info(json.dumps({

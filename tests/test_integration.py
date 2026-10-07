@@ -1,4 +1,5 @@
 import json
+import os
 
 import httpx
 import pytest
@@ -38,6 +39,21 @@ def test_model_configuration_required(monkeypatch):
         ollama_client.generate("Complaint")
 
 
-@pytest.mark.skip(reason="TODO: team selects a local model and defines an opt-in real integration test")
-def test_real_ollama_integration():
-    pass
+@pytest.mark.skipif(os.getenv("RUN_OLLAMA_INTEGRATION") != "1",
+                    reason="Opt in with RUN_OLLAMA_INTEGRATION=1 and a configured local Ollama model")
+def test_real_ollama_integration(client):
+    from app.config import settings
+    from app.categories import CATEGORIES
+
+    assert settings.ollama_model.strip(), "Set OLLAMA_MODEL to a pulled local tag before opting in"
+    narrative = "I dispute an unauthorized purchase on my credit card account."
+    before = client.get("/stats").json()
+    response = client.post("/tickets", json={"narrative": narrative})
+    assert response.status_code == 201
+    assert response.headers["x-request-id"]
+    ticket = response.json()
+    assert ticket["category"] in CATEGORIES
+    stored = next(t for t in client.get("/search", params={"q": narrative}).json() if t["id"] == ticket["id"])
+    assert stored["category"] == ticket["category"] and stored["model"] == settings.ollama_model
+    after = client.get("/stats").json()
+    assert sum(after.values()) == sum(before.values()) + 1

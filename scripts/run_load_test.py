@@ -18,6 +18,8 @@ same exact tag. scripts/reconcile_logs.py verifies it against the service log af
     python -m scripts.run_load_test --model qwen2.5:7b --rate 250 --search-rate 450 --host ...
 """
 import argparse
+import csv
+import json
 import math
 import os
 import re
@@ -37,6 +39,7 @@ from scripts.perf_common import (
     ROOT, config_dir_name, freeze_gate_problems, git_info, model_dir, next_run_number,
     read_jtl, read_json, sha256_file, utc_now, write_json,
 )
+from scripts.create_golden_set import read_team_rows
 
 PLAN = ROOT / "jmeter" / "ticket_load_test.jmx"
 PROPERTIES = ROOT / "jmeter" / "results.properties"
@@ -45,6 +48,26 @@ SEARCH_TERMS = ROOT / "jmeter" / "data" / "search_terms.txt"
 DEFAULT_DURATION_S = 720   # 2 min warm-up + 10 min measured window
 DEFAULT_WARMUP_S = 120
 DEFAULT_TIMEOUT_MS = 180_000
+
+
+def validate_load_inputs(root: Path = ROOT) -> None:
+    """Prove that prepared traffic is exactly the assigned team CSV, before JMeter starts."""
+    manifest = read_json(root / "jmeter/data/manifest.json")
+    selection = read_json(root / "data/labelling/selection.json")
+    if not manifest or not selection:
+        raise ValueError("Missing JMeter input or team selection manifest")
+    source = root / "data/team.csv"
+    narratives = root / "jmeter/data/team_narratives.tsv"
+    terms = root / "jmeter/data/search_terms.txt"
+    for path, key in ((source, "source_sha256"), (narratives, "narratives_sha256"), (terms, "search_terms_sha256")):
+        if sha256_file(path) != manifest.get(key):
+            raise ValueError(f"JMeter input hash differs from manifest: {path.name}")
+    team = read_team_rows(source, selection["team_number"])
+    with narratives.open(encoding="utf-8", newline="") as handle:
+        prepared = [{"row": row, "narrative": json.loads(narrative)}
+                    for row, narrative in csv.reader(handle, delimiter="\t", quoting=csv.QUOTE_NONE)]
+    if prepared != team or len(prepared) != manifest.get("narrative_count"):
+        raise ValueError("Prepared JMeter narratives differ from assigned team rows")
 
 
 def find_jmeter(explicit: str | None) -> str:
@@ -109,8 +132,10 @@ def run_once(*, model: str, rate: float, duration_s: int = DEFAULT_DURATION_S,
              jmeter: str | None = None, smoke: bool = False, results_root: Path = ROOT / "results",
              skip_preflight: bool = False, notes: str = "", out_dir: Path | None = None) -> Path:
     """Run JMeter once and return the path of the run metadata JSON."""
-    if rate <= 0 or duration_s <= 0 or not 0 <= warmup_s < duration_s or search_rate < 0:
+    if not math.isfinite(rate) or not math.isfinite(search_rate) or rate <= 0 or duration_s <= 0 or not 0 <= warmup_s < duration_s or search_rate < 0:
         raise ValueError("Need rate > 0, duration > 0, 0 <= warm-up < duration and search rate >= 0")
+    if timeout_ms <= 0 or (run is not None and run <= 0):
+        raise ValueError("Timeout and run number must be positive")
     problems = freeze_gate_problems()
     if problems and not smoke:
         raise SystemExit("Official benchmarking is NOT allowed yet:\n  - " + "\n  - ".join(problems)
@@ -118,12 +143,17 @@ def run_once(*, model: str, rate: float, duration_s: int = DEFAULT_DURATION_S,
     for required in (PLAN, PROPERTIES, NARRATIVES, SEARCH_TERMS):
         if not required.is_file():
             raise SystemExit(f"Missing {required}; run: python -m scripts.prepare_jmeter_data")
+    if not smoke:
+        try:
+            validate_load_inputs()
+        except (ValueError, OSError, KeyError) as exc:
+            raise SystemExit(f"Official traffic inputs are not ready: {exc}") from exc
     jmeter_bin = find_jmeter(jmeter)
     directory = out_dir or output_dir(results_root, kind, model, rate, search_rate, smoke)
     directory.mkdir(parents=True, exist_ok=True)
     run = run or next_run_number(directory)
     jtl, log, meta_path = (directory / f"run-{run}{ext}" for ext in (".jtl", ".jmeter.log", ".json"))
-    if jtl.exists() or meta_path.exists():
+    if jtl.exists() or meta_path.exists() or log.exists():
         raise SystemExit(f"{jtl} already exists; raw results are never overwritten. Use another --run.")
     seed = seed if seed is not None else 3113 * 100 + run
     drain_s = math.ceil(timeout_ms / 1000) + 10
@@ -151,6 +181,8 @@ def run_once(*, model: str, rate: float, duration_s: int = DEFAULT_DURATION_S,
         "git": git_info(), "notes": notes, "status": "running",
         "started_utc": utc_now(), "started_epoch_ms": int(time.time() * 1000),
         "jtl": jtl.name, "jmeter_log": log.name,
+        "golden_sha256": sha256_file(ROOT / "data/golden_set_final.csv") if (ROOT / "data/golden_set_final.csv").is_file() else None,
+        "prediction_sha256": sha256_file(ROOT / "docs/prediction_record.md") if (ROOT / "docs/prediction_record.md").is_file() else None,
     }
     write_json(meta_path, metadata)
     print(f"[{metadata['started_utc']}] {kind} run {run}: {model} at {rate:g}/h"
@@ -161,6 +193,10 @@ def run_once(*, model: str, rate: float, duration_s: int = DEFAULT_DURATION_S,
         metadata.update(status="interrupted", finished_utc=utc_now(), schedule_start_epoch_ms=schedule_start_ms(log))
         write_json(meta_path, metadata)
         raise SystemExit(f"Interrupted; partial results kept and marked in {meta_path}")
+    except OSError as exc:
+        metadata.update(status="failed", error=type(exc).__name__, finished_utc=utc_now())
+        write_json(meta_path, metadata)
+        raise SystemExit(f"Could not launch JMeter: {type(exc).__name__}; metadata kept in {meta_path}") from exc
     metadata.update(finished_utc=utc_now(), finished_epoch_ms=int(time.time() * 1000), exit_code=exit_code,
                     schedule_start_epoch_ms=schedule_start_ms(log))
     if exit_code == 0 and jtl.is_file():

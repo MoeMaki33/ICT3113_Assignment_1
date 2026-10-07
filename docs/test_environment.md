@@ -5,7 +5,15 @@ Owner: Person 5. Status: **TEMPLATE: not yet filled in.** No official test has b
 Fill this in **before the first official benchmark**, on the machines that will actually run the
 tests. Hardware and software values come from `scripts/record_test_environment.py`, run on each
 machine. Its JSON output under `results/environment/` is the raw evidence, and this page summarises
-it. Network and manual items are filled in by hand. Leave a field blank rather than guessing.
+it. Network and manual items are filled in by hand. Every blank cell below means
+**TODO: obtain the real value on the indicated machine**. JMeter 5.6.3, Python
+3.12 and the 120-second timeout are intended settings, not observed versions.
+The recorder also captures installed Python package versions; record the
+container's actual versions with `docker compose exec api python -m pip freeze`.
+
+**TODO:** reconcile the Intel/Ollama 0.34.4 historical model record with the
+Ryzen/Ollama 0.35.1 assumptions in the draft prediction record. Do not copy either
+into this template as observed hardware without confirming the chosen machine.
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.record_test_environment --role service   # on the service + Ollama machine

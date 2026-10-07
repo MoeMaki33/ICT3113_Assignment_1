@@ -8,6 +8,7 @@ Values are read from the machine; anything that cannot be read is recorded as nu
 guessed. Fill the network section and anything null in docs/test_environment.md by hand.
 """
 import argparse
+import importlib.metadata
 import json
 import os
 import platform
@@ -30,6 +31,8 @@ def _run(command: list[str], timeout: int = 20) -> str | None:
     try:
         result = subprocess.run(command, capture_output=True, text=True, timeout=timeout)
     except (OSError, subprocess.SubprocessError):
+        return None
+    if result.returncode != 0:
         return None
     output = (result.stdout or "") + (result.stderr or "")
     return output.strip() or None
@@ -75,6 +78,8 @@ def collect(role: str, jmeter: str | None = None) -> dict:
         "os": platform.platform(), "os_release": platform.release(), "machine": platform.machine(),
         "cpu_model": cpu_model(), "logical_cpus": os.cpu_count(), "physical_cores": None,
         "ram_gb": total_ram_gb(), "python": sys.version.split()[0], "git": git_info(ROOT),
+        "python_packages": {dist.metadata["Name"]: dist.version for dist in importlib.metadata.distributions()
+                            if dist.metadata["Name"]},
     }
     if platform.system() == "Darwin":
         info["physical_cores"] = int(_run(["sysctl", "-n", "hw.physicalcpu"]) or 0) or None
@@ -87,7 +92,9 @@ def collect(role: str, jmeter: str | None = None) -> dict:
         info["ollama"] = first_line(_run(["ollama", "--version"]))
         info["ollama_list"] = _run(["ollama", "list"])
         info["ollama_ps"] = _run(["ollama", "ps"])
-        info["ollama_env"] = {k: v for k, v in os.environ.items() if k.startswith("OLLAMA_")}
+        info["ollama_env"] = {k: os.environ[k] for k in (
+            "OLLAMA_MODEL", "OLLAMA_HOST", "OLLAMA_URL", "OLLAMA_NUM_PARALLEL", "OLLAMA_KEEP_ALIVE",
+            "OLLAMA_TIMEOUT_SECONDS", "OLLAMA_MAX_LOADED_MODELS", "OLLAMA_CONTEXT_LENGTH") if k in os.environ}
     if role == "loadgen":
         info["java"] = first_line(_run(["java", "-version"]))
         jmeter_bin = jmeter or os.getenv("JMETER_BIN") or "jmeter"

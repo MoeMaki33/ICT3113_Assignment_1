@@ -114,6 +114,8 @@ def reconcile(samples: list[dict], log: list[dict], expected_model: str | None,
     no_response, response_without_id, missing_in_log = Counter(), 0, []
     no_response_routes = Counter()
     status_mismatch, endpoint_mismatch, model_mismatch, duplicates = [], [], [], []
+    client_ids = Counter(s["request_id"] for s in samples if s["request_id"])
+    duplicate_client_ids = [rid for rid, count in client_ids.items() if count > 1]
     for sample in samples:
         rid = sample["request_id"]
         if not rid:
@@ -177,6 +179,8 @@ def reconcile(samples: list[dict], log: list[dict], expected_model: str | None,
         "request_ids_missing_from_log": missing_in_log[:50],
         "request_ids_missing_from_log_count": len(missing_in_log),
         "duplicate_request_ids_in_log": duplicates[:50],
+        "duplicate_request_ids_in_client": duplicate_client_ids[:50],
+        "duplicate_request_ids_in_client_count": len(duplicate_client_ids),
         "status_mismatches": status_mismatch[:50], "status_mismatch_count": len(status_mismatch),
         "endpoint_mismatch_count": len(endpoint_mismatch),
         "expected_model": expected_model,
@@ -186,6 +190,7 @@ def reconcile(samples: list[dict], log: list[dict], expected_model: str | None,
         "extra_log_lines_by_type": dict(extra_types),
         "extra_preflight": len(preflight),
         "extra_abandoned_by_client": len(abandoned),
+        "unmatched_no_response_count": sum(budget.values()),
         "extra_unexplained": len(unexplained),
         "extra_unexplained_by_type": dict(Counter(describe(r) for r in unexplained)),
         "client_minus_service_ms": _pct(overhead),
@@ -194,12 +199,15 @@ def reconcile(samples: list[dict], log: list[dict], expected_model: str | None,
     }
     report["reconciled"] = bool(
         samples and len(matched) == with_response and not missing_in_log and not response_without_id
-        and not status_mismatch and not endpoint_mismatch and not model_mismatch and not duplicates)
+        and not status_mismatch and not endpoint_mismatch and not model_mismatch and not duplicates
+        and not duplicate_client_ids and not any(budget.values()))
     report["contaminated"] = bool(unexplained)
     notes = []
     if no_response:
         notes.append(f"{sum(no_response.values())} client samples got no HTTP response (see client_no_http_response); "
                      "the service may have logged them later, they appear among the extra in-window lines.")
+        notes.append("Extra same-endpoint lines are possible abandoned requests, not proof of identity. "
+                     "Review timestamps/errors and preserve this uncertainty in the report.")
     if unexplained:
         notes.append(f"{len(unexplained)} in-window log lines are not test traffic (see extra_unexplained_by_type): "
                      "the run is contaminated; find the source, record it, and repeat the run.")
@@ -220,6 +228,12 @@ def reconcile_file(client_file: Path, service_logs: list[Path], expected_model: 
     report = {"client_file": client_file.as_posix(), "client_format": source,
               "service_logs": [p.as_posix() for p in service_logs], "service_log_lines": len(log),
               "service_log_malformed_lines": malformed, "generated_utc": utc_now(), **report}
+    if malformed:
+        report["reconciled"] = False
+        report["notes"].append("Malformed service-log lines prevent complete reconciliation; inspect the originals.")
+    if expected_model is None:
+        report["reconciled"] = False
+        report["notes"].append("Expected model is missing; supply run metadata or --model.")
     stem = client_file.with_suffix("") if source == "jmeter" else client_file.parent / client_file.stem
     write_json(stem.parent / f"{stem.name}.reconciliation.json", report)
     (stem.parent / f"{stem.name}.service_log_extract.jsonl").write_text(

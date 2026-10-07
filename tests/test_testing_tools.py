@@ -22,6 +22,12 @@ JTL_HEADER = ["timeStamp", "elapsed", "label", "responseCode", "responseMessage"
 T0 = 1_800_000_000_000  # arbitrary epoch ms
 
 
+@pytest.fixture(autouse=True)
+def isolated_accuracy_root(tmp_path, monkeypatch):
+    # Official accuracy tests must score the canonical frozen file, even in fixtures.
+    monkeypatch.setattr(accuracy_test, "ROOT", tmp_path)
+
+
 def write_jtl(path: Path, samples: list[tuple]) -> None:
     """samples: (offset_s, elapsed_ms, label, code, success, request_id)."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -63,7 +69,10 @@ def test_freeze_gate_requires_committed_unmodified_non_draft_record(tmp_path):
     git("config", "user.name", "t")
     (tmp_path / "data").mkdir()
     (tmp_path / "docs").mkdir()
-    (tmp_path / "data/golden_set_final.csv").write_text("row,narrative,final_golden_category\n")
+    with (tmp_path / "data/golden_set_final.csv").open("w", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["row", "narrative", "final_golden_category"])
+        writer.writerows([i, f"Synthetic complaint {i}", CATEGORIES[i % 7]] for i in range(150))
     record = tmp_path / "docs/prediction_record.md"
     record.write_text("Owner: Person 4. Status: **DRAFT (2026-10-07)**\n")
     problems = perf_common.freeze_gate_problems(tmp_path)
@@ -71,7 +80,12 @@ def test_freeze_gate_requires_committed_unmodified_non_draft_record(tmp_path):
     git("add", ".")
     git("commit", "-qm", "draft")
     assert perf_common.freeze_gate_problems(tmp_path) == ["docs/prediction_record.md is still marked DRAFT"]
-    record.write_text("Owner: Person 4. Status: **FROZEN (2026-10-08)**\n")
+    from app.candidate_models import CANDIDATE_MODELS
+    record.write_text("Status: **FROZEN (2026-10-08)**\n"
+                      "## 1. Bottleneck prediction\nCPU inference expected to dominate.\n"
+                      "## 3. Difficult categories\nDebt collection expected hardest.\n"
+                      + "\n".join(f"| `{m.tag}` | 75% | 5 s |" for m in CANDIDATE_MODELS)
+                      + "\n| Reviewed by (names) | Test team |\n| Date committed | 2026-10-08 |\n")
     assert perf_common.freeze_gate_problems(tmp_path) == ["docs/prediction_record.md has uncommitted changes"]
     git("commit", "-qam", "Freeze golden set and prediction record before benchmarking")
     assert perf_common.freeze_gate_problems(tmp_path) == []
@@ -211,14 +225,18 @@ def test_reconciliation_matches_ids_and_classifies_extra_lines(tmp_path):
     run_meta(jtl, preflight_request_id="pre")
     log = tmp_path / "service.log"
     log.write_text("\n".join([log_line("pre", 0, 200, "/stats", "GET"), log_line("a", 1), log_line("b", 2),
-                              log_line("late", 3), "not json"]) + "\n")
+                              log_line("late", 3)]) + "\n")
     report = reconcile_file(jtl, [log])
     assert report["reconciled"] and not report["contaminated"]
-    assert report["matched"] == 2 and report["service_log_malformed_lines"] == 1
+    assert report["matched"] == 2 and report["service_log_malformed_lines"] == 0
     assert (report["extra_preflight"], report["extra_abandoned_by_client"], report["extra_unexplained"]) == (1, 1, 0)
     assert report["client_minus_service_ms"]["p50"] == 100.0
     extract = (tmp_path / "run-1.service_log_extract.jsonl").read_text().splitlines()
     assert len(extract) == 4 and (tmp_path / "run-1.reconciliation.json").is_file()
+    with log.open("a") as handle:
+        handle.write("not json\n")
+    malformed_report = reconcile_file(jtl, [log])
+    assert not malformed_report["reconciled"] and malformed_report["service_log_malformed_lines"] == 1
 
 
 def test_reconciliation_flags_mismatches_and_contamination(tmp_path):
@@ -239,7 +257,8 @@ def test_reconciliation_flags_mismatches_and_contamination(tmp_path):
 # --- accuracy test --------------------------------------------------------------------------
 
 def golden_file(tmp_path: Path, n_per_category: int = 2) -> Path:
-    path = tmp_path / "golden.csv"
+    path = tmp_path / "data/golden_set_final.csv"
+    path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
         writer.writerow(["row", "narrative", "final_golden_category"])
@@ -374,13 +393,13 @@ def fake_run_once(capacity_per_hour: float):
 
 def test_stress_finds_limit_with_bisection_and_locks_its_plan(tmp_path, monkeypatch):
     monkeypatch.setattr(run_stress_test, "run_once", fake_run_once(capacity_per_hour=800))
-    kwargs = dict(duration_s=600, warmup_s=60, cooldown_s=1, results_root=tmp_path, sleep=lambda _s: None)
+    kwargs = dict(duration_s=600, warmup_s=60, cooldown_s=1, smoke=True, results_root=tmp_path, sleep=lambda _s: None)
     summary = run_stress_test.stress("m:1", [250, 500, 1000, 2000], 2, CRITERIA, **kwargs)
     rates = [s["rate_setting_per_hour"] for s in summary["steps"]]
     assert rates == [250, 500, 1000, 750, 875]  # stops at 1000, then bisects 500..1000
     assert summary["highest_sustainable_per_hour"] == 750
     assert summary["lowest_unsustainable_per_hour"] == 875
-    base = tmp_path / "stress/m_1"
+    base = tmp_path / "smoke/stress/m_1"
     assert (base / "stress_steps.csv").is_file() and "limit lies between" in (base / "stress_summary.md").read_text()
     # resuming reuses completed steps and refuses changed criteria
     again = run_stress_test.stress("m:1", [250, 500, 1000, 2000], 2, CRITERIA, **kwargs)
@@ -392,6 +411,6 @@ def test_stress_finds_limit_with_bisection_and_locks_its_plan(tmp_path, monkeypa
 def test_stress_does_not_claim_a_limit_it_did_not_reach(tmp_path, monkeypatch):
     monkeypatch.setattr(run_stress_test, "run_once", fake_run_once(capacity_per_hour=10_000))
     summary = run_stress_test.stress("m:1", [250, 500], 2, CRITERIA, duration_s=600, warmup_s=60, cooldown_s=1,
-                                     results_root=tmp_path, sleep=lambda _s: None)
+                                     smoke=True, results_root=tmp_path, sleep=lambda _s: None)
     assert summary["lowest_unsustainable_per_hour"] is None
     assert "no limit found" in summary["conclusion"]

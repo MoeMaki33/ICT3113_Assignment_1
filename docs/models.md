@@ -4,9 +4,10 @@ All candidates are official Ollama library tags, run locally through Ollama, and
 used with `options.num_gpu = 0` (CPU-only). GPU availability is not assumed. Two
 parameter-size classes are covered: **Small (2-4B)** and **Medium (7-9B)**.
 
-**Digests are not filled in yet.** They can only come from the machine that pulled the
-models, so none has been typed in by hand. Record them with the steps in
-[Recording digests](#recording-digests) and paste the result into the table.
+**All four digests are recorded** in `results/model_provenance.json` from the
+2026-09-29 capture below. They identify those pulled artifacts, not proof that
+the models are available on the eventual test machine. Recheck there using
+[Recording digests](#recording-digests); preserve earlier captures.
 
 | Model | Ollama Tag | Digest | Parameter Class | Licence (upstream, confirm locally) | Reason Selected |
 |---|---|---|---|---|---|
@@ -45,7 +46,7 @@ they are quoted in the report. The machine-readable candidate list is
 With Ollama running and each candidate pulled (`ollama pull <tag>`):
 
 ```text
-python scripts/record_model_digests.py --json results/model_provenance.json
+python scripts/record_model_digests.py --json results/environment/model-provenance-before-tests.json
 ```
 
 This reads the full `sha256` digest, quantisation, parameter size and licence line from
@@ -62,6 +63,18 @@ curl http://localhost:11434/api/tags   # full digest for every pulled model
 Paste the full digest into the table above (format `sha256:` plus 64 hex characters) and
 fill in the run record below. Re-record after any re-pull: a tag can be updated upstream
 while its name stays the same, which is why the digest is what identifies the model.
+The script refuses to overwrite an existing provenance file. Use a new dated
+filename for subsequent captures. Missing candidates produce a nonzero exit.
+
+Official model and licence links are in [references.md](references.md). Statements
+about speed and instruction following above are selection hypotheses, pending our
+own tests; the 2B candidate has not been measured as the fastest.
+
+**TODO before freezing:** this historical capture uses an Intel i7-10750H and
+Ollama 0.34.4, while `prediction_record.md` assumes a Ryzen 7 8845HS and Ollama
+0.35.1. The team must select and record the actual test machine/runtime, recheck
+digests and confirm CPU inference for every candidate. Preserve this historical
+capture and the setup observations already disclosed in the prediction record.
 
 ### Run record (to be filled in on the test machine)
 

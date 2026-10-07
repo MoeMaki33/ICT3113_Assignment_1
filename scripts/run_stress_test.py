@@ -34,7 +34,7 @@ from pathlib import Path
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from scripts.perf_common import ROOT, config_dir_name, model_dir, read_json, utc_now, write_json
+from scripts.perf_common import ROOT, config_dir_name, freeze_gate_problems, model_dir, read_json, utc_now, write_json
 from scripts.process_jmeter_results import summarise_run
 from scripts.run_load_test import DEFAULT_DURATION_S, DEFAULT_WARMUP_S, run_once
 
@@ -84,6 +84,9 @@ def stress(model: str, rates: list[float], refine: int, criteria: dict, *, durat
            cooldown_s: int, label: str = "", smoke: bool = False, results_root: Path = ROOT / "results",
            run_kwargs: dict | None = None, sleep=time.sleep) -> dict:
     run_kwargs = run_kwargs or {}
+    problems = freeze_gate_problems()
+    if problems and not smoke:
+        raise SystemExit("Official stress testing is NOT allowed yet:\n  - " + "\n  - ".join(problems))
     base = (results_root / "smoke" / "stress" if smoke else results_root / "stress") / model_dir(model)
     if label:
         base = base / label
@@ -149,6 +152,12 @@ def stress(model: str, rates: list[float], refine: int, criteria: dict, *, durat
 
 
 def write_summary(base: Path, plan: dict, steps: list[dict], last_ok, first_bad) -> dict:
+    prior = base / "stress_steps.csv"
+    if prior.is_file():
+        with prior.open(encoding="utf-8", newline="") as handle:
+            notes = {r["jtl"]: r.get("observations", "") for r in csv.DictReader(handle)}
+        for step in steps:
+            step["observations"] = notes.get(step["jtl"], step.get("observations", ""))
     with (base / "stress_steps.csv").open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=STEP_COLUMNS, extrasaction="ignore")
         writer.writeheader()
@@ -162,8 +171,14 @@ def write_summary(base: Path, plan: dict, steps: list[dict], last_ok, first_bad)
     else:
         conclusion = (f"Highest measured sustainable rate: {last_ok:g} tickets/h. Lowest measured unsustainable "
                       f"rate: {first_bad:g} tickets/h. The limit lies between them.")
+    reconciliations = [read_json(Path(s["jtl"]).with_suffix(".reconciliation.json")) for s in steps]
+    evidence_valid = bool(plan["official"] and steps and all(
+        r and r.get("reconciled") and not r.get("contaminated") for r in reconciliations))
+    if plan["official"] and not evidence_valid:
+        conclusion = "PROVISIONAL: service-log reconciliation is required for every step. " + conclusion
     summary = {"plan": plan, "steps": steps, "highest_sustainable_per_hour": last_ok,
-               "lowest_unsustainable_per_hour": first_bad, "conclusion": conclusion, "generated_utc": utc_now()}
+               "lowest_unsustainable_per_hour": first_bad, "evidence_valid": evidence_valid,
+               "conclusion": conclusion, "generated_utc": utc_now()}
     write_json(base / "stress_summary.json", summary)
     fmt = lambda v: "-" if v is None else str(v)
     lines = [f"# Stress test: `{plan['model']}`", ""]
@@ -211,7 +226,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--smoke", action="store_true")
     args = parser.parse_args(argv)
     rates = [float(r) for r in args.rates.split(",") if r.strip()]
-    if rates != sorted(rates) or len(set(rates)) != len(rates) or min(rates) <= 0:
+    if not rates or rates != sorted(rates) or len(set(rates)) != len(rates) or min(rates) <= 0:
         parser.error("--rates must be strictly increasing positive numbers")
     criteria = {"max_error_rate": args.max_error_rate, "min_throughput_ratio": args.min_throughput_ratio,
                 "stop_on_growing_latency": not args.ignore_latency_trend, "max_p95_s": args.max_p95_s}

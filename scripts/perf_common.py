@@ -15,6 +15,9 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
+from app.candidate_models import CANDIDATE_MODELS
+from scripts.validate_golden_set import golden_file_problems
+
 ROOT = Path(__file__).resolve().parents[1]
 GOLDEN_SET = Path("data/golden_set_final.csv")
 PREDICTION_RECORD = Path("docs/prediction_record.md")
@@ -45,8 +48,8 @@ def config_dir_name(rate: float, search_rate: float = 0) -> str:
 
 
 def next_run_number(directory: Path) -> int:
-    taken = [int(m.group(1)) for p in directory.glob("run-*.jtl")
-             if (m := re.fullmatch(r"run-(\d+)\.jtl", p.name))]
+    taken = [int(m.group(1)) for p in directory.glob("run-*")
+             if (m := re.match(r"run-(\d+)\.", p.name))]
     return max(taken, default=0) + 1
 
 
@@ -88,15 +91,46 @@ def freeze_gate_problems(root: Path = ROOT) -> list[str]:
         if not (root / path).is_file():
             problems.append(f"{path.as_posix()} does not exist")
             continue
-        if _git(["ls-files", "--error-unmatch", path.as_posix()], root) is None:
+        if _git(["cat-file", "-e", f"HEAD:{path.as_posix()}"], root) is None:
             problems.append(f"{path.as_posix()} is not committed to git")
-        elif _git(["status", "--porcelain", "--", path.as_posix()], root):
-            problems.append(f"{path.as_posix()} has uncommitted changes")
+        else:
+            status = _git(["status", "--porcelain", "--", path.as_posix()], root)
+            if status is None:
+                problems.append(f"Cannot verify git status for {path.as_posix()}")
+            elif status:
+                problems.append(f"{path.as_posix()} has uncommitted changes")
+    if (root / GOLDEN_SET).is_file():
+        problems.extend(golden_file_problems(root / GOLDEN_SET))
     record = root / PREDICTION_RECORD
     if record.is_file():
-        match = _DRAFT_RE.search(record.read_text(encoding="utf-8"))
+        text = record.read_text(encoding="utf-8")
+        match = _DRAFT_RE.search(text)
         if match:
             problems.append(f"{PREDICTION_RECORD.as_posix()} is still marked {match.group(1).upper()}")
+        else:
+            problems.extend(prediction_problems(text))
+    return problems
+
+
+def prediction_problems(text: str) -> list[str]:
+    """Validate this repository's prediction table before declaring the record final."""
+    problems = []
+    if not re.search(r"Status:\s*\**\s*(FROZEN|FINAL|COMPLETE)\b", text, re.I):
+        problems.append("prediction record needs an explicit FINAL/FROZEN/COMPLETE status")
+    if re.search(r"\b(TODO|TBD)\b", text, re.I):
+        problems.append("prediction record contains unfinished TODO/TBD fields")
+    for heading in ("Bottleneck prediction", "Difficult categories"):
+        if not re.search(rf"(?im)^#+ .*{heading}.*\n\s*\S", text):
+            problems.append(f"prediction record is missing {heading}")
+    for model in CANDIDATE_MODELS:
+        rows = [line for line in text.splitlines() if line.startswith("|") and f"`{model.tag}`" in line]
+        if not any(re.search(r"\d+(?:\.\d+)?\s*%", row) and
+                   re.search(r"\d+(?:\.\d+)?\s*s\b", row) for row in rows):
+            problems.append(f"prediction record needs numeric accuracy and latency for {model.tag}")
+    for field in ("Reviewed by (names)", "Date committed"):
+        row = next((line for line in text.splitlines() if line.startswith("|") and field in line), "")
+        if not row or not row.split("|")[2].strip():
+            problems.append(f"prediction sign-off is incomplete: {field}")
     return problems
 
 
@@ -151,3 +185,9 @@ def read_json(path: Path) -> dict | None:
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+
+
+if __name__ == "__main__":
+    problems = freeze_gate_problems()
+    print(json.dumps({"freeze_gate_passed": not problems, "problems": problems}, indent=2))
+    raise SystemExit(1 if problems else 0)
