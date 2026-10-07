@@ -9,7 +9,7 @@
   "completed_runs": 3,
   "missing_runs": [],
   "problems": [],
-  "generated_utc": "2026-10-07T14:02:35.121216+00:00",
+  "generated_utc": "2026-10-07T15:36:44.938162+00:00",
   "method": {
     "window": "[t0 + warmup_s, t0 + duration_s); t0 = JMeter schedule start (jmeter.log)",
     "offered_rate": "samples started in window / window hours",

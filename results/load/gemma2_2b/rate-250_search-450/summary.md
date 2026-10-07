@@ -1,6 +1,6 @@
 # results/load/gemma2_2b/rate-250_search-450
 
-Generated 2026-10-07T14:02:35.121216+00:00 by scripts/process_jmeter_results.py from the raw .jtl files in this folder.
+Generated 2026-10-07T15:36:44.938162+00:00 by scripts/process_jmeter_results.py from the raw .jtl files in this folder.
 
 | Model | Official | Tickets/h set | Searches/h set | Endpoint | Runs | Missing | Offered/h (mean) | Achieved/h (mean ± sd) | Error rate (mean) | p50 s (mean) | p95 s (mean ± sd) | p99 s (mean) | p99 s pooled | Growing-latency runs |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|

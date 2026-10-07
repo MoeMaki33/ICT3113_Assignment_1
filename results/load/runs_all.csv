@@ -8,3 +8,6 @@ gemma2:2b,True,250.0,450.0,2,GET /search,77,462.0,462.0,0.0,0.032,0.056,0.109,0.
 gemma2:2b,True,250.0,450.0,2,POST /tickets,39,234.0,234.0,0.0,7.431,16.574,17.067,7.847,17.067,1.683,0.19,True,{},results/load/gemma2_2b/rate-250_search-450/run-2.jtl
 gemma2:2b,True,250.0,450.0,3,GET /search,76,456.0,456.0,0.0,0.03,0.064,0.069,0.033,0.069,0.725,-0.0,False,{},results/load/gemma2_2b/rate-250_search-450/run-3.jtl
 gemma2:2b,True,250.0,450.0,3,POST /tickets,46,276.0,270.0,0.0,7.932,19.847,26.059,8.541,26.059,1.919,0.243,True,{},results/load/gemma2_2b/rate-250_search-450/run-3.jtl
+gemma2:2b,True,500.0,0,1,POST /tickets,88,528.0,474.0,0.0,28.206,69.121,75.028,31.521,75.028,7.422,6.655,True,{},results/load/gemma2_2b/rate-500/run-1.jtl
+gemma2:2b,True,500.0,0,2,POST /tickets,82,492.0,462.0,0.0,41.365,60.9,66.353,40.618,66.353,2.695,4.372,True,{},results/load/gemma2_2b/rate-500/run-2.jtl
+gemma2:2b,True,500.0,0,3,POST /tickets,92,552.0,432.0,0.1087,72.901,117.123,119.554,62.09,119.554,7.554,12.663,True,"{""HTTP 502"": 10}",results/load/gemma2_2b/rate-500/run-3.jtl
