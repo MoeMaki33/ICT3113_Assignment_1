@@ -1,0 +1,20 @@
+credit report
+collection
+mortgage
+escrow
+foreclosure
+credit card
+late fee
+interest
+overdraft
+checking account
+savings
+deposit
+wire transfer
+money order
+loan
+payment
+dispute
+fraud
+refund
+bank
