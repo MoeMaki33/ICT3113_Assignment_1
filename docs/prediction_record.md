@@ -4,7 +4,7 @@
 **Once committed, the predictions below are never edited.** Results are compared against them
 afterwards, and differences are explained in the final report.
 
-Owner: Person 4. Status: **DRAFT (2026-10-07)**: the team reviews every value below, changes
+Owner: Person 4. Status: **FINAL (2026-10-07)**: the team reviews every value below, changes
 any it disagrees with, fills in the sign-off, and commits it in the freeze commit. Every number
 is a prediction; none is a measurement.
 
@@ -17,8 +17,10 @@ is a prediction; none is a measurement.
 - **Disclosure:** during environment setup on 2026-10-06, two hand-written sentences (not from
   our dataset) were sent once each to `llama3.2:3b` inside the running service. They returned
   correct categories in 8.1 s (first request, including model load) and 0.4 s (second request,
-  very short text). The team saw these two timings before writing this record. No other model
-  output or timing was seen.
+  very short text). The team saw these two timings before writing this record.
+- Subsequent JMeter traffic was explicitly pre-benchmark smoke/readiness testing,
+  according to the user. Its timings, throughput, error rates and classifications
+  are not formal benchmark evidence and were not used to revise these predictions.
 - Golden-set annotator disagreements (`data/labelling/disagreements.csv`) were used for the
   category predictions in section 3. They are human labels, not model output.
 
@@ -28,11 +30,11 @@ is a prediction; none is a measurement.
 |---|---|
 | Official PC1: service + Ollama | Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz; 4 physical cores / 8 logical processors; 15.8 GB RAM |
 | PC1 operating system | Microsoft Windows 11 Home, version 10.0.26200, 64-bit |
-| Inference | Ollama version: TO BE RECORDED (command unavailable on the current shell's PATH); configured CPU only (`num_gpu: 0`), `temperature: 0`; `OLLAMA_NUM_PARALLEL=1` intended, server setting TO BE RECORDED |
+| Inference | Host Ollama; version TO BE RECORDED (command unavailable on the earlier shell's PATH); CPU-only inference (`num_gpu: 0`), `temperature: 0`, `OLLAMA_NUM_PARALLEL=1` per user-confirmed official configuration; per-model runtime evidence still to be captured |
 | Service | Docker / synchronous FastAPI / SQLite; Docker CLI 29.4.3 (build 055a478), Compose v5.1.3 verified by version commands; container runtime and WSL resource limits TO BE RECORDED |
 | Python | Project host `.venv`: 3.12.14; container version TO BE RECORDED; default PATH `python`: 3.7.6 (use the project `.venv` for scripts) |
-| Official PC2: load generator | Separate physical desktop; CPU, cores/threads, RAM, OS, Java, JMeter and Python versions TO BE RECORDED |
-| Network | Local network between PC1 and PC2; connection type, topology, IPs and link speeds TO BE RECORDED |
+| Official PC2: load generator | Separate physical desktop; AMD Ryzen 7 5800X3D; 8 physical cores / 16 logical processors; 31.93 GB RAM; Windows 11 Home 64-bit, OS 10.0.26300; Java 1.8.0_333; Apache JMeter 5.6.3; Python version TO BE RECORDED |
+| Network | Test-session LAN addresses: PC1 `192.168.1.170`, PC2 `192.168.1.240`; PC2 successfully reached PC1 TCP port 8000 per user; these are not permanent machine identifiers; connection type, topology and link speeds TO BE RECORDED |
 | Prompt | About 330 tokens of fixed instructions, then the narrative, then a 1-line suffix |
 | Narratives | Golden-set median ≈ 218 tokens, p95 ≈ 448 tokens (characters / 4 estimate) |
 
@@ -45,9 +47,10 @@ The official service/Ollama machine was changed to the Intel Core i7-10510U
 laptop (4 physical cores / 8 logical processors, 15.8 GB RAM) before this
 record was frozen and before any formal accuracy, load or stress benchmark.
 Hardware and OS values above are the user's verified CIM observations.
-PC2 is a different physical desktop; its specifications remain TO BE RECORDED.
+PC2 is the separate Ryzen 7 5800X3D desktop described above; its verified
+specifications and setup connectivity were subsequently supplied by the user.
 
-**TEAM REVIEW REQUIRED BEFORE FREEZE.** The former draft assumed an AMD Ryzen
+**TEAM REVIEW COMPLETED BEFORE FREEZE.** The former draft assumed an AMD Ryzen
 7 8845HS (8 cores / 16 threads, 13.8 GB usable RAM) and Ollama 0.35.1. Those
 are historical draft assumptions, not the official PC1 or a verified PC1 runtime.
 All existing numerical accuracy, latency, sustainable-rate and resource
@@ -151,7 +154,8 @@ the numerical prediction review and team freeze fields below remain pending.
 
 | | |
 |---|---|
-| Reviewed by (names) | |
-| Values changed from the draft | |
-| Committed in (commit hash) | |
-| Date committed | |
+| Reviewed by (names) | Owen Ngo |
+| Review date | 2026-10-07 |
+| Values changed from the draft | None |
+| Committed in (commit hash) | Pending freeze commit |
+| Date committed | 2026-10-07 |

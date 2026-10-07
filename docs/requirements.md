@@ -1,6 +1,6 @@
 # Performance and accuracy requirements
 
-Owner: Person 4. Status: **PROPOSED (2026-10-07)**: the whole team agrees these before the freeze
+Owner: Person 4. Status: **FINAL (2026-10-07)**: the whole team agrees these before the freeze
 commit. They are requirements, not results; nothing here has been measured.
 
 Load figures come from `docs/workload_model.md`: design peak **250 tickets/h** and peak search

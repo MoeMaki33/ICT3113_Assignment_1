@@ -10,3 +10,6 @@ data/tickets.db-*
 .python/
 .uv-cache/
 .vs/
+
+# Local copied JMeter archive; plans and scripts are tracked separately.
+/jmeter.zip

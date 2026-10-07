@@ -1,6 +1,6 @@
 # Official test environment record
 
-Owner: Person 5. Status: **PC1 RECORDED; PC2 / RUNTIME VERIFICATION PENDING**.
+Owner: Person 5. Status: **PC1 / PC2 HARDWARE AND LAN CONNECTIVITY RECORDED; REMAINING RUNTIME EVIDENCE PENDING**.
 This environment revision is before prediction freeze and before any formal
 accuracy, load or stress benchmark. No benchmark results were generated.
 
@@ -8,17 +8,21 @@ accuracy, load or stress benchmark. No benchmark results were generated.
 
 The user approved this PC1 documentation update on 2026-10-07 with the
 instruction "sign off". This records approval of the official i7-10510U
-PC1 hardware and machine-role revision. PC2 details and runtime verification
-remain pending; numerical prediction approval and the formal freeze remain
-separate outstanding steps.
+PC1 hardware and machine-role revision. PC2 hardware/software observations and
+LAN connectivity were subsequently supplied by the user and recorded below.
+Remaining runtime evidence, numerical prediction approval and the formal
+freeze remain separate outstanding steps.
 
 ## 1. Official machine roles
 
-PC1 is the System Under Test: this laptop, intended to run Docker, FastAPI,
+PC1 is the System Under Test: this laptop, configured to run Docker, FastAPI,
 SQLite and host Ollama with CPU-only LLM inference. PC2 is a **different physical
 desktop** that will run Apache JMeter over the local network. The user confirms
-these are separate physical machines; PC2 details and network observations are
-TO BE RECORDED. A VM/container on PC1 does not fulfil the separate-machine role.
+these are separate physical machines; verified PC2 details and session LAN
+observations are recorded in sections 4 and 5. A VM/container on PC1 does not
+fulfil the separate-machine role. All JMeter traffic so far was pre-benchmark
+smoke/readiness testing only. No smoke-test timing, throughput, error rate or
+classification result is recorded here as a formal benchmark result.
 
 ## 2. Official PC1 hardware
 
@@ -78,7 +82,7 @@ and automated tests, rather than the default PATH Python 3.7.6.
 | Ollama version / executable availability | TO BE RECORDED; restore/install or locate the actual executable before runtime checks |
 | Candidate availability and actual PC1 digests | TO BE RECORDED; fresh `/api/tags` and `/api/show` capture compared with historical provenance |
 | Runtime CPU-only verification | TO BE RECORDED for **each** of the four candidates; save `ollama ps` during inference |
-| `OLLAMA_NUM_PARALLEL` | Intended value 1; actual Ollama server-process setting TO BE RECORDED |
+| `OLLAMA_NUM_PARALLEL` | 1 per user-confirmed official PC1 configuration; server-process evidence to be captured |
 | `OLLAMA_KEEP_ALIVE` | TO BE RECORDED from the actual server configuration |
 | `OLLAMA_TIMEOUT_SECONDS` | Intended value 120 seconds from repository configuration; active runtime setting TO BE RECORDED |
 | Docker resources / WSL 2 limits | TO BE RECORDED |
@@ -97,18 +101,20 @@ provenance machine does not verify any candidate on PC1.
 PC2 is a different desktop. Do not assign PC1's i7-10510U specifications to PC2.
 JMeter 5.6.3 was previously successfully tested on the i7-10510U laptop before
 roles changed, according to the user. This is historical PC1 tooling information;
-it does not establish an installed or verified JMeter version on PC2.
+it did not establish an installed or verified JMeter version on PC2. The user
+has now supplied the verified PC2 specifications below. These observations
+were not independently remeasured by this documentation update.
 
 | PC2 item | Value |
 |---|---|
 | Machine role | Separate physical desktop / Apache JMeter load generator |
 | Hostname | TO BE RECORDED |
-| CPU | TO BE RECORDED |
-| Physical cores / logical processors | TO BE RECORDED |
-| RAM | TO BE RECORDED |
-| OS / version / architecture | TO BE RECORDED |
-| Java version | TO BE RECORDED |
-| JMeter version | TO BE RECORDED (5.6.3 is the intended installation) |
+| CPU | AMD Ryzen 7 5800X3D (user-verified) |
+| Physical cores / logical processors | 8 / 16 (user-verified) |
+| RAM | 31.93 GB (user-verified) |
+| OS / version / architecture | Windows 11 Home / 10.0.26300 / 64-bit (user-verified) |
+| Java version | 1.8.0_333 (user-verified) |
+| JMeter version | Apache JMeter 5.6.3 (user-verified) |
 | JMeter distribution SHA-512 verification | TO BE RECORDED |
 | Python version / packages | TO BE RECORDED |
 | Network connection | TO BE RECORDED |
@@ -122,13 +128,17 @@ it does not establish an installed or verified JMeter version on PC2.
 | PC1 and PC2 are different physical machines | Confirmed by user: laptop PC1 and different desktop PC2 |
 | Connection type (Ethernet / Wi-Fi) | TO BE RECORDED |
 | Topology / router / switch | TO BE RECORDED |
-| PC1 IP and active service port | TO BE RECORDED; configured application port is 8000 |
-| PC2 IP | TO BE RECORDED |
+| PC1 IP and active service port | Test-session LAN address `192.168.1.170`, TCP port 8000 (user observation) |
+| PC2 IP | Test-session LAN address `192.168.1.240` (user observation) |
 | Link speeds and limitations | TO BE RECORDED |
-| PC2-to-PC1 connectivity / round-trip time | TO BE RECORDED |
+| PC2-to-PC1 connectivity | PC2 successfully reached PC1 TCP port 8000 (user-confirmed setup connectivity) |
+| Round-trip time | TO BE RECORDED; smoke-test measurements are not formal results |
 | Firewall rule scope | TO BE RECORDED |
 | Clock synchronisation / offset | TO BE RECORDED |
 | Hostname separation confirmation | TO BE RECORDED on both machines |
+
+The addresses above apply to the observed setup session. They are not permanent
+machine identifiers; record the current addresses again for the formal test session.
 
 ## 6. Historical provenance and remaining freeze actions
 

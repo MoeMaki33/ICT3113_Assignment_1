@@ -1,6 +1,6 @@
 # Workload model
 
-Owner: Person 4. Status: **PROPOSED (2026-10-07)**: the team reviews it before the freeze commit.
+Owner: Person 4. Status: **FINAL (2026-10-07)**: the team reviews it before the freeze commit.
 Every figure is either **source-derived** (section 2, with source, URL, date and exact figure)
 or **our estimate** (section 3, with how it was derived). No figure here is a measurement of
 our system.
