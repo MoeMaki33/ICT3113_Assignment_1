@@ -185,5 +185,21 @@
     7984,
     7993,
     7998
-  ]
+  ],
+  "source_provenance_review": {
+    "original_source_sha256": "20e8ed8aeec33617a329c2785020b9a846ff33596ee5430883511ee87ca00d8c",
+    "canonical_source_sha256": "3174ac682d4796ab44a32e809822c3d313cdd21429707def5aaed8b55ff1a99c",
+    "inspected_source_commit": "47f6f7b34efb0030db90dc1822129a9c9e460638",
+    "original_source_status": "not_located_in_available_git_history",
+    "selection_identity_sha256": "cdb65f4470815ee991b44d1eba64ec59fa0987ec1f591fa98ece6b710d56e476",
+    "artifacts_sha256": {
+      "data/ict3113_tickets.csv": "3538053878b72e4a52658e64547f5450aaf475a9cbc7cd7dd2789b844b6d701a",
+      "data/golden_set_final.csv": "54ae476fc87e20de9356b55fd741392857bd274c6f48c0f475d1229343a46c2e",
+      "data/labelling/annotator_a.csv": "50d6b12788be424cd1e743352136a7378f7ba93927b461f7c1a00ff5393d07d6",
+      "data/labelling/annotator_b.csv": "098f69bbc6332261c26ee86e4a6af0170576073e4d43fa3ae2b3dbcf2ffc962e",
+      "data/labelling/disagreements.csv": "d363090222694e1ae38c9499f7eeb566234dc8f1cec6afdb867a6798e8fb494d",
+      "results/accuracy/agreement.json": "ebb45a0bef0f0927d8f44425e2a433595801fdcc202b51b307b34020fc91e44f"
+    },
+    "documentation": "docs/golden_set_provenance.md"
+  }
 }

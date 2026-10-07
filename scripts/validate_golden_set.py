@@ -1,13 +1,15 @@
 """Read-only validation of the golden set and its human annotation provenance.
 
 Run: python -m scripts.validate_golden_set
-No labels, manifests or evidence are changed. A hash mismatch requires human review.
+No labels, manifests or evidence are changed. A raw source hash mismatch requires
+an explicit provenance review and successful independent content checks.
 """
 import argparse
 import csv
 import hashlib
 import json
 import math
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -21,6 +23,52 @@ from scripts.create_golden_set import read_team_rows, select_rows
 from scripts.finalize_golden_set import finalize
 
 ROOT = Path(__file__).resolve().parents[1]
+REVIEWED_ARTIFACTS = (
+    "data/ict3113_tickets.csv", "data/golden_set_final.csv",
+    "data/labelling/annotator_a.csv", "data/labelling/annotator_b.csv",
+    "data/labelling/disagreements.csv", "results/accuracy/agreement.json",
+)
+
+
+def selection_identity_sha256(selection: dict) -> str:
+    """Bind the review to the original selection, without hashing its added metadata."""
+    identity = {key: selection[key] for key in
+                ("team_number", "count", "seed", "selection_method", "original_rows")}
+    return hashlib.sha256(json.dumps(identity, ensure_ascii=False, sort_keys=True,
+                                    separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
+def provenance_review_problems(root: Path, selection: dict, actual_hash: str) -> list[str]:
+    review = selection.get("source_provenance_review")
+    if not isinstance(review, dict):
+        return ["selection.json source_sha256 differs from data/team.csv; review historical provenance"]
+    problems = []
+    expected = {
+        "original_source_sha256": selection["source_sha256"],
+        "canonical_source_sha256": actual_hash,
+        "selection_identity_sha256": selection_identity_sha256(selection),
+        "original_source_status": "not_located_in_available_git_history",
+        "documentation": "docs/golden_set_provenance.md",
+    }
+    for key, value in expected.items():
+        if review.get(key) != value:
+            problems.append(f"source provenance review missing or inconsistent: {key}")
+    commit = review.get("inspected_source_commit")
+    if not isinstance(commit, str) or not re.fullmatch(r"[0-9a-f]{40}", commit):
+        problems.append("source provenance review missing or inconsistent: inspected_source_commit")
+    evidence = review.get("artifacts_sha256")
+    if not isinstance(evidence, dict) or set(evidence) != set(REVIEWED_ARTIFACTS):
+        problems.append("source provenance review must pin all required evidence files")
+    else:
+        for name in REVIEWED_ARTIFACTS:
+            if evidence[name] != hashlib.sha256((root / name).read_bytes()).hexdigest():
+                problems.append(f"source provenance reviewed evidence hash differs: {name}")
+    documentation = (root / "docs/golden_set_provenance.md").read_text(encoding="utf-8")
+    for value in (selection["source_sha256"], actual_hash, commit):
+        if not isinstance(value, str) or value not in documentation:
+            problems.append("source provenance documentation does not match review hashes/commit")
+            break
+    return problems
 
 
 def read_csv(path: Path) -> list[dict]:
@@ -49,15 +97,23 @@ def golden_file_problems(path: Path) -> list[str]:
 def validate(root: Path = ROOT) -> dict:
     problems = golden_file_problems(root / "data/golden_set_final.csv")
     checks = {}
+    warnings = []
+    reviewed_mismatch = False
     try:
         selection = json.loads((root / "data/labelling/selection.json").read_text(encoding="utf-8"))
+        for key in ("team_number", "count", "seed"):
+            if type(selection[key]) is not int:
+                raise ValueError(f"selection {key} must be an integer")
         team_path = root / "data/team.csv"
         team = read_team_rows(team_path, selection["team_number"])
         actual_hash = hashlib.sha256(team_path.read_bytes()).hexdigest()
         checks["team_sha256"] = actual_hash
         checks["selection_source_sha256"] = selection["source_sha256"]
-        if actual_hash != selection["source_sha256"]:
-            problems.append("selection.json source_sha256 differs from data/team.csv; review historical provenance")
+        mismatch = actual_hash != selection["source_sha256"]
+        if mismatch or "source_provenance_review" in selection:
+            review_problems = provenance_review_problems(root, selection, actual_hash)
+            problems.extend(review_problems)
+            reviewed_mismatch = mismatch and not review_problems
         selected = select_rows(team, selection["count"], selection["seed"])
         if [int(r["row"]) for r in selected] != selection["original_rows"]:
             problems.append("selection manifest cannot be reproduced from team rows and seed")
@@ -96,7 +152,11 @@ def validate(root: Path = ROOT) -> dict:
         checks["team_number"] = selection["team_number"]
     except (OSError, ValueError, KeyError, TypeError, csv.Error) as exc:
         problems.append(f"annotation/source evidence validation failed: {exc}")
-    return {"valid": not problems, "checks": checks, "problems": problems}
+    if reviewed_mismatch and not problems:
+        warnings.append("historical selection source raw-byte hash differs from current canonical "
+                        "team.csv; documented provenance review, deterministic selection, course "
+                        "content and human annotation/adjudication integrity verified")
+    return {"valid": not problems, "checks": checks, "warnings": warnings, "problems": problems}
 
 
 def main():
