@@ -239,9 +239,16 @@ agreement statistic and all four candidate digests are committed. The prediction
 record remains **DRAFT**, and the workload and requirements need team approval.
 The selection manifest's source hash differs from the current team CSV; the
 selected rows reproduce exactly, but the historical hash needs human review.
-The intended service hardware also differs between the model provenance and the
-prediction record. Record both actual test machines, network, package versions
-and CPU verification in `docs/test_environment.md` before formal runs.
+Official PC1 is now the Intel Core i7-10510U @ 1.80 GHz laptop: 4 physical cores,
+8 logical processors, 15.8 GB RAM, Microsoft Windows 11 Home 64-bit, OS
+10.0.26200. PC2 is a separate physical desktop; its hardware/software details
+are **TO BE RECORDED**. The i7-10750H model capture remains historical provenance,
+and the former Ryzen prediction environment is a superseded draft assumption.
+Prediction values remain unchanged pending **TEAM REVIEW REQUIRED BEFORE FREEZE**.
+Record remaining runtime versions, network details and CPU-only observations
+in `docs/test_environment.md`; CPU-only is configured, not yet runtime-verified
+for all four candidates on PC1. JMeter previously tested on PC1 does not verify
+the new PC2 installation.
 
 Read-only checks (a nonzero exit identifies unfinished evidence):
 

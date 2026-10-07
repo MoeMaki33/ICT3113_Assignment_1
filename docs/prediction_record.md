@@ -26,22 +26,48 @@ is a prediction; none is a measurement.
 
 | Item | Value |
 |---|---|
-| Service + Ollama machine | AMD Ryzen 7 8845HS, 8 cores / 16 threads, 13.8 GB usable RAM, Windows 11 Home |
-| Inference | Ollama 0.35.1, CPU only (`num_gpu: 0`), `temperature: 0`, `OLLAMA_NUM_PARALLEL=1` |
-| Service | Docker (WSL 2) container, synchronous FastAPI endpoint, SQLite |
-| Load generator | A separate laptop running JMeter |
+| Official PC1: service + Ollama | Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz; 4 physical cores / 8 logical processors; 15.8 GB RAM |
+| PC1 operating system | Microsoft Windows 11 Home, version 10.0.26200, 64-bit |
+| Inference | Ollama version: TO BE RECORDED (command unavailable on the current shell's PATH); configured CPU only (`num_gpu: 0`), `temperature: 0`; `OLLAMA_NUM_PARALLEL=1` intended, server setting TO BE RECORDED |
+| Service | Docker / synchronous FastAPI / SQLite; Docker CLI 29.4.3 (build 055a478), Compose v5.1.3 verified by version commands; container runtime and WSL resource limits TO BE RECORDED |
+| Python | Project host `.venv`: 3.12.14; container version TO BE RECORDED; default PATH `python`: 3.7.6 (use the project `.venv` for scripts) |
+| Official PC2: load generator | Separate physical desktop; CPU, cores/threads, RAM, OS, Java, JMeter and Python versions TO BE RECORDED |
+| Network | Local network between PC1 and PC2; connection type, topology, IPs and link speeds TO BE RECORDED |
 | Prompt | About 330 tokens of fixed instructions, then the narrative, then a 1-line suffix |
 | Narratives | Golden-set median ≈ 218 tokens, p95 ≈ 448 tokens (characters / 4 estimate) |
 
 If the team runs the benchmarks on a different machine, these predictions must be updated
 **before** the freeze commit.
 
+### Environment revision before formal benchmarking (2026-10-07)
+
+The official service/Ollama machine was changed to the Intel Core i7-10510U
+laptop (4 physical cores / 8 logical processors, 15.8 GB RAM) before this
+record was frozen and before any formal accuracy, load or stress benchmark.
+Hardware and OS values above are the user's verified CIM observations.
+PC2 is a different physical desktop; its specifications remain TO BE RECORDED.
+
+**TEAM REVIEW REQUIRED BEFORE FREEZE.** The former draft assumed an AMD Ryzen
+7 8845HS (8 cores / 16 threads, 13.8 GB usable RAM) and Ollama 0.35.1. Those
+are historical draft assumptions, not the official PC1 or a verified PC1 runtime.
+All existing numerical accuracy, latency, sustainable-rate and resource
+predictions below are retained unchanged pending team review. The assumed
+prefill/generation speeds in section 2 and predicted PASS/FAIL outcomes also
+need review against the new CPU. Changing the CPU alone does not justify
+changing accuracy predictions. No formal measurements informed this revision,
+and this note does not claim the team has already approved the predictions.
+
+The setup timings disclosed above remain historical observations; their
+machine attribution is TO BE RECORDED. They are not new PC1 benchmark results.
+Configured CPU-only requests are not proof of runtime CPU-only execution:
+every candidate still needs a PC1 `ollama ps` capture during inference.
+
 ## 1. Bottleneck prediction
 
 **We predict Ollama CPU inference will be the bottleneck, specifically prompt processing
 (prefill) of the narrative. The API, SQLite and the network will not be.**
 
-- Each classification needs the model to process about 200–500 narrative tokens on 8 CPU cores.
+- Each classification needs the model to process about 200–500 narrative tokens on PC1's 4 physical CPU cores.
   We predict this takes seconds, while the API and SQLite work takes milliseconds.
 - `OLLAMA_NUM_PARALLEL=1` means Ollama processes **one request at a time**. FastAPI's thread pool
   accepts concurrent requests, but they wait in Ollama's queue. The system behaves as a
@@ -52,7 +78,7 @@ If the team runs the benchmarks on a different machine, these predictions must b
   overload will be timeouts, not crashes or HTTP 5xx from Ollama itself.
 - **Predicted resource picture during load:** CPU utilisation near 100% of the cores Ollama uses;
   service-container CPU below 10%.
-- **Memory risk (medium models):** 13.8 GB of RAM must hold Windows, Docker's WSL 2 VM and a
+- **Memory risk (medium models):** PC1's 15.8 GB of RAM must hold Windows, Docker's WSL 2 VM and a
   ~5 GB model. We predict the 7–8B models fit, but if memory pressure causes paging, their
   latency will be markedly higher and more variable between runs than the small models'.
 
@@ -118,6 +144,10 @@ Easiest: **Mortgage**. We predict at least 90% accuracy for all four models: its
 disagreements involving Mortgage.
 
 ## 4. Sign-off
+
+PC1 environment revision approved by the user on 2026-10-07 (instruction:
+"sign off"). This approval covers the environment documentation update;
+the numerical prediction review and team freeze fields below remain pending.
 
 | | |
 |---|---|

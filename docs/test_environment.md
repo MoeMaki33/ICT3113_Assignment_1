@@ -1,87 +1,160 @@
-# Test environment record
+# Official test environment record
 
-Owner: Person 5. Status: **TEMPLATE: not yet filled in.** No official test has been run.
+Owner: Person 5. Status: **PC1 RECORDED; PC2 / RUNTIME VERIFICATION PENDING**.
+This environment revision is before prediction freeze and before any formal
+accuracy, load or stress benchmark. No benchmark results were generated.
 
-Fill this in **before the first official benchmark**, on the machines that will actually run the
-tests. Hardware and software values come from `scripts/record_test_environment.py`, run on each
-machine. Its JSON output under `results/environment/` is the raw evidence, and this page summarises
-it. Network and manual items are filled in by hand. Every blank cell below means
-**TODO: obtain the real value on the indicated machine**. JMeter 5.6.3, Python
-3.12 and the 120-second timeout are intended settings, not observed versions.
-The recorder also captures installed Python package versions; record the
-container's actual versions with `docker compose exec api python -m pip freeze`.
+### PC1 environment update sign-off
 
-**TODO:** reconcile the Intel/Ollama 0.34.4 historical model record with the
-Ryzen/Ollama 0.35.1 assumptions in the draft prediction record. Do not copy either
-into this template as observed hardware without confirming the chosen machine.
+The user approved this PC1 documentation update on 2026-10-07 with the
+instruction "sign off". This records approval of the official i7-10510U
+PC1 hardware and machine-role revision. PC2 details and runtime verification
+remain pending; numerical prediction approval and the formal freeze remain
+separate outstanding steps.
+
+## 1. Official machine roles
+
+PC1 is the System Under Test: this laptop, intended to run Docker, FastAPI,
+SQLite and host Ollama with CPU-only LLM inference. PC2 is a **different physical
+desktop** that will run Apache JMeter over the local network. The user confirms
+these are separate physical machines; PC2 details and network observations are
+TO BE RECORDED. A VM/container on PC1 does not fulfil the separate-machine role.
+
+## 2. Official PC1 hardware
+
+These are the **user-supplied verified hardware observations** for the laptop.
+They were collected using the CIM commands below, not inferred from historical
+model provenance. Do not replace them with the former Ryzen draft assumptions
+or the i7-10750H model-inspection machine.
+
+| Item | Official PC1 value | Source |
+|---|---|---|
+| Role | System Under Test / Service + Ollama | User's pre-benchmark machine-role decision |
+| CPU | Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz | User-verified `Get-CimInstance Win32_Processor` |
+| Physical CPU cores | 4 | Same |
+| Logical processors | 8 | Same |
+| Installed/usable RAM | 15.8 GB | User-verified `Get-CimInstance Win32_ComputerSystem` |
+| Operating system | Microsoft Windows 11 Home | User-verified `Get-CimInstance Win32_OperatingSystem` |
+| OS version | 10.0.26200 | Same |
+| Architecture | 64-bit | Same |
+| Intended workload | Docker + FastAPI + SQLite + Ollama | Baseline architecture; service runtime not verified in this update |
+| Inference configuration | CPU only (`options.num_gpu: 0`) | `app/services/ollama_client.py`; runtime verification pending |
+| Hostname | TO BE RECORDED | Future PC1 environment capture |
+
+Hardware collection commands supplied by the user:
 
 ```powershell
-.\.venv\Scripts\python.exe -m scripts.record_test_environment --role service   # on the service + Ollama machine
-.\.venv\Scripts\python.exe -m scripts.record_test_environment --role loadgen   # on the JMeter machine
+Get-CimInstance Win32_Processor |
+    Select-Object Name, NumberOfCores, NumberOfLogicalProcessors
+Get-CimInstance Win32_ComputerSystem |
+    Select-Object @{Name="RAM_GB";Expression={[math]::Round($_.TotalPhysicalMemory/1GB,2)}}
+Get-CimInstance Win32_OperatingSystem |
+    Select-Object Caption, Version, OSArchitecture
 ```
 
-## 1. Summary
+## 3. PC1 software version checks
 
-| Machine | CPU | Cores / threads | RAM | OS | Software |
-|---|---|---|---|---|---|
-| Service machine (API in Docker) | | | | | Docker: · Compose: · Python (container): 3.12 |
-| Ollama machine (same as service) | | | | | Ollama: · `OLLAMA_NUM_PARALLEL`: · `OLLAMA_KEEP_ALIVE`: |
-| Load generator | | | | | JMeter: 5.6.3 · Java: · Python: |
-| Network | Connection type: · Service IP: · Load generator IP: · Link speed: | | | | Clock sync method: |
+The following commands were executed in the current PC1 shell for this
+pre-benchmark documentation update on 2026-10-07. These are CLI observations,
+not proof that the service/container or Ollama is running.
 
-## 2. Details
+| Command | Actual output / verification status |
+|---|---|
+| `docker --version` | `Docker version 29.4.3, build 055a478` |
+| `docker compose version` | `Docker Compose version v5.1.3` |
+| `ollama --version` | Unavailable/not verified: PowerShell did not recognise `ollama` on the current PATH; version TO BE RECORDED |
+| `python --version` | `Python 3.7.6` (default PATH interpreter; not the project's Python 3.12 environment) |
+| `.\.venv\Scripts\python.exe --version` | `Python 3.12.14` (project host virtual environment) |
+| Container Python / installed packages | TO BE RECORDED; the Dockerfile targets Python 3.12, but the container version was not measured |
 
-### 2.1 Service machine
+Both Docker version commands also emitted an access-denied warning for
+`C:\Users\Owen\.docker\config.json` in the sandbox. Their version strings were
+returned, but daemon availability, image build and container operation were not
+verified by those commands. Use the project `.venv` interpreter for all scripts
+and automated tests, rather than the default PATH Python 3.7.6.
 
-| Item | Value | Source |
-|---|---|---|
-| Hostname | | `results/environment/service-<host>.json` |
-| CPU model | | same |
-| Physical cores / logical CPUs | | same |
-| RAM (GB) | | same |
-| OS and build | | same |
-| Docker / Docker Compose | | same |
-| Docker resources (Settings → Resources / WSL 2 limits) | | manual |
-| Power plan / plugged in | | manual (use "Best performance", on mains power) |
-| Other running applications | | manual (close everything non-essential) |
+| Remaining PC1 runtime item | Value / evidence needed |
+|---|---|
+| Ollama version / executable availability | TO BE RECORDED; restore/install or locate the actual executable before runtime checks |
+| Candidate availability and actual PC1 digests | TO BE RECORDED; fresh `/api/tags` and `/api/show` capture compared with historical provenance |
+| Runtime CPU-only verification | TO BE RECORDED for **each** of the four candidates; save `ollama ps` during inference |
+| `OLLAMA_NUM_PARALLEL` | Intended value 1; actual Ollama server-process setting TO BE RECORDED |
+| `OLLAMA_KEEP_ALIVE` | TO BE RECORDED from the actual server configuration |
+| `OLLAMA_TIMEOUT_SECONDS` | Intended value 120 seconds from repository configuration; active runtime setting TO BE RECORDED |
+| Docker resources / WSL 2 limits | TO BE RECORDED |
+| Power plan / mains power | TO BE RECORDED |
+| Other applications / background load | TO BE RECORDED |
+| Model runtime memory and measured CPU utilisation | TO BE RECORDED; not measured in this documentation task |
 
-### 2.2 Ollama (on the service machine)
+The application sends `num_gpu: 0` for every blocking generation request.
+`docker-compose.yml` has no GPU device/dependency configuration and mounts data
+and logs persistently. This establishes **configured for CPU-only**, not
+**runtime verified CPU-only**. Historical gemma2 CPU verification on the
+provenance machine does not verify any candidate on PC1.
 
-| Item | Value | Source |
-|---|---|---|
-| Ollama version | | `ollama --version` (in the JSON) |
-| Models and digests | | `results/model_provenance.json`; must match `docs/models.md` |
-| CPU-only confirmed | | `ollama ps` during inference shows `100% CPU` (screenshot or text under `results/environment/`) |
-| `OLLAMA_NUM_PARALLEL` | | environment of `ollama serve` |
-| `OLLAMA_KEEP_ALIVE` | | default unless recorded otherwise |
-| Service timeout `OLLAMA_TIMEOUT_SECONDS` | 120 | `.env` |
+## 4. Official PC2 / separate physical load generator
 
-### 2.3 Load generator
+PC2 is a different desktop. Do not assign PC1's i7-10510U specifications to PC2.
+JMeter 5.6.3 was previously successfully tested on the i7-10510U laptop before
+roles changed, according to the user. This is historical PC1 tooling information;
+it does not establish an installed or verified JMeter version on PC2.
 
-| Item | Value | Source |
-|---|---|---|
-| Hostname | | `results/environment/loadgen-<host>.json` |
-| CPU / cores / RAM / OS | | same |
-| Java version | | same |
-| JMeter version and SHA-512 verified | 5.6.3 / yes-no | same + manual |
-| Repository commit | | `git rev-parse HEAD` (in the JSON) |
-| `jmeter/data/manifest.json` hashes unchanged | yes-no | `git status jmeter/data` |
+| PC2 item | Value |
+|---|---|
+| Machine role | Separate physical desktop / Apache JMeter load generator |
+| Hostname | TO BE RECORDED |
+| CPU | TO BE RECORDED |
+| Physical cores / logical processors | TO BE RECORDED |
+| RAM | TO BE RECORDED |
+| OS / version / architecture | TO BE RECORDED |
+| Java version | TO BE RECORDED |
+| JMeter version | TO BE RECORDED (5.6.3 is the intended installation) |
+| JMeter distribution SHA-512 verification | TO BE RECORDED |
+| Python version / packages | TO BE RECORDED |
+| Network connection | TO BE RECORDED |
+| Repository commit | TO BE RECORDED; must match PC1's tested revision |
+| Prepared traffic hashes unchanged | TO BE RECORDED from `jmeter/data/manifest.json` and input validation |
 
-### 2.4 Network
+## 5. Network and physical separation
 
 | Item | Value |
 |---|---|
-| Connection (Ethernet / Wi-Fi, switch/router) | |
-| Service machine IP : port | `:8000` |
-| Load generator IP | |
-| Link speed (both ends) | |
-| Round-trip time (`ping` from load generator, 20 pings, avg) | |
-| Firewall rule (port 8000, scope) | |
-| Clock synchronisation (method, offset before testing) | |
+| PC1 and PC2 are different physical machines | Confirmed by user: laptop PC1 and different desktop PC2 |
+| Connection type (Ethernet / Wi-Fi) | TO BE RECORDED |
+| Topology / router / switch | TO BE RECORDED |
+| PC1 IP and active service port | TO BE RECORDED; configured application port is 8000 |
+| PC2 IP | TO BE RECORDED |
+| Link speeds and limitations | TO BE RECORDED |
+| PC2-to-PC1 connectivity / round-trip time | TO BE RECORDED |
+| Firewall rule scope | TO BE RECORDED |
+| Clock synchronisation / offset | TO BE RECORDED |
+| Hostname separation confirmation | TO BE RECORDED on both machines |
 
-## 3. Confirmation that the load generator is separate
+## 6. Historical provenance and remaining freeze actions
 
-| Check | Value |
-|---|---|
-| Load generator hostname ≠ service hostname | |
-| JMeter `--host` used in runs | (the service IP, never `localhost`) |
+`docs/models.md` and `results/model_provenance.json` retain the original
+2026-09-29 model capture: i7-10750H, approximately 32 GB RAM, Ollama 0.34.4.
+That is the **historical model provenance machine**, not the official formal
+benchmark PC1. The Ryzen 7 8845HS / 13.8 GB / Ollama 0.35.1 values are
+**superseded draft prediction assumptions**, retained as revision context.
+
+The prediction record remains DRAFT. **TEAM REVIEW REQUIRED BEFORE FREEZE**:
+review the unchanged numerical predictions against PC1, complete genuine team
+sign-off, approve workload/requirements and commit the reviewed freeze files.
+The known selection-source hash discrepancy is a separate unresolved provenance
+issue; this environment revision does not modify or bypass golden-set validation.
+
+Future environment evidence collection, on the indicated physical machines:
+
+```powershell
+# PC1 only, after completing its actual runtime setup:
+.\.venv\Scripts\python.exe -m scripts.record_test_environment --role service
+# PC2 only, after independently installing/verifying its tooling:
+.\.venv\Scripts\python.exe -m scripts.record_test_environment --role loadgen
+```
+
+Capture exact container dependencies later with
+`docker compose exec api python -m pip freeze`. Follow `test_playbook.md` for
+setup, runtime CPU checks and subsequent formal testing only after all
+prerequisites pass. No formal accuracy, JMeter load or stress run is authorised
+by this documentation update.

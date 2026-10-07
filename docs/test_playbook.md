@@ -34,13 +34,22 @@ with `.venv/bin/python` and use `/` in paths.
 
 | Role | Machine | Runs |
 |---|---|---|
-| Service machine | AMD Ryzen 7 8845HS laptop, Windows 11 (as assumed in `docs/prediction_record.md`) | Docker Desktop (API container) and Ollama on the host, CPU only |
-| Load generator | A **different** laptop on the same network | JMeter 5.6.3, Java 17+, Python 3.12, this repository |
-| Network | Same LAN; wired Ethernet preferred (Wi-Fi only if recorded) | Service port 8000 reachable from the load generator |
+| Official PC1 / System Under Test | Intel Core i7-10510U @ 1.80 GHz laptop; 4 physical cores / 8 logical processors; 15.8 GB RAM; Microsoft Windows 11 Home 64-bit, OS 10.0.26200 | Intended: Docker service (FastAPI + SQLite) and host Ollama, configured CPU-only; runtime verification pending |
+| Official PC2 / load generator | A **separate physical desktop**; CPU, cores/threads, RAM and OS TO BE RECORDED | JMeter 5.6.3, Java 17+ and Python 3.12 are intended setup requirements; installed versions TO BE RECORDED |
+| Network | Local network; Ethernet/Wi-Fi, topology, IPs and link speeds TO BE RECORDED | Service port 8000 must be reachable from PC2; connectivity not yet verified |
 
-Record both machines and the network in `docs/test_environment.md` (section 2.4) **before** the
+Record both machines and the network in `docs/test_environment.md` (network: section 5) **before** the
 first official run. If the service machine differs from the one in the prediction record, the
 predictions must be updated *before* the freeze commit, not afterwards.
+
+PC1 was selected before formal benchmarking. The previous Ryzen laptop was a
+superseded draft assumption; the i7-10750H remains a historical model provenance
+machine. Neither is the official PC1. The prediction record still requires team
+review and sign-off; its numerical predictions have not been automatically revised.
+
+The user reports JMeter 5.6.3 was successfully tested on the i7-10510U laptop
+before the roles changed. That is historical PC1 tooling information, not proof
+of JMeter installation or verification on PC2. Perform section 2.2 on PC2.
 
 ## 2. One-time setup
 

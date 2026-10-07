@@ -70,13 +70,24 @@ Official model and licence links are in [references.md](references.md). Statemen
 about speed and instruction following above are selection hypotheses, pending our
 own tests; the 2B candidate has not been measured as the fastest.
 
-**TODO before freezing:** this historical capture uses an Intel i7-10750H and
-Ollama 0.34.4, while `prediction_record.md` assumes a Ryzen 7 8845HS and Ollama
-0.35.1. The team must select and record the actual test machine/runtime, recheck
-digests and confirm CPU inference for every candidate. Preserve this historical
-capture and the setup observations already disclosed in the prediction record.
+**Official upcoming benchmark PC1:** Intel Core i7-10510U @ 1.80 GHz, 4 physical
+cores / 8 logical processors, 15.8 GB RAM, Microsoft Windows 11 Home 64-bit,
+OS version 10.0.26200. PC2 is a separate physical desktop with specifications
+TO BE RECORDED. See `test_environment.md` for verified CLI versions and missing
+runtime evidence. The PC1 Ollama version is TO BE RECORDED; `ollama --version`
+was unavailable on the current shell's PATH.
 
-### Run record (to be filled in on the test machine)
+**TODO before freezing:** recheck candidate availability and digests on PC1 and
+confirm CPU-only execution separately for all four candidates. The existing
+capture and its CPU observation below belong to the historical provenance
+machine, not PC1. The old Ryzen environment is a superseded draft prediction
+assumption; preserve the disclosed setup observations in `prediction_record.md`.
+
+### Historical model provenance machine — 2026-09-29 capture
+
+This record describes the original model pull/inspection machine. Its values
+and `results/model_provenance.json` are preserved unchanged. They do not describe
+the official formal benchmark PC1, nor establish model availability on PC1.
 
 | Field | Value |
 |---|---|

@@ -5,6 +5,53 @@ No formal accuracy, load or stress traffic was run in this audit. No benchmark
 results, human labels, historical predictions, logs or model evidence were
 invented, replaced or deleted. No commits were made.
 
+## Pre-freeze PC1 environment revision
+
+**PC1 environment update signed off by the user on 2026-10-07**, through the
+instruction "sign off". This approves the PC1 documentation revision.
+Numerical prediction review, team freeze, PC2/runtime evidence and source-hash
+provenance remain outstanding. No benchmark or commit was performed for this
+sign-off.
+
+The user has now selected the **official PC1 / System Under Test**: Intel Core
+i7-10510U @ 1.80 GHz laptop, 4 physical cores / 8 logical processors, 15.8 GB RAM,
+Microsoft Windows 11 Home 64-bit, OS 10.0.26200. Hardware values are the user's
+verified CIM observations. **PC2 is a separate physical desktop**, with hardware,
+software and network details TO BE RECORDED. The following original audit table
+is a historical snapshot before that role decision; `test_environment.md` is
+the current official environment record.
+
+PC1 version commands returned Docker CLI 29.4.3 (build 055a478), Docker Compose
+v5.1.3, project `.venv` Python 3.12.14 and default PATH Python 3.7.6. Ollama was
+not recognised on the current PATH, so its version is unavailable/not verified.
+Docker emitted sandbox config-access warnings; container operation was not
+verified by CLI version checks. JMeter 5.6.3 previously tested on the laptop
+does not establish a verified installation on the new PC2.
+
+Historical i7-10750H model provenance remains unchanged. The former Ryzen
+environment is retained as superseded draft context in `prediction_record.md`.
+Numerical predictions remain unchanged and require team review before freeze;
+the DRAFT sign-off and separate selection-source hash discrepancy remain blockers.
+R1-R4, workload values, all golden labels and existing raw evidence are unchanged.
+
+Validation during this PC1 documentation revision:
+
+- `.\.venv\Scripts\python.exe -m pytest -q`: **160 passed, 1 skipped**;
+  installed Starlette emitted its existing TestClient deprecation warning.
+- `.\.venv\Scripts\python.exe -m scripts.validate_golden_set`: exit 1,
+  `selection.json source_sha256 differs from data/team.csv; review historical provenance`.
+- `.\.venv\Scripts\python.exe -m scripts.perf_common`: exit 1,
+  `docs/prediction_record.md has uncommitted changes` and
+  `docs/prediction_record.md is still marked DRAFT`.
+- `git diff --check`: passed. No formal benchmarks, commits or pushes ran.
+
+Files updated for this revision: `docs/test_environment.md` (official PC1 and
+pending PC2/runtime evidence), `docs/prediction_record.md` (hardware revision
+and mandatory team review, numerical predictions retained), `docs/models.md`
+(historical capture distinguished from PC1), `docs/test_playbook.md` (machine
+roles and PC2 JMeter verification), `README.md` (current readiness context),
+`docs/slide_data.md` (Slide 7 environment) and this audit (revision context/checks).
+
 ## Repository findings and assignment status
 
 | Area | Status | Evidence / outstanding work |
@@ -81,8 +128,9 @@ interpretation issues, not permission to adjust requirements after measurement.
    .\.venv\Scripts\python.exe -m scripts.validate_golden_set
    ```
 
-2. Choose the real service/Ollama machine and a **different physical machine**
-   for JMeter. Record each on that machine and complete network/manual fields:
+2. Complete runtime recording on the now-selected i7-10510U laptop **PC1** and
+   independently record the **separate physical desktop PC2** for JMeter.
+   Complete remaining network/manual fields on the actual machines:
 
    ```powershell
    .\.venv\Scripts\python.exe -m scripts.record_test_environment --role service
