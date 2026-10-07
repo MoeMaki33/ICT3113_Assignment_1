@@ -1,25 +1,38 @@
-# JMeter plan scaffold
+# JMeter plan
 
-TODO: Create the plan after the team completes and commits its prediction record.
+`ticket_load_test.jmx` is the single open-loop plan for the load test, the mixed (tickets +
+searches) peak-hour test, and every stress-test step. It needs **Apache JMeter 5.6.3** (Open Model
+Thread Group). The full procedure, configuration table and metric definitions are in
+[`docs/test_playbook.md`](../docs/test_playbook.md).
 
-The eventual plan must read narratives from CSV and send JSON to `POST /tickets`.
-Tickets must enter the service through this endpoint only. Escape CSV narratives
-correctly when constructing JSON request bodies.
+- **Open loop:** two Open Model Thread Groups with `random_arrivals` (Poisson) at a rate given in
+  tickets/searches per hour. A slow service does not slow the arrivals down. There is no
+  closed-loop Thread Group.
+- **Data:** `data/team_narratives.tsv` holds the team's 1,000 rows (7000–7999) with each narrative
+  already JSON-encoded, so quotes, commas and line breaks are escaped correctly in the body
+  `{"narrative": ${narrative_json}}`. Regenerate with `python -m scripts.prepare_jmeter_data`.
+  Tickets enter the service only through `POST /tickets`; the CSV is never imported.
+- **Configurable:** rate, duration, drain, target host/port, search schedule, seed and timeouts are
+  `-J` properties. `scripts/run_load_test.py` sets them and writes results to
+  `results/<load|stress>/<model-dir>/rate-<X>[_search-<Y>]/run-<N>.jtl` (never overwritten).
+- **Evidence:** `results.properties` fixes the `.jtl` CSV format and adds the service's
+  `X-Request-ID` (`request_id` column) for reconciliation with `logs/service.log`
+  (`scripts/reconcile_logs.py`).
 
-Use **OPEN-LOOP traffic**, with Open Model Thread Group or Precise Throughput
-Timer. Configure enough worker capacity to maintain the intended arrival rate;
-report any achieved-rate shortfall. Test multiple arrival rates, with values and
-durations to be decided by the team. Run every configuration **THREE times**.
+Run through the wrapper:
 
-Retain every raw `.jtl` CSV under `results/load/` or `results/stress/`, and retain
-the corresponding service logs. Save the response `X-Request-ID` in JMeter sample
-variables for reconciliation. Record model identity, configuration, run identifier,
-timestamps, and errors. Avoid storing full narratives in service logs.
+```powershell
+.\.venv\Scripts\python.exe -m scripts.run_load_test --model qwen2.5:7b --rate 250 --search-rate 450 --host <service-ip>
+```
 
-Report p50, p95, and p99 latency, achieved throughput, and error rate. Document
-units, percentile calculation, sample selection, and observation window.
-At least one stress test must identify a meaningful system limit; define the
-limit and stopping criteria before running it.
+Equivalent raw command (the wrapper also records it in each run's `.json`):
 
-`scripts/process_jmeter_results.py` accepts a `.jtl` path but is deliberately a
-TODO scaffold. No plan has been run and no measurements have been generated.
+```text
+jmeter -n -t jmeter/ticket_load_test.jmx -q jmeter/results.properties -l run-1.jtl -j run-1.jmeter.log
+  -Jhost=<service-ip> -Jport=8000 -Jprotocol=http -Jrate=250 -Jduration_s=720 -Jdrain_s=190
+  -Jsearch_schedule=rate(450/hour)random_arrivals(720s)pause(190s) -Jseed=311301 -Jsearch_seed=311351
+  -Jdata_file=<abs>/jmeter/data/team_narratives.tsv -Jsearch_file=<abs>/jmeter/data/search_terms.txt -Jtimeout_ms=180000
+```
+
+Never pass a search rate of 0 inside a `rate(...)` schedule: JMeter 5.6.3 then waits forever after
+the test. The wrapper uses `pause(1s)` when searches are off.

@@ -19,8 +19,8 @@ There is no CSV import endpoint, cache, queue, batching, or background classific
 - `scripts/`: dataset preparation and future evaluation entry points
 - `tests/`: isolated SQLite and mocked Ollama tests
 - `data/`: dataset workspace and runtime SQLite database
-- `jmeter/`: future open-loop testing instructions
-- `results/{accuracy,load,stress}/`: empty evidence directories
+- `jmeter/`: open-loop JMeter plan, result-format properties and prepared input data
+- `results/{accuracy,load,stress}/`: evidence directories (empty until official runs)
 - `logs/`: structured request logs
 - `docs/`: assignment placeholders and preserved original team development plan
 
@@ -191,11 +191,30 @@ interface and rejects invalid model output. See `data/README.md` for preparation
 commands and `jmeter/README.md` for future performance test requirements.
 Team-row extraction, deterministic golden-set selection, separate blank
 annotator sheets, agreement calculation, disagreement reporting, and
-freeze-protected golden-set finalization are implemented. Accuracy evaluation
-and JMeter processing remain unimplemented CLI scaffolds. See `data/README.md`
+freeze-protected golden-set finalization are implemented. The accuracy test,
+JMeter load/stress tooling, result processing and log reconciliation are
+implemented (see "Testing (Person 5)" below). See `data/README.md`
 and `docs/labelling_protocol.md` for the human workflow. Labels are never
 generated automatically; agreement is calculated only from completed human
 annotation sheets.
+
+## Testing (Person 5)
+
+All official tests follow [`docs/test_playbook.md`](docs/test_playbook.md): machines, setup,
+JMeter configuration, arrival rates, repetitions, stress-test steps and stopping criteria,
+metric definitions and output locations. Every runner refuses official runs until the freeze
+gate is met (golden set and prediction record committed, record no longer DRAFT); `--smoke`
+checks the tooling only and writes to `results/smoke/`.
+
+| Step | Command (`python -m ...`) | Output |
+|---|---|---|
+| Prepare JMeter data | `scripts.prepare_jmeter_data data/team.csv` | `jmeter/data/` |
+| Record a machine | `scripts.record_test_environment --role service\|loadgen` | `results/environment/` |
+| One load run | `scripts.run_load_test --model <tag> --rate 250 --search-rate 450 --host <ip>` | `results/load/<model>/rate-250_search-450/run-N.jtl` |
+| Stress test | `scripts.run_stress_test --model <tag> --host <ip>` | `results/stress/<model>/` |
+| Accuracy test | `scripts.accuracy_test data/golden_set_final.csv --model <tag> --api-url http://<ip>:8000` | `results/accuracy/<model>/run-N/` |
+| Process results | `scripts.process_jmeter_results results/load` | `summary.csv/.json/.md`, `summary_all.csv` |
+| Reconcile with log | `scripts.reconcile_logs <config-dir> --service-log <copy of logs/service.log>` | `run-N.reconciliation.json` |
 
 ## Before formal evaluation
 
@@ -208,8 +227,8 @@ annotation sheets.
 TODO: Confirm the actual team number, course CSV narrative column, and row-index
 convention; complete independent labelling/adjudication and agreement rules;
 select local model tags and digests; complete prediction/workload documents;
-implement evaluation/result-processing scripts and the real integration test;
-define arrival rates, repetitions, and stress stopping criteria. Resolve and
+implement the real integration test; fill in `docs/test_environment.md` on the
+test machines. Resolve and
 record exact dependency/runtime versions before formal runs.
 
 The team development plan, revised to the team's actual division of work, is

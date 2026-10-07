@@ -1,0 +1,10 @@
+{
+  "source": "data/team.csv",
+  "source_sha256": "3174ac682d4796ab44a32e809822c3d313cdd21429707def5aaed8b55ff1a99c",
+  "narratives_file": "jmeter/data/team_narratives.tsv",
+  "narratives_sha256": "b9b8b399a8f618603d93530970f61a906a7d9feb3419d5ab57a501a49cbd39b8",
+  "narrative_count": 1000,
+  "search_terms_file": "jmeter/data/search_terms.txt",
+  "search_terms_sha256": "a4cfdc3a006f7a59545b80bc04f30af6f35704f21c5dc28ff6f6adc0ba37e26c",
+  "search_term_count": 20
+}
