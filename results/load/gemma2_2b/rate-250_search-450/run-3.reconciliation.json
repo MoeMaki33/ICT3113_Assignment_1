@@ -1,12 +1,12 @@
 {
-  "client_file": "results/load/gemma2_2b/rate-250_search-450/run-1.jtl",
+  "client_file": "results/load/gemma2_2b/rate-250_search-450/run-3.jtl",
   "client_format": "jmeter",
   "service_logs": [
     "C:/Users/Owen/Desktop/gemma2-rate250-search450-run3-service.log"
   ],
   "service_log_lines": 530,
   "service_log_malformed_lines": 0,
-  "generated_utc": "2026-10-07T14:02:16.908610+00:00",
+  "generated_utc": "2026-10-07T14:02:16.918720+00:00",
   "client_samples": 140,
   "client_samples_with_http_response": 140,
   "client_successful": 140,
@@ -37,18 +37,18 @@
   "extra_unexplained_by_type": {},
   "client_minus_service_ms": {
     "n": 140,
-    "min": 5.7,
-    "p50": 14.7,
-    "p95": 32.1,
-    "max": 79.7
+    "min": 5.5,
+    "p50": 16.9,
+    "p95": 41.4,
+    "max": 60.0
   },
   "client_faster_than_service_count": 0,
   "clock_offset_client_minus_service_ms": {
     "n": 140,
-    "min": -315,
-    "p50": -268,
-    "p95": -243,
-    "max": -235
+    "min": -410,
+    "p50": -377,
+    "p95": -364,
+    "max": -359
   },
   "reconciled": true,
   "contaminated": false,
