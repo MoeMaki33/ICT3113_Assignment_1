@@ -1,0 +1,211 @@
+{
+  "configuration": "results/load/llama3.1_8b/rate-125",
+  "model": "llama3.1:8b",
+  "kind": "load",
+  "official": true,
+  "rate_per_hour": 125.0,
+  "search_rate_per_hour": 0,
+  "expected_runs": 3,
+  "completed_runs": 3,
+  "missing_runs": [],
+  "problems": [],
+  "generated_utc": "2026-10-08T04:07:08.400518+00:00",
+  "method": {
+    "window": "[t0 + warmup_s, t0 + duration_s); t0 = JMeter schedule start (jmeter.log)",
+    "offered_rate": "samples started in window / window hours",
+    "achieved_throughput": "successful samples completed in window / window hours",
+    "error_rate": "unsuccessful samples / samples started in window",
+    "latency": "JMeter elapsed of successful samples started in window; nearest-rank percentiles; seconds",
+    "trend": "growing = (median last third / median first third >= 1.5) and slope > 0"
+  },
+  "runs": [
+    {
+      "jtl": "results/load/llama3.1_8b/rate-125/run-1.jtl",
+      "sample_count": 25,
+      "observed_sample_span_s": 709.454,
+      "wrapper_elapsed_s": 976.509,
+      "run": 1,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 125.0,
+      "search_rate_setting_per_hour": 0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791429453118,
+      "window_end_epoch_ms": 1791430053118,
+      "window_minutes": 10.0,
+      "labels": {
+        "POST /tickets": {
+          "samples_total": 25,
+          "samples_in_window": 22,
+          "successful_in_window": 22,
+          "failed_in_window": 0,
+          "offered_per_hour": 132.0,
+          "achieved_per_hour": 132.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 12.1,
+          "latency_p95_s": 27.251,
+          "latency_p99_s": 29.8,
+          "latency_mean_s": 14.587,
+          "latency_max_s": 29.8,
+          "trend_ratio": 1.177,
+          "trend_slope_s_per_min": 0.742,
+          "growing": false
+        }
+      }
+    },
+    {
+      "jtl": "results/load/llama3.1_8b/rate-125/run-2.jtl",
+      "sample_count": 25,
+      "observed_sample_span_s": 675.299,
+      "wrapper_elapsed_s": 976.513,
+      "run": 2,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 125.0,
+      "search_rate_setting_per_hour": 0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791430470688,
+      "window_end_epoch_ms": 1791431070688,
+      "window_minutes": 10.0,
+      "labels": {
+        "POST /tickets": {
+          "samples_total": 25,
+          "samples_in_window": 19,
+          "successful_in_window": 19,
+          "failed_in_window": 0,
+          "offered_per_hour": 114.0,
+          "achieved_per_hour": 114.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 12.0,
+          "latency_p95_s": 21.298,
+          "latency_p99_s": 21.298,
+          "latency_mean_s": 12.657,
+          "latency_max_s": 21.298,
+          "trend_ratio": 1.361,
+          "trend_slope_s_per_min": 0.44,
+          "growing": false
+        }
+      }
+    },
+    {
+      "jtl": "results/load/llama3.1_8b/rate-125/run-3.jtl",
+      "sample_count": 25,
+      "observed_sample_span_s": 687.007,
+      "wrapper_elapsed_s": 976.544,
+      "run": 3,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 125.0,
+      "search_rate_setting_per_hour": 0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791431533102,
+      "window_end_epoch_ms": 1791432133102,
+      "window_minutes": 10.0,
+      "labels": {
+        "POST /tickets": {
+          "samples_total": 25,
+          "samples_in_window": 23,
+          "successful_in_window": 23,
+          "failed_in_window": 0,
+          "offered_per_hour": 138.0,
+          "achieved_per_hour": 132.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 9.853,
+          "latency_p95_s": 24.433,
+          "latency_p99_s": 30.545,
+          "latency_mean_s": 11.73,
+          "latency_max_s": 30.545,
+          "trend_ratio": 1.513,
+          "trend_slope_s_per_min": 0.426,
+          "growing": true
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "POST /tickets": {
+      "offered_per_hour": {
+        "mean": 128.0,
+        "sd": 12.49,
+        "min": 114.0,
+        "max": 138.0,
+        "n": 3
+      },
+      "achieved_per_hour": {
+        "mean": 126.0,
+        "sd": 10.3923,
+        "min": 114.0,
+        "max": 132.0,
+        "n": 3
+      },
+      "error_rate": {
+        "mean": 0.0,
+        "sd": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 3
+      },
+      "latency_p50_s": {
+        "mean": 11.3177,
+        "sd": 1.2694,
+        "min": 9.853,
+        "max": 12.1,
+        "n": 3
+      },
+      "latency_p95_s": {
+        "mean": 24.3273,
+        "sd": 2.9779,
+        "min": 21.298,
+        "max": 27.251,
+        "n": 3
+      },
+      "latency_p99_s": {
+        "mean": 27.2143,
+        "sd": 5.1372,
+        "min": 21.298,
+        "max": 30.545,
+        "n": 3
+      },
+      "latency_mean_s": {
+        "mean": 12.9913,
+        "sd": 1.4575,
+        "min": 11.73,
+        "max": 14.587,
+        "n": 3
+      },
+      "latency_max_s": {
+        "mean": 27.2143,
+        "sd": 5.1372,
+        "min": 21.298,
+        "max": 30.545,
+        "n": 3
+      },
+      "trend_ratio": {
+        "mean": 1.3503,
+        "sd": 0.1683,
+        "min": 1.177,
+        "max": 1.513,
+        "n": 3
+      },
+      "runs_with_growing_latency": 1,
+      "pooled": {
+        "samples": 64,
+        "latency_p50_s": 11.849,
+        "latency_p95_s": 25.864,
+        "latency_p99_s": 30.545
+      }
+    }
+  }
+}

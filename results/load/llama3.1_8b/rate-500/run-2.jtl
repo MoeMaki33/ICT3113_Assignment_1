@@ -1,0 +1,431 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect,"request_id","ticket_row"
+1791443294569,23350,POST /tickets,201,Created,Tickets (open model) 1-1,text,true,,222,2113,6,6,http://192.168.1.170:8000/tickets,23350,0,22,c19874f0-4750-4fd7-b42c-c160cfa9a0a9,7000
+1791443295048,30197,POST /tickets,201,Created,Tickets (open model) 1-2,text,true,,231,930,5,5,http://192.168.1.170:8000/tickets,30197,0,4,2f0671aa-3fb5-4cbe-a21a-aa0a272905cb,7001
+1791443302331,36140,POST /tickets,201,Created,Tickets (open model) 1-3,text,true,,229,1302,4,4,http://192.168.1.170:8000/tickets,36140,0,2,26f3e655-6789-4275-b5ef-6216355de07b,7002
+1791443305294,52097,POST /tickets,201,Created,Tickets (open model) 1-4,text,true,,229,1856,8,8,http://192.168.1.170:8000/tickets,52097,0,4,c9b2840c-74ab-4343-aaae-2317928d20a0,7003
+1791443312041,48803,POST /tickets,201,Created,Tickets (open model) 1-5,text,true,,219,422,7,7,http://192.168.1.170:8000/tickets,48803,0,4,5a061a52-32be-4fbb-94ab-9731ccb6e7c9,7004
+1791443312623,53216,POST /tickets,201,Created,Tickets (open model) 1-6,text,true,,217,635,6,6,http://192.168.1.170:8000/tickets,53216,0,6,513bff11-44ef-477e-9368-715e51fcfda6,7005
+1791443345425,33777,POST /tickets,201,Created,Tickets (open model) 1-7,text,true,,214,1083,8,8,http://192.168.1.170:8000/tickets,33777,0,3,420d091a-410b-42ce-b089-1e26b3de51aa,7006
+1791443353379,32897,POST /tickets,201,Created,Tickets (open model) 1-8,text,true,,229,535,8,8,http://192.168.1.170:8000/tickets,32896,0,5,a6793f7c-487d-48cc-ade9-3db9e5f24d0a,7007
+1791443354152,42164,POST /tickets,201,Created,Tickets (open model) 1-9,text,true,,214,804,8,8,http://192.168.1.170:8000/tickets,42164,0,2,7d507b17-a451-40d2-af3c-d8a181450ae7,7008
+1791443355134,49007,POST /tickets,201,Created,Tickets (open model) 1-10,text,true,,231,841,8,8,http://192.168.1.170:8000/tickets,49007,0,3,a7b345c7-6846-4195-b0fd-4721544acc8f,7009
+1791443355195,70965,POST /tickets,201,Created,Tickets (open model) 1-11,text,true,,219,1994,10,10,http://192.168.1.170:8000/tickets,70965,0,3,40971a9a-39d7-4e00-a806-0c184f249d0f,7010
+1791443367301,63330,POST /tickets,201,Created,Tickets (open model) 1-12,text,true,,219,514,10,10,http://192.168.1.170:8000/tickets,63330,0,3,4247a7dc-cd58-45ab-a2d4-b9529e28e5f1,7011
+1791443368176,69521,POST /tickets,201,Created,Tickets (open model) 1-13,text,true,,219,810,9,9,http://192.168.1.170:8000/tickets,69521,0,3,775fc0cb-87e9-467e-b0a0-7483e761c755,7012
+1791443371017,72103,POST /tickets,201,Created,Tickets (open model) 1-14,text,true,,221,541,8,8,http://192.168.1.170:8000/tickets,72103,0,3,eb2ddc2e-9f34-449c-8a25-967bd6084727,7013
+1791443380163,79860,POST /tickets,201,Created,Tickets (open model) 1-15,text,true,,219,1193,10,10,http://192.168.1.170:8000/tickets,79860,0,5,d86cde10-ded6-4d3a-bd53-7933a0c79e7e,7014
+1791443395859,83923,POST /tickets,201,Created,Tickets (open model) 1-16,text,true,,219,1449,9,9,http://192.168.1.170:8000/tickets,83923,0,6,3c5aa929-75e1-4ee3-8bb9-57a49a6e62f0,7015
+1791443404006,84652,POST /tickets,201,Created,Tickets (open model) 1-17,text,true,,219,649,8,8,http://192.168.1.170:8000/tickets,84652,0,37,6dec2755-5f17-469d-92ee-11d1e3a8da06,7016
+1791443407442,88594,POST /tickets,201,Created,Tickets (open model) 1-18,text,true,,222,729,7,7,http://192.168.1.170:8000/tickets,88594,0,4,92bc2e79-3441-485b-ae7b-062c3024fbbc,7017
+1791443414943,88790,POST /tickets,201,Created,Tickets (open model) 1-19,text,true,,219,875,7,7,http://192.168.1.170:8000/tickets,88790,0,15,b661ab49-7178-4727-bf1b-a1712363c20b,7018
+1791443418635,103278,POST /tickets,201,Created,Tickets (open model) 1-20,text,true,,219,1245,9,9,http://192.168.1.170:8000/tickets,103278,0,12,5ff6e5a5-bcac-4c0a-811f-b509973e13c2,7019
+1791443428122,100184,POST /tickets,201,Created,Tickets (open model) 1-21,text,true,,229,508,9,9,http://192.168.1.170:8000/tickets,100184,0,3,ea51e306-cc86-4a83-8a0b-5bdda1c08b58,7020
+1791443446264,103331,POST /tickets,201,Created,Tickets (open model) 1-22,text,true,,229,1814,11,11,http://192.168.1.170:8000/tickets,103331,0,3,b0a95e46-9fb3-421d-9932-e725bd419c3b,7021
+1791443454057,102943,POST /tickets,201,Created,Tickets (open model) 1-23,text,true,,214,779,11,11,http://192.168.1.170:8000/tickets,102943,0,24,36a99fff-ce12-4811-bd34-13a1d95fbcb4,7022
+1791443459022,105479,POST /tickets,201,Created,Tickets (open model) 1-24,text,true,,221,793,12,12,http://192.168.1.170:8000/tickets,105479,0,11,0e48b28a-47e4-4c34-bc86-44572fcb9c2f,7023
+1791443502361,78715,POST /tickets,201,Created,Tickets (open model) 1-25,text,true,,229,920,14,14,http://192.168.1.170:8000/tickets,78715,0,6,0433d6ca-28d6-4ebe-995f-5411f3b7b1f0,7024
+1791443515197,88509,POST /tickets,201,Created,Tickets (open model) 1-26,text,true,,229,1845,18,18,http://192.168.1.170:8000/tickets,88509,0,7,b18d0c5e-a3dd-4398-ae59-a2cc88559854,7025
+1791443516805,101246,POST /tickets,201,Created,Tickets (open model) 1-27,text,true,,231,1493,17,17,http://192.168.1.170:8000/tickets,101246,0,3,111b9f82-33b4-4959-ad0a-46b3f4bfa873,7026
+1791443520460,98812,POST /tickets,201,Created,Tickets (open model) 1-28,text,true,,231,1753,16,16,http://192.168.1.170:8000/tickets,98812,0,8,23a4495c-95ad-4f75-8b36-4f0e43cb96bd,7027
+1791443526502,102737,POST /tickets,201,Created,Tickets (open model) 1-29,text,true,,229,932,16,16,http://192.168.1.170:8000/tickets,102737,0,10,7e810b06-29a0-4b9f-9020-6e12f140a5a0,7028
+1791443535080,120155,POST /tickets,502,Bad Gateway,Tickets (open model) 1-30,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,2065,20,20,http://192.168.1.170:8000/tickets,120155,0,20,5e93377a-4d34-462c-bd4e-10c6644347ac,7029
+1791443543797,118881,POST /tickets,201,Created,Tickets (open model) 1-31,text,true,,222,471,19,19,http://192.168.1.170:8000/tickets,118881,0,5,65b807ce-1879-4fa5-9050-dc02f97fedb6,7030
+1791443547426,120100,POST /tickets,502,Bad Gateway,Tickets (open model) 1-32,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1424,21,21,http://192.168.1.170:8000/tickets,120100,0,15,932e8373-b33e-437b-a588-c325e5a2239a,7031
+1791443553967,120115,POST /tickets,502,Bad Gateway,Tickets (open model) 1-33,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1278,20,20,http://192.168.1.170:8000/tickets,120115,0,3,491401d1-78a6-4bba-a789-949b2405281f,7032
+1791443559926,120120,POST /tickets,502,Bad Gateway,Tickets (open model) 1-34,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1071,22,22,http://192.168.1.170:8000/tickets,120120,0,2,d6e4147a-1f2b-4d30-afa5-f854ba263992,7033
+1791443563381,120089,POST /tickets,502,Bad Gateway,Tickets (open model) 1-35,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,535,21,21,http://192.168.1.170:8000/tickets,120089,0,5,10e218fc-57ef-423d-833b-8a2cd2537990,7034
+1791443566287,120145,POST /tickets,502,Bad Gateway,Tickets (open model) 1-36,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1762,20,20,http://192.168.1.170:8000/tickets,120145,0,15,0251e06c-b677-4e63-80e0-b2f36ff52195,7035
+1791443566811,120128,POST /tickets,502,Bad Gateway,Tickets (open model) 1-37,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,486,19,19,http://192.168.1.170:8000/tickets,120127,0,5,44b34d63-9b35-41b2-bbd4-943d209d6843,7036
+1791443571872,120080,POST /tickets,502,Bad Gateway,Tickets (open model) 1-38,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,641,18,18,http://192.168.1.170:8000/tickets,120080,0,4,3aaab39f-7c93-4f75-ac89-351cdb964a62,7037
+1791443582560,120126,POST /tickets,502,Bad Gateway,Tickets (open model) 1-39,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1944,17,17,http://192.168.1.170:8000/tickets,120126,0,6,d0e5e432-f860-4d1a-b8fe-ad3a1f9132f2,7038
+1791443589148,120118,POST /tickets,502,Bad Gateway,Tickets (open model) 1-40,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1273,16,16,http://192.168.1.170:8000/tickets,120118,0,4,89b4fe82-bfaa-4245-a29a-5b42b9f58638,7039
+1791443592243,120122,POST /tickets,502,Bad Gateway,Tickets (open model) 1-41,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,2143,16,16,http://192.168.1.170:8000/tickets,120122,0,3,83a43f3d-b8ab-41d9-b540-cd5a065f9092,7040
+1791443595067,120115,POST /tickets,502,Bad Gateway,Tickets (open model) 1-42,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,866,15,15,http://192.168.1.170:8000/tickets,120115,0,6,979762aa-159a-42f7-8ec5-d41bc482322c,7041
+1791443598966,120066,POST /tickets,502,Bad Gateway,Tickets (open model) 1-43,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,2039,15,15,http://192.168.1.170:8000/tickets,120066,0,3,aeeeaa79-6f2e-4a0f-81ed-77393afd4e79,7042
+1791443624880,104623,POST /tickets,201,Created,Tickets (open model) 1-44,text,true,,229,651,15,15,http://192.168.1.170:8000/tickets,104623,0,3,0d073da1-ad5f-48f8-b6be-3ca9ab33952e,7043
+1791443641651,98819,POST /tickets,201,Created,Tickets (open model) 1-45,text,true,,214,1180,15,15,http://192.168.1.170:8000/tickets,98819,0,3,a35ef8db-fdef-4c37-9b37-127ae720d387,7044
+1791443645306,104522,POST /tickets,201,Created,Tickets (open model) 1-46,text,true,,231,846,16,16,http://192.168.1.170:8000/tickets,104522,0,3,b8733030-b75f-4116-ac84-e39748f35d88,7045
+1791443647312,118392,POST /tickets,201,Created,Tickets (open model) 1-47,text,true,,222,1381,18,18,http://192.168.1.170:8000/tickets,118392,0,3,2f54dd4f-3851-4d0e-9f82-dd0566ac45aa,7046
+1791443653798,120128,POST /tickets,502,Bad Gateway,Tickets (open model) 1-48,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1694,19,19,http://192.168.1.170:8000/tickets,120128,0,3,568d755d-f8d4-4d7d-a4c5-d4bea839bf7c,7047
+1791443654929,120136,POST /tickets,502,Bad Gateway,Tickets (open model) 1-49,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1788,18,18,http://192.168.1.170:8000/tickets,120136,0,13,51e2d5ea-85bf-45a8-b106-a6ad9ab9043d,7048
+1791443665098,120131,POST /tickets,502,Bad Gateway,Tickets (open model) 1-50,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1855,18,18,http://192.168.1.170:8000/tickets,120131,0,9,e4faa015-f2c7-4eb9-b494-a5e9f9c7ed64,7049
+1791443665121,120111,POST /tickets,502,Bad Gateway,Tickets (open model) 1-51,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,476,17,17,http://192.168.1.170:8000/tickets,120111,0,4,f0f91dc7-82e7-4823-a4c7-b0be894e9a87,7050
+1791443667450,120071,POST /tickets,502,Bad Gateway,Tickets (open model) 1-52,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,725,16,16,http://192.168.1.170:8000/tickets,120071,0,7,f3401d6f-6e3c-458b-92e5-47527ff0140f,7051
+1791443674902,120103,POST /tickets,502,Bad Gateway,Tickets (open model) 1-53,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,579,15,15,http://192.168.1.170:8000/tickets,120102,0,3,47a9e723-9eb4-46cb-bcc4-775c34ecd337,7052
+1791443677894,120073,POST /tickets,502,Bad Gateway,Tickets (open model) 1-54,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,654,15,15,http://192.168.1.170:8000/tickets,120073,0,13,9ead8d81-4b17-4b79-a236-a564b39078b8,7053
+1791443679662,120124,POST /tickets,502,Bad Gateway,Tickets (open model) 1-55,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,481,14,14,http://192.168.1.170:8000/tickets,120124,0,4,9ecdeced-01e2-4b36-b1f7-76035a91e510,7054
+1791443710151,108272,POST /tickets,201,Created,Tickets (open model) 1-56,text,true,,222,1268,17,17,http://192.168.1.170:8000/tickets,108272,0,3,b2aebe93-5676-475c-8a3e-e2a05bed372d,7055
+1791443719027,108504,POST /tickets,201,Created,Tickets (open model) 1-57,text,true,,222,716,17,17,http://192.168.1.170:8000/tickets,108504,0,3,e526bf17-9ef3-45c8-9774-78599e4baee9,7056
+1791443728190,120158,POST /tickets,502,Bad Gateway,Tickets (open model) 1-58,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1727,21,21,http://192.168.1.170:8000/tickets,120158,0,25,bf8cf4b6-0705-46b2-8b91-38b27b6b3cf1,7057
+1791443738691,111361,POST /tickets,201,Created,Tickets (open model) 1-59,text,true,,222,1669,20,20,http://192.168.1.170:8000/tickets,111361,0,8,d0346618-ea34-4824-b039-04942707fc02,7058
+1791443743652,114540,POST /tickets,201,Created,Tickets (open model) 1-60,text,true,,219,836,19,19,http://192.168.1.170:8000/tickets,114540,0,9,eb22e9bc-4e4f-4ecc-a70d-03cf44ae13ba,7059
+1791443745447,120132,POST /tickets,502,Bad Gateway,Tickets (open model) 1-61,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1384,19,19,http://192.168.1.170:8000/tickets,120132,0,2,751d9b2f-cb7c-445a-9568-f09ff98c45bc,7060
+1791443756935,116241,POST /tickets,201,Created,Tickets (open model) 1-62,text,true,,222,533,19,19,http://192.168.1.170:8000/tickets,116241,0,2,d983f477-c39b-4e39-ab28-09497a3a35f2,7061
+1791443764134,120148,POST /tickets,502,Bad Gateway,Tickets (open model) 1-63,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1177,18,18,http://192.168.1.170:8000/tickets,120148,0,5,e4693489-50de-4c20-88ba-fc625d4b118d,7062
+1791443764540,120126,POST /tickets,502,Bad Gateway,Tickets (open model) 1-64,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,515,17,17,http://192.168.1.170:8000/tickets,120126,0,4,d5242d6e-de3b-49b5-b247-12b5b72312ca,7063
+1791443768953,120119,POST /tickets,502,Bad Gateway,Tickets (open model) 1-65,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1008,16,16,http://192.168.1.170:8000/tickets,120119,0,3,653e10ab-c968-4a80-8630-452a44376040,7064
+1791443771174,120109,POST /tickets,502,Bad Gateway,Tickets (open model) 1-66,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1259,15,15,http://192.168.1.170:8000/tickets,120109,0,3,0c71b6e4-5d90-4085-b23e-b67ecd3ed97d,7065
+1791443779135,120143,POST /tickets,502,Bad Gateway,Tickets (open model) 1-67,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1331,17,17,http://192.168.1.170:8000/tickets,120143,0,5,bf17c14a-8eb9-4e65-8022-e7c90b3e0244,7066
+1791443796181,117573,POST /tickets,201,Created,Tickets (open model) 1-68,text,true,,222,1158,18,18,http://192.168.1.170:8000/tickets,117573,0,3,d587073b-99f1-4bb6-8677-a5dcf159a3c9,7067
+1791443802462,120133,POST /tickets,502,Bad Gateway,Tickets (open model) 1-69,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,940,18,18,http://192.168.1.170:8000/tickets,120133,0,6,0b88baba-d20a-4840-a8f7-dcab399134cc,7068
+1791443803983,120120,POST /tickets,502,Bad Gateway,Tickets (open model) 1-70,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1280,18,18,http://192.168.1.170:8000/tickets,120120,0,7,bf219236-8e5e-4a32-b83a-9de2b226bb26,7069
+1791443806317,120116,POST /tickets,502,Bad Gateway,Tickets (open model) 1-71,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,830,18,18,http://192.168.1.170:8000/tickets,120116,0,2,76e56512-f3a4-42c2-86c9-c7f15fe883d6,7070
+1791443816911,120130,POST /tickets,502,Bad Gateway,Tickets (open model) 1-72,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,680,19,19,http://192.168.1.170:8000/tickets,120130,0,5,2715c2b1-8a45-4777-b8a5-b3be9399a8e3,7071
+1791443822678,120127,POST /tickets,502,Bad Gateway,Tickets (open model) 1-73,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1974,19,19,http://192.168.1.170:8000/tickets,120127,0,3,d53f62e3-cd5b-4d41-9097-93b3556bd5dd,7072
+1791443834182,120218,POST /tickets,502,Bad Gateway,Tickets (open model) 1-74,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,413,21,21,http://192.168.1.170:8000/tickets,120218,0,68,c2eafbb7-9d3d-41ae-acaf-33006e2a3ef2,7073
+1791443834462,120136,POST /tickets,502,Bad Gateway,Tickets (open model) 1-75,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1779,20,20,http://192.168.1.170:8000/tickets,120136,0,4,084bb6f7-782e-468c-aca6-d809b9b5474e,7074
+1791443834645,120138,POST /tickets,502,Bad Gateway,Tickets (open model) 1-76,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,452,19,19,http://192.168.1.170:8000/tickets,120138,0,3,dae7c40a-8b80-4522-8c2f-8af529cded3e,7075
+1791443842124,120100,POST /tickets,502,Bad Gateway,Tickets (open model) 1-77,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1979,18,18,http://192.168.1.170:8000/tickets,120100,0,4,2eed73c1-5c57-41e9-bcbf-044d243ec41c,7076
+1791443843186,120133,POST /tickets,502,Bad Gateway,Tickets (open model) 1-78,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,936,17,17,http://192.168.1.170:8000/tickets,120133,0,7,56e22ff2-6055-4753-8e89-19162d11a82d,7077
+1791443865244,111515,POST /tickets,201,Created,Tickets (open model) 1-79,text,true,,231,1075,18,18,http://192.168.1.170:8000/tickets,111515,0,5,51764c0f-7279-456c-a994-37a74517e5d8,7078
+1791443870858,120118,POST /tickets,502,Bad Gateway,Tickets (open model) 1-80,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1919,19,19,http://192.168.1.170:8000/tickets,120118,0,3,866c9586-e41e-483e-aadf-b5bd6912e1f7,7079
+1791443895301,113724,POST /tickets,201,Created,Tickets (open model) 1-81,text,true,,229,1067,20,20,http://192.168.1.170:8000/tickets,113724,0,5,b6121d3b-3eae-4bbf-bef8-ce72cea8db1f,7080
+1791443896703,120140,POST /tickets,502,Bad Gateway,Tickets (open model) 1-82,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1231,19,19,http://192.168.1.170:8000/tickets,120140,0,5,1313d46e-2277-4503-87a8-4d6fb40b1015,7081
+1791443897467,120041,POST /tickets,502,Bad Gateway,Tickets (open model) 1-83,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1414,18,18,http://192.168.1.170:8000/tickets,120041,0,3,a5eb751a-c937-4511-80d8-2835e92d1fed,7082
+1791443901601,120167,POST /tickets,502,Bad Gateway,Tickets (open model) 1-84,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,766,17,17,http://192.168.1.170:8000/tickets,120167,0,29,3f13562b-1200-48b7-9e9f-0f3708c14d3d,7083
+1791443906496,120122,POST /tickets,502,Bad Gateway,Tickets (open model) 1-85,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1496,16,16,http://192.168.1.170:8000/tickets,120122,0,4,8cb0000e-a53a-4157-b734-150e2752fec6,7084
+1791443915506,120164,POST /tickets,502,Bad Gateway,Tickets (open model) 1-86,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,435,15,15,http://192.168.1.170:8000/tickets,120164,0,46,7ecd525f-4175-4c29-a899-e11483d27ebc,7085
+1791443923189,120099,POST /tickets,502,Bad Gateway,Tickets (open model) 1-87,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,590,14,14,http://192.168.1.170:8000/tickets,120099,0,7,8e51ed06-e27d-4f17-8946-285128340dc0,7086
+1791443925452,120120,POST /tickets,502,Bad Gateway,Tickets (open model) 1-88,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1364,13,13,http://192.168.1.170:8000/tickets,120120,0,2,fcec2024-41c1-4b76-b9f3-e0d87f7c0c08,7087
+1791443932399,118472,POST /tickets,201,Created,Tickets (open model) 1-89,text,true,,217,458,12,12,http://192.168.1.170:8000/tickets,118472,0,3,7fddf120-d7d2-47f5-b95a-3319c81309f2,7088
+1791443936453,120132,POST /tickets,502,Bad Gateway,Tickets (open model) 1-90,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1205,11,11,http://192.168.1.170:8000/tickets,120132,0,18,bd354882-32a2-417c-b444-cbed3a97e213,7089
+1791443938921,120132,POST /tickets,502,Bad Gateway,Tickets (open model) 1-91,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,946,10,10,http://192.168.1.170:8000/tickets,120132,0,7,376d420a-83c1-48c6-ae5e-ca984994e043,7090
+1791443950577,120141,POST /tickets,502,Bad Gateway,Tickets (open model) 1-92,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,721,9,9,http://192.168.1.170:8000/tickets,120141,0,3,6fb4f94c-4c92-45b1-8beb-c2900928c654,7091
+1791443952994,120103,POST /tickets,502,Bad Gateway,Tickets (open model) 1-93,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1284,8,8,http://192.168.1.170:8000/tickets,120103,0,3,955c1374-88a1-4ed7-9b7c-fc2e39e5be52,7092
+1791443954304,120126,POST /tickets,502,Bad Gateway,Tickets (open model) 1-94,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,644,7,7,http://192.168.1.170:8000/tickets,120126,0,3,60eec5d3-e0ed-493f-8265-fe3acf53ce49,7093
+1791443968591,120072,POST /tickets,502,Bad Gateway,Tickets (open model) 1-95,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,584,6,6,http://192.168.1.170:8000/tickets,120072,0,4,cebff398-6c7b-4b22-af33-2336e97c5492,7094
+1791443972294,120117,POST /tickets,502,Bad Gateway,Tickets (open model) 1-96,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1260,5,5,http://192.168.1.170:8000/tickets,120117,0,3,04d69993-6ced-473e-a5b9-20bc434c9e94,7095
+1791443982091,120026,POST /tickets,502,Bad Gateway,Tickets (open model) 1-97,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1051,4,4,http://192.168.1.170:8000/tickets,120026,0,4,cc1f31c1-42e8-4c48-951a-cb148b1c9ada,7096
+1791443983745,120076,POST /tickets,502,Bad Gateway,Tickets (open model) 1-98,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,450,3,3,http://192.168.1.170:8000/tickets,120076,0,14,396f48b6-1e5d-4ff4-9311-df06cd2abd21,7097
+1791443994289,118576,POST /tickets,201,Created,Tickets (open model) 1-99,text,true,,219,662,2,2,http://192.168.1.170:8000/tickets,118576,0,3,e50940ee-c510-43dc-bfe9-9494e3763d98,7098
+1791444006693,113992,POST /tickets,201,Created,Tickets (open model) 1-100,text,true,,231,942,1,1,http://192.168.1.170:8000/tickets,113992,0,3,4d7f2392-27ce-480d-8254-4f5e0e37a6a7,7099

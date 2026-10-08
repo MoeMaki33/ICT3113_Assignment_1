@@ -1,0 +1,159 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect,"request_id","ticket_row"
+1791432465295,82,GET /search,200,OK,Searches (open model) 2-1,text,true,,21690,145,1,1,http://192.168.1.170:8000/search?q=credit+report,81,0,17,a317fdf5-b8b9-4581-a6b4-ef98236e74ec,null
+1791432469321,21,GET /search,200,OK,Searches (open model) 2-2,text,true,,178,142,1,1,http://192.168.1.170:8000/search?q=collection,21,0,4,25040bbb-13ea-4eef-afff-4752c1000047,null
+1791432471808,35,GET /search,200,OK,Searches (open model) 2-3,text,true,,7366,140,1,1,http://192.168.1.170:8000/search?q=mortgage,34,0,8,9f1b9c06-b077-41d1-881f-8cacfe025d0d,null
+1791432480701,19,GET /search,200,OK,Searches (open model) 2-4,text,true,,178,138,1,2,http://192.168.1.170:8000/search?q=escrow,19,0,2,1c3b122f-8503-46ff-adea-645e364249c0,null
+1791432485410,25,GET /search,200,OK,Searches (open model) 2-5,text,true,,178,143,1,2,http://192.168.1.170:8000/search?q=foreclosure,25,0,5,b29b8e7c-a6f8-4b28-9996-c7acb6a25935,null
+1791432494537,19,GET /search,200,OK,Searches (open model) 2-6,text,true,,1823,143,1,2,http://192.168.1.170:8000/search?q=credit+card,16,0,5,6306557b-b22b-4cb7-9827-ed727b83e0a8,null
+1791432500346,27,GET /search,200,OK,Searches (open model) 2-7,text,true,,178,140,1,2,http://192.168.1.170:8000/search?q=late+fee,27,0,8,54efd559-fd8b-423a-b52e-c818d6512d31,null
+1791432514507,21,GET /search,200,OK,Searches (open model) 2-8,text,true,,7816,140,1,4,http://192.168.1.170:8000/search?q=interest,17,0,3,eec94ea8-9721-4f36-8142-9d41b4f9a0b0,null
+1791432514734,15,GET /search,200,OK,Searches (open model) 2-9,text,true,,3857,141,1,4,http://192.168.1.170:8000/search?q=overdraft,15,0,2,7f0d9868-adb6-4d96-a19f-b2ef6bfa2f19,null
+1791432515512,13,GET /search,200,OK,Searches (open model) 2-10,text,true,,5236,148,1,4,http://192.168.1.170:8000/search?q=checking+account,12,0,3,d0f9bbcc-6049-4169-9770-204adb384e18,null
+1791432516915,33,GET /search,200,OK,Searches (open model) 2-11,text,true,,178,139,1,4,http://192.168.1.170:8000/search?q=savings,33,0,10,6cd849ea-134d-4bae-bff1-3a5056d10b58,null
+1791432518171,35,GET /search,200,OK,Searches (open model) 2-12,text,true,,5519,139,1,4,http://192.168.1.170:8000/search?q=deposit,35,0,5,e1c400d6-bbe1-4e92-9e8c-811c086b9f66,null
+1791432518551,11,GET /search,200,OK,Searches (open model) 2-13,text,true,,178,145,1,4,http://192.168.1.170:8000/search?q=wire+transfer,11,0,2,ced295a0-6796-4d09-9b91-fa3d1d244db2,null
+1791432521372,48,GET /search,200,OK,Searches (open model) 2-14,text,true,,178,143,1,4,http://192.168.1.170:8000/search?q=money+order,48,0,21,895f3e9c-f9db-400d-873e-4cf0de3f84ad,null
+1791432478719,43396,POST /tickets,201,Created,Tickets (open model) 1-1,text,true,,221,2113,3,3,http://192.168.1.170:8000/tickets,43396,0,8,de8a26ca-b146-4fde-9c7d-fcf36c36ccdb,7000
+1791432522416,63,GET /search,200,OK,Searches (open model) 2-15,text,true,,21074,136,1,3,http://192.168.1.170:8000/search?q=loan,50,0,4,64c7cf3c-c798-4de3-831e-e4ce0baf6b8d,null
+1791432503620,26476,POST /tickets,201,Created,Tickets (open model) 1-2,text,true,,230,930,2,2,http://192.168.1.170:8000/tickets,26476,0,3,379e1511-bd5f-4116-b24b-c91e32c93f4e,7001
+1791432541398,49,GET /search,200,OK,Searches (open model) 2-16,text,true,,35478,139,1,3,http://192.168.1.170:8000/search?q=payment,41,0,11,ee0ef891-37bf-4d79-8e79-373f3aae0f32,null
+1791432512086,31586,POST /tickets,201,Created,Tickets (open model) 1-3,text,true,,228,1302,2,2,http://192.168.1.170:8000/tickets,31586,0,11,c737f0c5-527f-4799-9da7-d1ee12249bfa,7002
+1791432561893,64,GET /search,200,OK,Searches (open model) 2-17,text,true,,26736,139,1,2,http://192.168.1.170:8000/search?q=dispute,59,0,20,a91db290-d1a8-4a3e-bed5-378d3892f51f,null
+1791432534964,34774,POST /tickets,201,Created,Tickets (open model) 1-4,text,true,,228,1856,2,2,http://192.168.1.170:8000/tickets,34773,0,4,0841033b-6ea0-4d4e-8bcd-67eba4f3b366,7003
+1791432570633,17,GET /search,200,OK,Searches (open model) 2-18,text,true,,14052,137,1,2,http://192.168.1.170:8000/search?q=fraud,16,0,3,70dfe190-688d-44c5-b601-bf7b974f47a1,null
+1791432567936,6842,POST /tickets,201,Created,Tickets (open model) 1-5,text,true,,218,422,1,1,http://192.168.1.170:8000/tickets,6841,0,4,e6d7cf42-0788-4730-8318-d3872f19eaba,7004
+1791432582750,31,GET /search,200,OK,Searches (open model) 2-19,text,true,,13343,138,1,1,http://192.168.1.170:8000/search?q=refund,31,0,7,0e52c779-afda-4142-a9eb-da2b7aeabb2a,null
+1791432598044,25,GET /search,200,OK,Searches (open model) 2-20,text,true,,25916,136,1,1,http://192.168.1.170:8000/search?q=bank,21,0,4,59fdaafd-db73-4c7c-9271-fee43a8dc3e4,null
+1791432606077,22,GET /search,200,OK,Searches (open model) 2-21,text,true,,23720,145,1,2,http://192.168.1.170:8000/search?q=credit+report,14,0,3,71559165-c553-421b-aa54-6c32a37c69bc,null
+1791432605068,4768,POST /tickets,201,Created,Tickets (open model) 1-6,text,true,,216,635,1,1,http://192.168.1.170:8000/tickets,4768,0,4,6c341419-6c8b-420a-a55e-d4c929375028,7005
+1791432614297,13,GET /search,200,OK,Searches (open model) 2-22,text,true,,178,142,1,1,http://192.168.1.170:8000/search?q=collection,13,0,3,840313d8-725b-4a03-916b-59ddd33a5f4d,null
+1791432627071,28,GET /search,200,OK,Searches (open model) 2-23,text,true,,7366,140,1,1,http://192.168.1.170:8000/search?q=mortgage,28,0,5,1b13a297-9f2b-441b-81e1-fee117e215f2,null
+1791432628254,9867,POST /tickets,201,Created,Tickets (open model) 1-7,text,true,,213,1083,3,3,http://192.168.1.170:8000/tickets,9867,0,5,863e44a8-e4cd-4129-a044-4acbbe1de693,7006
+1791432632963,10086,POST /tickets,201,Created,Tickets (open model) 1-8,text,true,,228,535,2,2,http://192.168.1.170:8000/tickets,10086,0,3,5df622f3-81bf-49c2-b343-576863c27550,7007
+1791432635610,14645,POST /tickets,201,Created,Tickets (open model) 1-9,text,true,,213,804,2,2,http://192.168.1.170:8000/tickets,14645,0,3,078b1c09-ec47-4eba-ab10-92c8eb3131de,7008
+1791432650375,17,GET /search,200,OK,Searches (open model) 2-24,text,true,,178,138,1,2,http://192.168.1.170:8000/search?q=escrow,17,0,3,b6ce0860-5395-4806-801c-ac1e5a49f342,null
+1791432645931,10575,POST /tickets,201,Created,Tickets (open model) 1-10,text,true,,230,841,1,1,http://192.168.1.170:8000/tickets,10575,0,9,551d1df1-14bb-4fda-8de2-2316d6b9866b,7009
+1791432657855,29,GET /search,200,OK,Searches (open model) 2-25,text,true,,178,143,1,1,http://192.168.1.170:8000/search?q=foreclosure,29,0,3,070c891a-59cb-49be-8424-a640405fa7ce,null
+1791432660216,16,GET /search,200,OK,Searches (open model) 2-26,text,true,,2371,143,1,1,http://192.168.1.170:8000/search?q=credit+card,14,0,3,d67aa03c-3014-4e3a-8bba-4401c1a6be10,null
+1791432661295,16,GET /search,200,OK,Searches (open model) 2-27,text,true,,178,140,1,1,http://192.168.1.170:8000/search?q=late+fee,16,0,4,93b63af6-cb2e-4e69-b5a5-1d7d4d581972,null
+1791432678115,20,GET /search,200,OK,Searches (open model) 2-28,text,true,,9933,140,1,1,http://192.168.1.170:8000/search?q=interest,20,0,4,0343f3d3-a7c4-4fdd-ab58-3f33e027aee2,null
+1791432688961,20,GET /search,200,OK,Searches (open model) 2-29,text,true,,5083,141,1,3,http://192.168.1.170:8000/search?q=overdraft,20,0,4,f79fd731-ee51-464a-a9e8-fb4d0903385f,null
+1791432699191,19,GET /search,200,OK,Searches (open model) 2-30,text,true,,6922,148,1,3,http://192.168.1.170:8000/search?q=checking+account,18,0,5,043a47f9-851c-464c-9697-a6698bd00797,null
+1791432679719,19953,POST /tickets,201,Created,Tickets (open model) 1-11,text,true,,218,1994,2,2,http://192.168.1.170:8000/tickets,19953,0,4,2b955c04-b517-4e8f-a447-e584f54e60d4,7010
+1791432703687,18,GET /search,200,OK,Searches (open model) 2-31,text,true,,178,139,1,2,http://192.168.1.170:8000/search?q=savings,18,0,4,2bf6597f-78d7-4285-aed0-24acfc0bf46c,null
+1791432686097,17994,POST /tickets,201,Created,Tickets (open model) 1-12,text,true,,218,514,1,1,http://192.168.1.170:8000/tickets,17994,0,26,4a37c79a-1850-4d42-8294-04b59d42cb8b,7011
+1791432704892,7860,POST /tickets,201,Created,Tickets (open model) 1-13,text,true,,218,810,1,1,http://192.168.1.170:8000/tickets,7860,0,3,0e4c51cc-3f2d-4611-b4b6-661cdf057296,7012
+1791432714739,35,GET /search,200,OK,Searches (open model) 2-32,text,true,,7299,139,1,1,http://192.168.1.170:8000/search?q=deposit,34,0,4,c14eaafe-1bb5-40d7-b944-bf9978c14608,null
+1791432730861,87,GET /search,200,OK,Searches (open model) 2-33,text,true,,178,145,1,1,http://192.168.1.170:8000/search?q=wire+transfer,87,0,24,08cecfd3-57ce-4da4-b60b-ce5a43046df8,null
+1791432731866,35,GET /search,200,OK,Searches (open model) 2-34,text,true,,178,143,1,1,http://192.168.1.170:8000/search?q=money+order,35,0,7,052f450e-dd1b-4190-8d47-4e4f286cf1d3,null
+1791432736311,20,GET /search,200,OK,Searches (open model) 2-35,text,true,,23620,136,1,1,http://192.168.1.170:8000/search?q=loan,13,0,3,eb450dd4-1973-4b84-a549-a1083eccaae1,null
+1791432740870,57,GET /search,200,OK,Searches (open model) 2-36,text,true,,38866,139,1,2,http://192.168.1.170:8000/search?q=payment,46,0,27,202cb566-5bdd-4a40-9b8b-02453ef9f5e0,null
+1791432741087,31,GET /search,200,OK,Searches (open model) 2-37,text,true,,29412,139,1,2,http://192.168.1.170:8000/search?q=dispute,27,0,15,8b430524-bcd5-4886-9935-e273129fb534,null
+1791432742276,20,GET /search,200,OK,Searches (open model) 2-38,text,true,,16093,137,1,3,http://192.168.1.170:8000/search?q=fraud,17,0,4,ac4bf648-3656-4ed1-baf5-7870d8807e69,null
+1791432740780,4641,POST /tickets,201,Created,Tickets (open model) 1-14,text,true,,220,541,3,3,http://192.168.1.170:8000/tickets,4641,0,6,661e285a-4b7a-475c-819c-f46539e35d66,7013
+1791432742230,14715,POST /tickets,201,Created,Tickets (open model) 1-15,text,true,,218,1193,3,3,http://192.168.1.170:8000/tickets,14715,0,2,7f013a2a-f97d-4e0e-b16a-b7963a74ee84,7014
+1791432761019,24,GET /search,200,OK,Searches (open model) 2-39,text,true,,15251,138,1,3,http://192.168.1.170:8000/search?q=refund,18,0,3,39eccf79-e894-4be2-bfa7-a8395cbe7425,null
+1791432762824,21,GET /search,200,OK,Searches (open model) 2-40,text,true,,30384,136,1,3,http://192.168.1.170:8000/search?q=bank,14,0,3,da7c9969-686a-4726-bd00-cc1263e9729f,null
+1791432764712,25,GET /search,200,OK,Searches (open model) 2-41,text,true,,25628,145,1,3,http://192.168.1.170:8000/search?q=credit+report,19,0,3,d421d86c-2d6a-4a04-aae2-1f01941f188e,null
+1791432743388,30138,POST /tickets,201,Created,Tickets (open model) 1-16,text,true,,218,1449,3,3,http://192.168.1.170:8000/tickets,30138,0,3,e6a8c4e8-cb6b-415d-9f57-e5b7c0a7918b,7015
+1791432785448,17,GET /search,200,OK,Searches (open model) 2-42,text,true,,178,142,1,3,http://192.168.1.170:8000/search?q=collection,17,0,3,766dd4b7-c423-4784-9d6a-ae17e3abad41,null
+1791432755465,30138,POST /tickets,201,Created,Tickets (open model) 1-17,text,true,,218,649,2,2,http://192.168.1.170:8000/tickets,30138,0,4,166e7ba3-691c-4dca-9af3-a0d6f585d09c,7016
+1791432773483,23633,POST /tickets,201,Created,Tickets (open model) 1-18,text,true,,221,729,3,3,http://192.168.1.170:8000/tickets,23633,0,3,9421299e-ff3b-4287-9339-c4497646c86c,7017
+1791432798273,28,GET /search,200,OK,Searches (open model) 2-43,text,true,,9073,140,1,3,http://192.168.1.170:8000/search?q=mortgage,27,0,4,07767490-c230-4f4e-997b-4a1dd57c5923,null
+1791432799485,17,GET /search,200,OK,Searches (open model) 2-44,text,true,,178,138,1,3,http://192.168.1.170:8000/search?q=escrow,17,0,3,6002acfa-91d7-4b67-b782-f802c7b51796,null
+1791432794492,12210,POST /tickets,201,Created,Tickets (open model) 1-19,text,true,,218,875,2,2,http://192.168.1.170:8000/tickets,12210,0,5,438fc319-8d47-49b4-acf8-832e66ca1dfc,7018
+1791432808536,19,GET /search,200,OK,Searches (open model) 2-45,text,true,,178,143,1,2,http://192.168.1.170:8000/search?q=foreclosure,19,0,7,a4d0ff57-e7f4-4a1b-b337-0c00e4b3c828,null
+1791432818501,20,GET /search,200,OK,Searches (open model) 2-46,text,true,,2371,143,1,2,http://192.168.1.170:8000/search?q=credit+card,20,0,4,94281db3-72a5-4414-8ebf-5318d5b38242,null
+1791432820231,27,GET /search,200,OK,Searches (open model) 2-47,text,true,,178,140,1,2,http://192.168.1.170:8000/search?q=late+fee,27,0,11,1cc8e2af-962a-45e9-a967-d22d98082c2a,null
+1791432794686,27062,POST /tickets,201,Created,Tickets (open model) 1-20,text,true,,218,1245,1,1,http://192.168.1.170:8000/tickets,27062,0,4,66a51a9b-63f5-4809-85bd-256cf6ff6e19,7019
+1791432823788,27,GET /search,200,OK,Searches (open model) 2-48,text,true,,10363,140,1,1,http://192.168.1.170:8000/search?q=interest,26,0,5,cc0f409e-e545-45c2-9808-87e5c76719ee,null
+1791432839222,4796,POST /tickets,201,Created,Tickets (open model) 1-21,text,true,,228,508,2,2,http://192.168.1.170:8000/tickets,4796,0,5,2221b833-4a90-4ba3-9251-cdb7e0e9a730,7020
+1791432844536,36,GET /search,200,OK,Searches (open model) 2-49,text,true,,5083,141,1,2,http://192.168.1.170:8000/search?q=overdraft,36,0,19,bbc92ec5-9abc-4b48-bef7-21b6302a8efa,null
+1791432845856,41,GET /search,200,OK,Searches (open model) 2-50,text,true,,6922,148,1,2,http://192.168.1.170:8000/search?q=checking+account,41,0,17,ad56d06b-b41d-4b87-a048-29c6ca30e06e,null
+1791432852776,16,GET /search,200,OK,Searches (open model) 2-51,text,true,,178,139,1,2,http://192.168.1.170:8000/search?q=savings,16,0,4,e23d7359-f043-41a6-9bf4-96c14ec12e05,null
+1791432855811,20,GET /search,200,OK,Searches (open model) 2-52,text,true,,7299,139,1,2,http://192.168.1.170:8000/search?q=deposit,19,0,3,9e921bd8-ba11-4b2f-82f9-0f570366afc0,null
+1791432855909,11,GET /search,200,OK,Searches (open model) 2-53,text,true,,178,145,1,2,http://192.168.1.170:8000/search?q=wire+transfer,11,0,2,483afaf6-1e10-4b67-88d3-2b2c0c031e50,null
+1791432859205,22,GET /search,200,OK,Searches (open model) 2-54,text,true,,178,143,1,2,http://192.168.1.170:8000/search?q=money+order,22,0,10,9183aa68-d438-4d65-8fb4-e363b796b3bd,null
+1791432841736,21876,POST /tickets,201,Created,Tickets (open model) 1-22,text,true,,228,1814,1,1,http://192.168.1.170:8000/tickets,21876,0,2,000b30ac-eb8b-4553-bec5-44cd9bfe9a5c,7021
+1791432874755,7849,POST /tickets,201,Created,Tickets (open model) 1-23,text,true,,213,779,4,4,http://192.168.1.170:8000/tickets,7849,0,4,5083a2a0-c174-4c0e-9013-c3f1a15666ea,7022
+1791432883485,45,GET /search,200,OK,Searches (open model) 2-55,text,true,,28039,136,1,4,http://192.168.1.170:8000/search?q=loan,25,0,4,72206c4b-5c21-4991-b473-650ad14f3337,null
+1791432883625,46,GET /search,200,OK,Searches (open model) 2-56,text,true,,44538,139,1,4,http://192.168.1.170:8000/search?q=payment,17,0,3,27819933-9541-4e0a-8381-a27d88bf0c3f,null
+1791432884325,24,GET /search,200,OK,Searches (open model) 2-57,text,true,,31029,139,1,5,http://192.168.1.170:8000/search?q=dispute,19,0,2,5f3202ee-61fd-41fa-8cdc-e1fdd4d75922,null
+1791432877582,15748,POST /tickets,201,Created,Tickets (open model) 1-24,text,true,,220,793,5,5,http://192.168.1.170:8000/tickets,15748,0,4,432e110f-44b8-431e-9aa4-ff180a3c0b8a,7023
+1791432899473,30,GET /search,200,OK,Searches (open model) 2-58,text,true,,17831,137,1,5,http://192.168.1.170:8000/search?q=fraud,23,0,4,6a052990-4e95-4195-b7d6-3ee261e6bf0f,null
+1791432902521,20,GET /search,200,OK,Searches (open model) 2-59,text,true,,15251,138,1,5,http://192.168.1.170:8000/search?q=refund,18,0,3,186b4eef-259f-4db6-a78a-bd8ce6df24fd,null
+1791432878098,29683,POST /tickets,201,Created,Tickets (open model) 1-25,text,true,,229,920,4,4,http://192.168.1.170:8000/tickets,29683,0,4,8b4184f1-3d2b-4234-bf43-0f88064e5f75,7024
+1791432879995,51040,POST /tickets,201,Created,Tickets (open model) 1-26,text,true,,229,1845,5,5,http://192.168.1.170:8000/tickets,51040,0,8,7af92dba-0ebc-492a-9953-9c88cc790f51,7025
+1791432937327,48,GET /search,200,OK,Searches (open model) 2-60,text,true,,33892,136,1,5,http://192.168.1.170:8000/search?q=bank,32,0,4,653739b3-8ab4-4a41-9962-abf2a08b1b5a,null
+1791432946293,42,GET /search,200,OK,Searches (open model) 2-61,text,true,,28860,145,1,5,http://192.168.1.170:8000/search?q=credit+report,36,0,4,46e94240-2435-4ece-addb-7676482f5f2d,null
+1791432883973,65306,POST /tickets,201,Created,Tickets (open model) 1-27,text,true,,231,1493,4,4,http://192.168.1.170:8000/tickets,65306,0,19,01435443-44a9-46bf-a074-42f7f8a09ca9,7026
+1791432953138,44,GET /search,200,OK,Searches (open model) 2-62,text,true,,1600,142,1,4,http://192.168.1.170:8000/search?q=collection,44,0,22,9577fd4a-6800-4e3f-8240-006728d0d132,null
+1791432954301,14,GET /search,200,OK,Searches (open model) 2-63,text,true,,9762,140,1,4,http://192.168.1.170:8000/search?q=mortgage,14,0,2,4b300aaa-1094-460b-9e21-51e8bed97cbf,null
+1791432956683,20,GET /search,200,OK,Searches (open model) 2-64,text,true,,178,138,1,4,http://192.168.1.170:8000/search?q=escrow,20,0,3,f72f5b2c-35df-4d9a-b71b-99ed6261b4b8,null
+1791432964032,16,GET /search,200,OK,Searches (open model) 2-65,text,true,,178,143,1,4,http://192.168.1.170:8000/search?q=foreclosure,16,0,3,a9928581-fd4c-457e-bab0-e7e26b50463b,null
+1791432967630,52,GET /search,200,OK,Searches (open model) 2-66,text,true,,4141,143,1,4,http://192.168.1.170:8000/search?q=credit+card,52,0,4,d88e190b-7745-45ed-84cc-dd619b3ad41e,null
+1791432968848,18,GET /search,200,OK,Searches (open model) 2-67,text,true,,178,140,1,4,http://192.168.1.170:8000/search?q=late+fee,18,0,4,2ce928f9-2565-44a9-8890-d65fa0a9cce1,null
+1791432886141,84908,POST /tickets,201,Created,Tickets (open model) 1-28,text,true,,231,1753,3,3,http://192.168.1.170:8000/tickets,84908,0,3,b6eb374d-abb9-4833-9e76-0f9ecb3911b3,7027
+1791432973459,38,GET /search,200,OK,Searches (open model) 2-68,text,true,,10363,140,1,3,http://192.168.1.170:8000/search?q=interest,38,0,13,d3adf321-1744-4959-bd4b-2b38d653fb8d,null
+1791432909120,73722,POST /tickets,201,Created,Tickets (open model) 1-29,text,true,,229,932,2,2,http://192.168.1.170:8000/tickets,73722,0,7,eb0c444f-1516-4830-a0fe-8a45d8c5d7a2,7028
+1791432988508,26,GET /search,200,OK,Searches (open model) 2-69,text,true,,5083,141,1,4,http://192.168.1.170:8000/search?q=overdraft,26,0,3,e5867c7e-f4c2-4cfb-b9af-9871c0145d18,null
+1791433005504,60,GET /search,200,OK,Searches (open model) 2-70,text,true,,8692,148,1,5,http://192.168.1.170:8000/search?q=checking+account,56,0,18,6e97a45f-69b4-414c-81d9-3df1435cb87c,null
+1791432927573,81430,POST /tickets,201,Created,Tickets (open model) 1-30,text,true,,217,2065,4,4,http://192.168.1.170:8000/tickets,81430,0,4,cc527e62-a5cc-43e8-a6f6-c2d99f9e9393,7029
+1791432985587,28527,POST /tickets,201,Created,Tickets (open model) 1-31,text,true,,222,471,3,3,http://192.168.1.170:8000/tickets,28527,0,3,215f2c41-364e-4bce-84e9-cb390d16fb03,7030
+1791433017707,30,GET /search,200,OK,Searches (open model) 2-71,text,true,,1950,139,1,3,http://192.168.1.170:8000/search?q=savings,30,0,5,f6a7882b-190f-4522-832d-260eef47c61b,null
+1791432988297,44242,POST /tickets,201,Created,Tickets (open model) 1-32,text,true,,214,1424,4,4,http://192.168.1.170:8000/tickets,44242,0,6,74962792-0c7d-47e4-97a3-96eeee003dbc,7031
+1791433046208,40,GET /search,200,OK,Searches (open model) 2-72,text,true,,7299,139,1,5,http://192.168.1.170:8000/search?q=deposit,39,0,20,57822405-9b3c-4492-86b1-c0a49ad4aa23,null
+1791433002565,47735,POST /tickets,201,Created,Tickets (open model) 1-33,text,true,,231,1278,4,4,http://192.168.1.170:8000/tickets,47735,0,4,a5d204b3-b139-47d3-a677-42cddb4939dc,7032
+1791433055655,18,GET /search,200,OK,Searches (open model) 2-73,text,true,,178,145,1,5,http://192.168.1.170:8000/search?q=wire+transfer,18,0,6,c84e6d8d-e3e9-469a-a644-96173e8eca86,null
+1791433060763,51,GET /search,200,OK,Searches (open model) 2-74,text,true,,178,143,1,7,http://192.168.1.170:8000/search?q=money+order,51,0,23,05fe2600-05fd-4d2c-8079-0d05318a86ae,null
+1791433063620,35,GET /search,200,OK,Searches (open model) 2-75,text,true,,29373,136,1,7,http://192.168.1.170:8000/search?q=loan,22,0,5,7066a35c-4ed7-48d2-a46f-b30f2f9c4c54,null
+1791433019306,44949,POST /tickets,201,Created,Tickets (open model) 1-34,text,true,,219,1071,6,6,http://192.168.1.170:8000/tickets,44948,0,21,6a31a38b-50ca-4427-a7f1-31fb67679a8a,7033
+1791433029109,40509,POST /tickets,201,Created,Tickets (open model) 1-35,text,true,,217,535,6,6,http://192.168.1.170:8000/tickets,40509,0,11,7a5feb3e-8028-41d6-b651-8b56dbda523c,7034
+1791433075231,29,GET /search,200,OK,Searches (open model) 2-76,text,true,,50607,139,1,6,http://192.168.1.170:8000/search?q=payment,21,0,3,21c8ca23-de4f-4c00-94fc-ec76fb780acc,null
+1791433081611,36,GET /search,200,OK,Searches (open model) 2-77,text,true,,34624,139,1,7,http://192.168.1.170:8000/search?q=dispute,22,0,2,394a9697-234d-48f7-8651-21b0da3e1f67,null
+1791433087919,22,GET /search,200,OK,Searches (open model) 2-78,text,true,,20097,137,1,7,http://192.168.1.170:8000/search?q=fraud,17,0,3,96b76a9e-6828-459f-8562-6b32f4dee923,null
+1791433091008,47,GET /search,200,OK,Searches (open model) 2-79,text,true,,16097,138,1,9,http://192.168.1.170:8000/search?q=refund,34,0,6,c387af66-2ba6-4915-8b43-4d8105e0d91c,null
+1791433043288,49027,POST /tickets,201,Created,Tickets (open model) 1-36,text,true,,222,1762,8,8,http://192.168.1.170:8000/tickets,49027,0,7,bafe9665-cf96-403e-8354-224d3e04a87f,7035
+1791433053213,44289,POST /tickets,201,Created,Tickets (open model) 1-37,text,true,,217,486,7,7,http://192.168.1.170:8000/tickets,44289,0,12,b1ca706b-6242-48d9-8832-40cca1162dea,7036
+1791433098581,31,GET /search,200,OK,Searches (open model) 2-80,text,true,,37375,136,1,7,http://192.168.1.170:8000/search?q=bank,23,0,6,58994864-0bbd-4d02-b28c-30011cd0e47a,null
+1791433101712,24,GET /search,200,OK,Searches (open model) 2-81,text,true,,28860,145,1,7,http://192.168.1.170:8000/search?q=credit+report,20,0,5,6698eec0-ddf0-417e-a793-5d62f0abef9b,null
+1791433056424,48267,POST /tickets,201,Created,Tickets (open model) 1-38,text,true,,229,641,6,6,http://192.168.1.170:8000/tickets,48267,0,5,6b427267-328b-4774-93df-37852bf14b65,7037
+1791433107602,21,GET /search,200,OK,Searches (open model) 2-82,text,true,,1600,142,1,6,http://192.168.1.170:8000/search?q=collection,21,0,3,b024a71d-5932-42dd-a31c-524629396b11,null
+1791433113958,16,GET /search,200,OK,Searches (open model) 2-83,text,true,,11097,140,1,6,http://192.168.1.170:8000/search?q=mortgage,15,0,3,8674b1b4-2d96-4472-9591-33e15fe6fbc8,null
+1791433115386,21,GET /search,200,OK,Searches (open model) 2-84,text,true,,1514,138,1,7,http://192.168.1.170:8000/search?q=escrow,21,0,6,1dec1a76-c292-48e5-9533-61241fca55a6,null
+1791433120765,23,GET /search,200,OK,Searches (open model) 2-85,text,true,,178,143,1,7,http://192.168.1.170:8000/search?q=foreclosure,23,0,3,5b842361-dc60-4e49-b9ec-9612ec61322a,null
+1791433125555,19,GET /search,200,OK,Searches (open model) 2-86,text,true,,6119,143,1,7,http://192.168.1.170:8000/search?q=credit+card,19,0,3,aa8c6314-193d-44b7-96ca-03c2a61bb45d,null
+1791433059203,74135,POST /tickets,201,Created,Tickets (open model) 1-39,text,true,,231,1944,7,7,http://192.168.1.170:8000/tickets,74135,0,10,3260d49b-e807-4746-a6be-5043128d5a2a,7038
+1791433143762,38,GET /search,200,OK,Searches (open model) 2-87,text,true,,2558,140,1,8,http://192.168.1.170:8000/search?q=late+fee,38,0,3,8bbe6a69-8527-43dd-af73-f3aa776616c1,null
+1791433064523,83782,POST /tickets,201,Created,Tickets (open model) 1-40,text,true,,222,1273,7,7,http://192.168.1.170:8000/tickets,83782,0,14,3a4030ff-5f81-4a22-8148-22a4534c0cc9,7039
+1791433159625,23,GET /search,200,OK,Searches (open model) 2-88,text,true,,10363,140,1,8,http://192.168.1.170:8000/search?q=interest,22,0,5,bc068618-da25-46ea-80f9-9ec52498b537,null
+1791433160003,19,GET /search,200,OK,Searches (open model) 2-89,text,true,,5083,141,1,8,http://192.168.1.170:8000/search?q=overdraft,19,0,5,7cce1d91-5c7c-489e-84bc-0b6f2324b896,null
+1791433173772,24,GET /search,200,OK,Searches (open model) 2-90,text,true,,9897,148,1,9,http://192.168.1.170:8000/search?q=checking+account,22,0,4,11350252-9dc1-44df-bba4-1afbca942d0d,null
+1791433080429,99696,POST /tickets,201,Created,Tickets (open model) 1-41,text,true,,214,2143,10,10,http://192.168.1.170:8000/tickets,99696,0,4,7415b7d7-3aef-456a-b0c0-8b2333f8222f,7040
+1791433088567,101463,POST /tickets,201,Created,Tickets (open model) 1-42,text,true,,231,866,9,9,http://192.168.1.170:8000/tickets,101463,0,7,38738575-eb13-4229-bc3e-f8efd7953c08,7041
+1791433090402,120174,POST /tickets,502,Bad Gateway,Tickets (open model) 1-43,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,2039,8,8,http://192.168.1.170:8000/tickets,120174,0,5,1c603abd-daef-467e-a768-d744e50ed86d,7042
+1791433114349,109920,POST /tickets,201,Created,Tickets (open model) 1-44,text,true,,229,651,7,7,http://192.168.1.170:8000/tickets,109920,0,3,c2a53c6d-78bf-456f-96be-3a08e0dca74d,7043
+1791433132021,104822,POST /tickets,201,Created,Tickets (open model) 1-45,text,true,,214,1180,6,6,http://192.168.1.170:8000/tickets,104822,0,5,ca9bc786-3c88-49ed-9010-3a5cd02aa6b0,7044
+1791433138415,110278,POST /tickets,201,Created,Tickets (open model) 1-46,text,true,,231,846,5,5,http://192.168.1.170:8000/tickets,110278,0,3,1e05bd3b-e9b5-4aa2-bfc4-fa1cc9ccf0c9,7045
+1791433156995,105951,POST /tickets,201,Created,Tickets (open model) 1-47,text,true,,222,1381,4,4,http://192.168.1.170:8000/tickets,105951,0,3,9a8e9229-319d-4269-9d02-76636e05e0c2,7046
+1791433166149,116510,POST /tickets,201,Created,Tickets (open model) 1-48,text,true,,229,1694,3,3,http://192.168.1.170:8000/tickets,116510,0,5,fc45297b-4b34-4e10-8d82-776a3aebfdce,7047
+1791433175361,120054,POST /tickets,502,Bad Gateway,Tickets (open model) 1-49,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1788,2,2,http://192.168.1.170:8000/tickets,120054,0,3,d8a12148-b66e-4601-86cc-0d3db91be36b,7048
+1791433176643,120140,POST /tickets,502,Bad Gateway,Tickets (open model) 1-50,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[502]]]
+
+****** comparison: [[[201]]]
+
+/",227,1855,1,1,http://192.168.1.170:8000/tickets,120140,0,3,02f78142-479f-4f77-97c9-627c9da52dea,7049

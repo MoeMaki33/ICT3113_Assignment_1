@@ -1,0 +1,4 @@
+client_file,reconciled,contaminated,client_samples,matched,client_successful,matched_service_2xx,status_mismatch_count,model_mismatch_count,request_ids_missing_from_log_count,extra_log_lines_in_window,extra_preflight,extra_abandoned_by_client,extra_unexplained
+results/load/llama3.1_8b/rate-250_search-450/run-1.jtl,True,False,140,140,137,137,0,0,0,0,0,0,0
+results/load/llama3.1_8b/rate-250_search-450/run-2.jtl,True,False,140,140,140,140,0,0,0,0,0,0,0
+results/load/llama3.1_8b/rate-250_search-450/run-3.jtl,True,False,140,140,140,140,0,0,0,0,0,0,0

@@ -1,0 +1,339 @@
+{
+  "configuration": "results/load/llama3.1_8b/rate-250_search-450",
+  "model": "llama3.1:8b",
+  "kind": "load",
+  "official": true,
+  "rate_per_hour": 250.0,
+  "search_rate_per_hour": 450.0,
+  "expected_runs": 3,
+  "completed_runs": 3,
+  "missing_runs": [],
+  "problems": [],
+  "generated_utc": "2026-10-08T06:48:49.583991+00:00",
+  "method": {
+    "window": "[t0 + warmup_s, t0 + duration_s); t0 = JMeter schedule start (jmeter.log)",
+    "offered_rate": "samples started in window / window hours",
+    "achieved_throughput": "successful samples completed in window / window hours",
+    "error_rate": "unsuccessful samples / samples started in window",
+    "latency": "JMeter elapsed of successful samples started in window; nearest-rank percentiles; seconds",
+    "trend": "growing = (median last third / median first third >= 1.5) and slope > 0"
+  },
+  "runs": [
+    {
+      "jtl": "results/load/llama3.1_8b/rate-250_search-450/run-1.jtl",
+      "sample_count": 140,
+      "observed_sample_span_s": 831.488,
+      "wrapper_elapsed_s": 976.51,
+      "run": 1,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 250.0,
+      "search_rate_setting_per_hour": 450.0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791432576921,
+      "window_end_epoch_ms": 1791433176921,
+      "window_minutes": 10.0,
+      "labels": {
+        "GET /search": {
+          "samples_total": 90,
+          "samples_in_window": 72,
+          "successful_in_window": 72,
+          "failed_in_window": 0,
+          "offered_per_hour": 432.0,
+          "achieved_per_hour": 432.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 0.024,
+          "latency_p95_s": 0.052,
+          "latency_p99_s": 0.087,
+          "latency_mean_s": 0.028,
+          "latency_max_s": 0.087,
+          "trend_ratio": 1.163,
+          "trend_slope_s_per_min": 0.0,
+          "growing": false
+        },
+        "POST /tickets": {
+          "samples_total": 50,
+          "samples_in_window": 45,
+          "successful_in_window": 42,
+          "failed_in_window": 3,
+          "offered_per_hour": 270.0,
+          "achieved_per_hour": 210.0,
+          "error_rate": 0.0667,
+          "errors_by_type": {
+            "HTTP 502": 3
+          },
+          "latency_p50_s": 30.138,
+          "latency_p95_s": 109.92,
+          "latency_p99_s": 116.51,
+          "latency_mean_s": 45.922,
+          "latency_max_s": 116.51,
+          "trend_ratio": 6.832,
+          "trend_slope_s_per_min": 10.407,
+          "growing": true
+        }
+      }
+    },
+    {
+      "jtl": "results/load/llama3.1_8b/rate-250_search-450/run-2.jtl",
+      "sample_count": 140,
+      "observed_sample_span_s": 790.072,
+      "wrapper_elapsed_s": 976.595,
+      "run": 2,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 250.0,
+      "search_rate_setting_per_hour": 450.0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791437674760,
+      "window_end_epoch_ms": 1791438274760,
+      "window_minutes": 10.0,
+      "labels": {
+        "GET /search": {
+          "samples_total": 90,
+          "samples_in_window": 77,
+          "successful_in_window": 77,
+          "failed_in_window": 0,
+          "offered_per_hour": 462.0,
+          "achieved_per_hour": 462.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 0.026,
+          "latency_p95_s": 0.072,
+          "latency_p99_s": 0.087,
+          "latency_mean_s": 0.03,
+          "latency_max_s": 0.087,
+          "trend_ratio": 1.0,
+          "trend_slope_s_per_min": -0.001,
+          "growing": false
+        },
+        "POST /tickets": {
+          "samples_total": 50,
+          "samples_in_window": 39,
+          "successful_in_window": 39,
+          "failed_in_window": 0,
+          "offered_per_hour": 234.0,
+          "achieved_per_hour": 234.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 46.398,
+          "latency_p95_s": 77.952,
+          "latency_p99_s": 80.553,
+          "latency_mean_s": 44.434,
+          "latency_max_s": 80.553,
+          "trend_ratio": 2.232,
+          "trend_slope_s_per_min": 4.274,
+          "growing": true
+        }
+      }
+    },
+    {
+      "jtl": "results/load/llama3.1_8b/rate-250_search-450/run-3.jtl",
+      "sample_count": 140,
+      "observed_sample_span_s": 796.53,
+      "wrapper_elapsed_s": 976.512,
+      "run": 3,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 250.0,
+      "search_rate_setting_per_hour": 450.0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791438886195,
+      "window_end_epoch_ms": 1791439486195,
+      "window_minutes": 10.0,
+      "labels": {
+        "GET /search": {
+          "samples_total": 90,
+          "samples_in_window": 76,
+          "successful_in_window": 76,
+          "failed_in_window": 0,
+          "offered_per_hour": 456.0,
+          "achieved_per_hour": 456.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 0.029,
+          "latency_p95_s": 0.066,
+          "latency_p99_s": 0.123,
+          "latency_mean_s": 0.033,
+          "latency_max_s": 0.123,
+          "trend_ratio": 0.833,
+          "trend_slope_s_per_min": -0.001,
+          "growing": false
+        },
+        "POST /tickets": {
+          "samples_total": 50,
+          "samples_in_window": 46,
+          "successful_in_window": 46,
+          "failed_in_window": 0,
+          "offered_per_hour": 276.0,
+          "achieved_per_hour": 240.0,
+          "error_rate": 0.0,
+          "errors_by_type": {},
+          "latency_p50_s": 57.265,
+          "latency_p95_s": 104.062,
+          "latency_p99_s": 113.977,
+          "latency_mean_s": 50.93,
+          "latency_max_s": 113.977,
+          "trend_ratio": 10.99,
+          "trend_slope_s_per_min": 12.178,
+          "growing": true
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "GET /search": {
+      "offered_per_hour": {
+        "mean": 450.0,
+        "sd": 15.8745,
+        "min": 432.0,
+        "max": 462.0,
+        "n": 3
+      },
+      "achieved_per_hour": {
+        "mean": 450.0,
+        "sd": 15.8745,
+        "min": 432.0,
+        "max": 462.0,
+        "n": 3
+      },
+      "error_rate": {
+        "mean": 0.0,
+        "sd": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 3
+      },
+      "latency_p50_s": {
+        "mean": 0.0263,
+        "sd": 0.0025,
+        "min": 0.024,
+        "max": 0.029,
+        "n": 3
+      },
+      "latency_p95_s": {
+        "mean": 0.0633,
+        "sd": 0.0103,
+        "min": 0.052,
+        "max": 0.072,
+        "n": 3
+      },
+      "latency_p99_s": {
+        "mean": 0.099,
+        "sd": 0.0208,
+        "min": 0.087,
+        "max": 0.123,
+        "n": 3
+      },
+      "latency_mean_s": {
+        "mean": 0.0303,
+        "sd": 0.0025,
+        "min": 0.028,
+        "max": 0.033,
+        "n": 3
+      },
+      "latency_max_s": {
+        "mean": 0.099,
+        "sd": 0.0208,
+        "min": 0.087,
+        "max": 0.123,
+        "n": 3
+      },
+      "trend_ratio": {
+        "mean": 0.9987,
+        "sd": 0.165,
+        "min": 0.833,
+        "max": 1.163,
+        "n": 3
+      },
+      "runs_with_growing_latency": 0,
+      "pooled": {
+        "samples": 225,
+        "latency_p50_s": 0.027,
+        "latency_p95_s": 0.059,
+        "latency_p99_s": 0.087
+      }
+    },
+    "POST /tickets": {
+      "offered_per_hour": {
+        "mean": 260.0,
+        "sd": 22.7156,
+        "min": 234.0,
+        "max": 276.0,
+        "n": 3
+      },
+      "achieved_per_hour": {
+        "mean": 228.0,
+        "sd": 15.8745,
+        "min": 210.0,
+        "max": 240.0,
+        "n": 3
+      },
+      "error_rate": {
+        "mean": 0.0222,
+        "sd": 0.0385,
+        "min": 0.0,
+        "max": 0.0667,
+        "n": 3
+      },
+      "latency_p50_s": {
+        "mean": 44.6003,
+        "sd": 13.6526,
+        "min": 30.138,
+        "max": 57.265,
+        "n": 3
+      },
+      "latency_p95_s": {
+        "mean": 97.3113,
+        "sd": 17.0196,
+        "min": 77.952,
+        "max": 109.92,
+        "n": 3
+      },
+      "latency_p99_s": {
+        "mean": 103.68,
+        "sd": 20.0686,
+        "min": 80.553,
+        "max": 116.51,
+        "n": 3
+      },
+      "latency_mean_s": {
+        "mean": 47.0953,
+        "sd": 3.4032,
+        "min": 44.434,
+        "max": 50.93,
+        "n": 3
+      },
+      "latency_max_s": {
+        "mean": 103.68,
+        "sd": 20.0686,
+        "min": 80.553,
+        "max": 116.51,
+        "n": 3
+      },
+      "trend_ratio": {
+        "mean": 6.6847,
+        "sd": 4.3809,
+        "min": 2.232,
+        "max": 10.99,
+        "n": 3
+      },
+      "runs_with_growing_latency": 3,
+      "pooled": {
+        "samples": 127,
+        "latency_p50_s": 44.455,
+        "latency_p95_s": 104.822,
+        "latency_p99_s": 113.977
+      }
+    }
+  }
+}

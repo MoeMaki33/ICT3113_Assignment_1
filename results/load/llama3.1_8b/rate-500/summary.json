@@ -1,0 +1,217 @@
+{
+  "configuration": "results/load/llama3.1_8b/rate-500",
+  "model": "llama3.1:8b",
+  "kind": "load",
+  "official": true,
+  "rate_per_hour": 500.0,
+  "search_rate_per_hour": 0,
+  "expected_runs": 3,
+  "completed_runs": 3,
+  "missing_runs": [],
+  "problems": [],
+  "generated_utc": "2026-10-08T07:51:31.140822+00:00",
+  "method": {
+    "window": "[t0 + warmup_s, t0 + duration_s); t0 = JMeter schedule start (jmeter.log)",
+    "offered_rate": "samples started in window / window hours",
+    "achieved_throughput": "successful samples completed in window / window hours",
+    "error_rate": "unsuccessful samples / samples started in window",
+    "latency": "JMeter elapsed of successful samples started in window; nearest-rank percentiles; seconds",
+    "trend": "growing = (median last third / median first third >= 1.5) and slope > 0"
+  },
+  "runs": [
+    {
+      "jtl": "results/load/llama3.1_8b/rate-500/run-1.jtl",
+      "sample_count": 100,
+      "observed_sample_span_s": 818.004,
+      "wrapper_elapsed_s": 976.595,
+      "run": 1,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 500.0,
+      "search_rate_setting_per_hour": 0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791442279837,
+      "window_end_epoch_ms": 1791442879837,
+      "window_minutes": 10.0,
+      "labels": {
+        "POST /tickets": {
+          "samples_total": 100,
+          "samples_in_window": 88,
+          "successful_in_window": 32,
+          "failed_in_window": 56,
+          "offered_per_hour": 528.0,
+          "achieved_per_hour": 204.0,
+          "error_rate": 0.6364,
+          "errors_by_type": {
+            "HTTP 502": 56
+          },
+          "latency_p50_s": 104.998,
+          "latency_p95_s": 118.632,
+          "latency_p99_s": 119.685,
+          "latency_mean_s": 92.228,
+          "latency_max_s": 119.685,
+          "trend_ratio": 1.884,
+          "trend_slope_s_per_min": 6.355,
+          "growing": true
+        }
+      }
+    },
+    {
+      "jtl": "results/load/llama3.1_8b/rate-500/run-2.jtl",
+      "sample_count": 100,
+      "observed_sample_span_s": 826.116,
+      "wrapper_elapsed_s": 976.657,
+      "run": 2,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 500.0,
+      "search_rate_setting_per_hour": 0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791443413859,
+      "window_end_epoch_ms": 1791444013859,
+      "window_minutes": 10.0,
+      "labels": {
+        "POST /tickets": {
+          "samples_total": 100,
+          "samples_in_window": 82,
+          "successful_in_window": 27,
+          "failed_in_window": 55,
+          "offered_per_hour": 492.0,
+          "achieved_per_hour": 192.0,
+          "error_rate": 0.6707,
+          "errors_by_type": {
+            "HTTP 502": 55
+          },
+          "latency_p50_s": 105.479,
+          "latency_p95_s": 118.576,
+          "latency_p99_s": 118.881,
+          "latency_mean_s": 106.372,
+          "latency_max_s": 118.881,
+          "trend_ratio": 1.131,
+          "trend_slope_s_per_min": 2.249,
+          "growing": false
+        }
+      }
+    },
+    {
+      "jtl": "results/load/llama3.1_8b/rate-500/run-3.jtl",
+      "sample_count": 100,
+      "observed_sample_span_s": 825.329,
+      "wrapper_elapsed_s": 976.565,
+      "run": 3,
+      "model": "llama3.1:8b",
+      "official": true,
+      "kind": "load",
+      "offered_rate_setting_per_hour": 500.0,
+      "search_rate_setting_per_hour": 0,
+      "status": "completed",
+      "warmup_s": 120,
+      "duration_s": 720,
+      "window_start_epoch_ms": 1791444567932,
+      "window_end_epoch_ms": 1791445167932,
+      "window_minutes": 10.0,
+      "labels": {
+        "POST /tickets": {
+          "samples_total": 100,
+          "samples_in_window": 92,
+          "successful_in_window": 33,
+          "failed_in_window": 59,
+          "offered_per_hour": 552.0,
+          "achieved_per_hour": 174.0,
+          "error_rate": 0.6413,
+          "errors_by_type": {
+            "HTTP 502": 59
+          },
+          "latency_p50_s": 60.664,
+          "latency_p95_s": 119.401,
+          "latency_p99_s": 119.805,
+          "latency_mean_s": 70.179,
+          "latency_max_s": 119.805,
+          "trend_ratio": 4.209,
+          "trend_slope_s_per_min": 10.696,
+          "growing": true
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "POST /tickets": {
+      "offered_per_hour": {
+        "mean": 524.0,
+        "sd": 30.1993,
+        "min": 492.0,
+        "max": 552.0,
+        "n": 3
+      },
+      "achieved_per_hour": {
+        "mean": 190.0,
+        "sd": 15.0997,
+        "min": 174.0,
+        "max": 204.0,
+        "n": 3
+      },
+      "error_rate": {
+        "mean": 0.6495,
+        "sd": 0.0186,
+        "min": 0.6364,
+        "max": 0.6707,
+        "n": 3
+      },
+      "latency_p50_s": {
+        "mean": 90.3803,
+        "sd": 25.7362,
+        "min": 60.664,
+        "max": 105.479,
+        "n": 3
+      },
+      "latency_p95_s": {
+        "mean": 118.8697,
+        "sd": 0.461,
+        "min": 118.576,
+        "max": 119.401,
+        "n": 3
+      },
+      "latency_p99_s": {
+        "mean": 119.457,
+        "sd": 0.5024,
+        "min": 118.881,
+        "max": 119.805,
+        "n": 3
+      },
+      "latency_mean_s": {
+        "mean": 89.593,
+        "sd": 18.2398,
+        "min": 70.179,
+        "max": 106.372,
+        "n": 3
+      },
+      "latency_max_s": {
+        "mean": 119.457,
+        "sd": 0.5024,
+        "min": 118.881,
+        "max": 119.805,
+        "n": 3
+      },
+      "trend_ratio": {
+        "mean": 2.408,
+        "sd": 1.6045,
+        "min": 1.131,
+        "max": 4.209,
+        "n": 3
+      },
+      "runs_with_growing_latency": 2,
+      "pooled": {
+        "samples": 92,
+        "latency_p50_s": 103.278,
+        "latency_p95_s": 118.881,
+        "latency_p99_s": 119.805
+      }
+    }
+  }
+}

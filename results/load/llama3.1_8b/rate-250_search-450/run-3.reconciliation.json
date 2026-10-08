@@ -1,0 +1,56 @@
+{
+  "client_file": "results/load/llama3.1_8b/rate-250_search-450/run-3.jtl",
+  "client_format": "jmeter",
+  "service_logs": [
+    "C:/Users/Owen/Desktop/llama3.1-rate250-search450-run3-service.log"
+  ],
+  "service_log_lines": 2946,
+  "service_log_malformed_lines": 0,
+  "generated_utc": "2026-10-08T06:48:46.561644+00:00",
+  "client_samples": 140,
+  "client_samples_with_http_response": 140,
+  "client_successful": 140,
+  "matched": 140,
+  "matched_service_2xx": 140,
+  "client_no_http_response": {},
+  "client_http_response_without_request_id": 0,
+  "request_ids_missing_from_log": [],
+  "request_ids_missing_from_log_count": 0,
+  "duplicate_request_ids_in_log": [],
+  "duplicate_request_ids_in_client": [],
+  "duplicate_request_ids_in_client_count": 0,
+  "status_mismatches": [],
+  "status_mismatch_count": 0,
+  "endpoint_mismatch_count": 0,
+  "expected_model": "llama3.1:8b",
+  "model_mismatches": [],
+  "model_mismatch_count": 0,
+  "models_seen_in_matched_lines": {
+    "llama3.1:8b": 140
+  },
+  "extra_log_lines_in_window": 0,
+  "extra_log_lines_by_type": {},
+  "extra_preflight": 0,
+  "extra_abandoned_by_client": 0,
+  "unmatched_no_response_count": 0,
+  "extra_unexplained": 0,
+  "extra_unexplained_by_type": {},
+  "client_minus_service_ms": {
+    "n": 140,
+    "min": -0.8,
+    "p50": 15.2,
+    "p95": 44.6,
+    "max": 115.7
+  },
+  "client_faster_than_service_count": 0,
+  "clock_offset_client_minus_service_ms": {
+    "n": 140,
+    "min": -92,
+    "p50": -60,
+    "p95": -56,
+    "max": -54
+  },
+  "reconciled": true,
+  "contaminated": false,
+  "notes": []
+}
