@@ -1,0 +1,4 @@
+model,official,rate_setting_per_hour,search_setting_per_hour,run,label,samples_in_window,offered_per_hour,achieved_per_hour,error_rate,latency_p50_s,latency_p95_s,latency_p99_s,latency_mean_s,latency_max_s,trend_ratio,trend_slope_s_per_min,growing,errors_by_type,jtl
+llama3.2:3b,True,500.0,0,1,POST /tickets,88,528.0,306.0,0.3864,77.262,118.021,119.908,79.476,119.908,2.703,9.372,True,"{""HTTP 502"": 34}",results/load/llama3.2_3b/rate-500/run-1.jtl
+llama3.2:3b,True,500.0,0,2,POST /tickets,82,492.0,492.0,0.0,7.427,30.12,48.698,11.915,48.698,0.307,-1.673,False,{},results/load/llama3.2_3b/rate-500/run-2.jtl
+llama3.2:3b,True,500.0,0,3,POST /tickets,92,552.0,552.0,0.0,9.871,25.977,30.939,11.211,30.939,2.189,0.758,True,{},results/load/llama3.2_3b/rate-500/run-3.jtl

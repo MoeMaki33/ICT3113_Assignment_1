@@ -1,0 +1,4 @@
+model,official,rate_setting_per_hour,search_setting_per_hour,run,label,samples_in_window,offered_per_hour,achieved_per_hour,error_rate,latency_p50_s,latency_p95_s,latency_p99_s,latency_mean_s,latency_max_s,trend_ratio,trend_slope_s_per_min,growing,errors_by_type,jtl
+llama3.2:3b,True,125.0,0,1,POST /tickets,22,132.0,126.0,0.0,3.654,8.762,9.329,4.609,9.329,0.87,-0.001,False,{},results/load/llama3.2_3b/rate-125/run-1.jtl
+llama3.2:3b,True,125.0,0,2,POST /tickets,19,114.0,114.0,0.0,4.19,8.707,8.707,4.492,8.707,0.993,-0.034,False,{},results/load/llama3.2_3b/rate-125/run-2.jtl
+llama3.2:3b,True,125.0,0,3,POST /tickets,23,138.0,138.0,0.0,4.207,8.424,8.889,4.643,8.889,1.471,0.079,False,{},results/load/llama3.2_3b/rate-125/run-3.jtl

@@ -1,0 +1,7 @@
+model,official,rate_setting_per_hour,search_setting_per_hour,run,label,samples_in_window,offered_per_hour,achieved_per_hour,error_rate,latency_p50_s,latency_p95_s,latency_p99_s,latency_mean_s,latency_max_s,trend_ratio,trend_slope_s_per_min,growing,errors_by_type,jtl
+llama3.2:3b,True,250.0,450.0,1,GET /search,72,432.0,432.0,0.0,0.034,0.208,0.677,0.082,0.677,0.288,-0.013,False,{},results/load/llama3.2_3b/rate-250_search-450/run-1.jtl
+llama3.2:3b,True,250.0,450.0,1,POST /tickets,45,270.0,258.0,0.0,4.296,13.044,19.217,5.872,19.217,2.046,0.227,True,{},results/load/llama3.2_3b/rate-250_search-450/run-1.jtl
+llama3.2:3b,True,250.0,450.0,2,GET /search,77,462.0,462.0,0.0,0.031,0.056,0.071,0.032,0.071,1.0,-0.0,False,{},results/load/llama3.2_3b/rate-250_search-450/run-2.jtl
+llama3.2:3b,True,250.0,450.0,2,POST /tickets,39,234.0,240.0,0.0,4.916,10.632,11.44,5.24,11.44,1.989,0.218,True,{},results/load/llama3.2_3b/rate-250_search-450/run-2.jtl
+llama3.2:3b,True,250.0,450.0,3,GET /search,76,456.0,456.0,0.0,0.037,0.07,0.097,0.039,0.097,1.118,0.001,False,{},results/load/llama3.2_3b/rate-250_search-450/run-3.jtl
+llama3.2:3b,True,250.0,450.0,3,POST /tickets,46,276.0,270.0,0.0,4.872,14.723,19.858,6.077,19.858,1.955,0.226,True,{},results/load/llama3.2_3b/rate-250_search-450/run-3.jtl
