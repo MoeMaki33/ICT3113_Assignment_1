@@ -1,0 +1,8 @@
+category,golden_tickets,correct,accuracy_recall,predicted_as_category,precision,failed
+Credit reporting,38,33,0.8684,63,0.5238,0
+Debt collection,17,8,0.4706,22,0.3636,0
+Mortgage,32,26,0.8125,30,0.8667,0
+Credit card,26,11,0.4231,19,0.5789,0
+Bank account or service,29,21,0.7241,35,0.6,0
+Consumer loan,20,4,0.2,5,0.8,0
+Money transfer or service,18,6,0.3333,6,1.0,0

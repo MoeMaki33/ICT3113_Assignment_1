@@ -1,0 +1,5 @@
+model,run,official,status,tickets,correct,overall_accuracy,lowest_category_accuracy,failed_requests,latency_p50_s,latency_p95_s,latency_p99_s,acc_Credit reporting,acc_Debt collection,acc_Mortgage,acc_Credit card,acc_Bank account or service,acc_Consumer loan,acc_Money transfer or service
+gemma2:2b,run-2,True,completed,180,121,0.6722,0.15,0,7.081,12.937,15.286,0.8684,0.5294,0.9375,0.6154,0.7241,0.15,0.5
+llama3.1:8b,run-1,True,completed,180,152,0.8444,0.5294,0,11.004,24.092,28.736,0.9211,0.5294,0.9375,0.7308,0.8621,0.85,0.9444
+llama3.2:3b,run-1,True,completed,180,109,0.6056,0.2,0,5.218,11.141,12.748,0.8684,0.4706,0.8125,0.4231,0.7241,0.2,0.3333
+qwen2.5:7b,run-1,True,completed,180,145,0.8056,0.7308,2,11.237,23.96,27.057,0.8684,0.7647,0.7812,0.7308,0.8621,0.75,0.8333

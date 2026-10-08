@@ -1,0 +1,8 @@
+golden \ predicted,Credit reporting,Debt collection,Mortgage,Credit card,Bank account or service,Consumer loan,Money transfer or service,FAILED
+Credit reporting,33,5,0,0,0,0,0,0
+Debt collection,4,13,0,0,0,0,0,0
+Mortgage,2,0,25,0,1,3,1,0
+Credit card,4,1,0,19,2,0,0,0
+Bank account or service,0,0,0,2,25,0,2,0
+Consumer loan,3,2,0,0,0,15,0,0
+Money transfer or service,0,0,0,0,1,0,15,2

@@ -1,0 +1,23 @@
+{
+  "model": "qwen2.5:7b",
+  "official": true,
+  "freeze_gate_problems": [],
+  "api_url": "http://192.168.1.170:8000",
+  "golden_set": "data/golden_set_final.csv",
+  "golden_sha256": "54ae476fc87e20de9356b55fd741392857bd274c6f48c0f475d1229343a46c2e",
+  "tickets": 180,
+  "concurrency": 1,
+  "timeout_s": 180.0,
+  "git": {
+    "commit": "9559e90d575cb3faca58aa8ee850c9b38fe290bd",
+    "branch": "main",
+    "worktree_clean": false
+  },
+  "started_utc": "2026-10-08T09:21:16.225854+00:00",
+  "status": "completed",
+  "model_verified_via_search": "qwen2.5:7b",
+  "auxiliary_request_ids": [
+    "5a92e236-aa11-4082-a57c-366c0bc2bacd"
+  ],
+  "finished_utc": "2026-10-08T09:58:13.952469+00:00"
+}
