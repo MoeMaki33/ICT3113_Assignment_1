@@ -143,47 +143,6 @@ logs. Uvicorn access logging is disabled to avoid logging search queries.
 `LOG_LEVEL` controls general application logging; request audit records are
 always retained. Service logs and `.jtl` evidence are not ignored by Git.
 
-## Person 1 backend handoff
-
-The existing classifier implementation is preserved. Person 2 owns
-`app/services/classifier.py:classify_ticket(narrative: str) -> str` and the
-blocking transport in `app/services/ollama_client.py`. Return exactly one of
-`app/categories.py:CATEGORIES`; report expected classification failures using
-`InvalidCategoryError` or `OllamaError`. `app/routes/tickets.py` calls the classifier
-directly, waits for its result, validates the category again, then commits the
-ticket before returning HTTP 201. Failed classification returns a generic 502;
-database failures return a generic JSON 500, and failed commits are rolled back.
-No cache, queue, background job, or CSV ingestion is involved.
-
-API tests replace `app.routes.tickets.classify_ticket` with a mock. To run a
-local development demonstration without Ollama, use this PowerShell command
-instead of the normal Uvicorn command (every submission deliberately gets the
-same mock category; this is not a real classifier or evaluation result):
-
-```powershell
-$env:OLLAMA_MODEL = 'mock-credit-card'
-.\.venv\Scripts\python.exe -c "from app.routes import tickets; tickets.classify_ticket = lambda narrative: 'Credit card'; import uvicorn; uvicorn.run('app.main:app', host='127.0.0.1', port=8000, access_log=False)"
-```
-
-Mock submissions use the configured database and persist like ordinary tickets.
-Use a separate `DATABASE_URL` when keeping mock data apart from later evaluation.
-Stop with Ctrl+C and remove the mock setting before using the real classifier:
-`Remove-Item Env:OLLAMA_MODEL` (then configure the real model in `.env`).
-
-Manual curl checks in PowerShell, from another terminal:
-
-```powershell
-'{"narrative":"I dispute a charge on my credit card."}' | curl.exe -sS -H "Content-Type: application/json" --data-binary '@-' http://localhost:8000/tickets
-curl.exe -sS "http://localhost:8000/search?q=charge"
-curl.exe -sS http://localhost:8000/stats
-```
-
-On a fresh database, call `/stats` first to see all seven counts at zero. Each
-successful POST adds a new ticket, even for repeated identical narratives.
-Existing database contents are preserved on restart; startup never reads the
-assignment CSV. `tests/test_backend.py` checks this with a CSV present before
-startup and verifies that classification completes before storage and response.
-
 ## Team responsibilities
 
 | Person | Responsibility |
@@ -228,11 +187,7 @@ checks the tooling only and writes to `results/smoke/`.
 
 ## Completed benchmark and analysis
 
-GitHub `origin/main` and local `main` were verified equal at
-`93aa4b949a6da5948417a9696a3810854c20db68` on 2026-10-08 before this
-uncommitted documentation update. All 36 formal load runs, four complete
-180-ticket accuracy runs, and two Qwen stress steps are present. Frozen
-predictions/requirements were finalised at `2db5306d41a5b8dee9812cec005c4145dfd734fe`.
+The repository includes 36 formal load runs, four 180-ticket accuracy runs, and two Qwen stress steps. The prediction record and requirements were frozen before benchmarking.
 
 | Requirement | Gemma | Llama 3.2 | Qwen | Llama 3.1 |
 |---|---|---|---|---|
@@ -267,7 +222,3 @@ Read-only validation (no benchmark traffic):
 .\.venv\Scripts\python.exe -m scripts.perf_common
 ```
 
-The team development plan remains `docs/team_development_plan.md`. Frozen
-predictions, raw samples, labels, model provenance and reconciliations were
-preserved in this analysis update. No benchmarks were rerun, and no changes
-were committed or pushed.
