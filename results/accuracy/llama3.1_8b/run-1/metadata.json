@@ -1,0 +1,23 @@
+{
+  "model": "llama3.1:8b",
+  "official": true,
+  "freeze_gate_problems": [],
+  "api_url": "http://192.168.1.170:8000",
+  "golden_set": "data/golden_set_final.csv",
+  "golden_sha256": "54ae476fc87e20de9356b55fd741392857bd274c6f48c0f475d1229343a46c2e",
+  "tickets": 180,
+  "concurrency": 1,
+  "timeout_s": 180.0,
+  "git": {
+    "commit": "a6eb0adc587a04102756c221a3700c6c5fc8213a",
+    "branch": "main",
+    "worktree_clean": true
+  },
+  "started_utc": "2026-10-08T07:52:54.601090+00:00",
+  "status": "completed",
+  "model_verified_via_search": "llama3.1:8b",
+  "auxiliary_request_ids": [
+    "1b41fc69-60c3-4594-ab77-14919d2fc531"
+  ],
+  "finished_utc": "2026-10-08T08:31:15.725340+00:00"
+}

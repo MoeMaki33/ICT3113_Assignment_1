@@ -1,0 +1,167 @@
+{
+  "total": 180,
+  "correct": 152,
+  "incorrect": 28,
+  "failed_requests": 0,
+  "failures_by_type": {},
+  "overall_accuracy": 0.8444,
+  "lowest_category_accuracy": 0.5294,
+  "per_category": [
+    {
+      "category": "Credit reporting",
+      "golden_tickets": 38,
+      "correct": 35,
+      "accuracy_recall": 0.9211,
+      "predicted_as_category": 44,
+      "precision": 0.7955,
+      "failed": 0
+    },
+    {
+      "category": "Debt collection",
+      "golden_tickets": 17,
+      "correct": 9,
+      "accuracy_recall": 0.5294,
+      "predicted_as_category": 13,
+      "precision": 0.6923,
+      "failed": 0
+    },
+    {
+      "category": "Mortgage",
+      "golden_tickets": 32,
+      "correct": 30,
+      "accuracy_recall": 0.9375,
+      "predicted_as_category": 32,
+      "precision": 0.9375,
+      "failed": 0
+    },
+    {
+      "category": "Credit card",
+      "golden_tickets": 26,
+      "correct": 19,
+      "accuracy_recall": 0.7308,
+      "predicted_as_category": 24,
+      "precision": 0.7917,
+      "failed": 0
+    },
+    {
+      "category": "Bank account or service",
+      "golden_tickets": 29,
+      "correct": 25,
+      "accuracy_recall": 0.8621,
+      "predicted_as_category": 27,
+      "precision": 0.9259,
+      "failed": 0
+    },
+    {
+      "category": "Consumer loan",
+      "golden_tickets": 20,
+      "correct": 17,
+      "accuracy_recall": 0.85,
+      "predicted_as_category": 23,
+      "precision": 0.7391,
+      "failed": 0
+    },
+    {
+      "category": "Money transfer or service",
+      "golden_tickets": 18,
+      "correct": 17,
+      "accuracy_recall": 0.9444,
+      "predicted_as_category": 17,
+      "precision": 1.0,
+      "failed": 0
+    }
+  ],
+  "confusion_matrix": {
+    "Credit reporting": {
+      "Credit reporting": 35,
+      "Debt collection": 2,
+      "Mortgage": 0,
+      "Credit card": 0,
+      "Bank account or service": 0,
+      "Consumer loan": 1,
+      "Money transfer or service": 0,
+      "FAILED": 0
+    },
+    "Debt collection": {
+      "Credit reporting": 3,
+      "Debt collection": 9,
+      "Mortgage": 0,
+      "Credit card": 2,
+      "Bank account or service": 0,
+      "Consumer loan": 3,
+      "Money transfer or service": 0,
+      "FAILED": 0
+    },
+    "Mortgage": {
+      "Credit reporting": 1,
+      "Debt collection": 0,
+      "Mortgage": 30,
+      "Credit card": 0,
+      "Bank account or service": 0,
+      "Consumer loan": 1,
+      "Money transfer or service": 0,
+      "FAILED": 0
+    },
+    "Credit card": {
+      "Credit reporting": 4,
+      "Debt collection": 1,
+      "Mortgage": 0,
+      "Credit card": 19,
+      "Bank account or service": 2,
+      "Consumer loan": 0,
+      "Money transfer or service": 0,
+      "FAILED": 0
+    },
+    "Bank account or service": {
+      "Credit reporting": 0,
+      "Debt collection": 0,
+      "Mortgage": 0,
+      "Credit card": 3,
+      "Bank account or service": 25,
+      "Consumer loan": 1,
+      "Money transfer or service": 0,
+      "FAILED": 0
+    },
+    "Consumer loan": {
+      "Credit reporting": 1,
+      "Debt collection": 0,
+      "Mortgage": 2,
+      "Credit card": 0,
+      "Bank account or service": 0,
+      "Consumer loan": 17,
+      "Money transfer or service": 0,
+      "FAILED": 0
+    },
+    "Money transfer or service": {
+      "Credit reporting": 0,
+      "Debt collection": 1,
+      "Mortgage": 0,
+      "Credit card": 0,
+      "Bank account or service": 0,
+      "Consumer loan": 0,
+      "Money transfer or service": 17,
+      "FAILED": 0
+    }
+  },
+  "single_request_latency_all": {
+    "n": 180,
+    "p50_s": 11.004,
+    "p95_s": 24.092,
+    "p99_s": 29.291,
+    "mean_s": 12.782,
+    "max_s": 42.3
+  },
+  "single_request_latency_excluding_first": {
+    "n": 179,
+    "p50_s": 11.004,
+    "p95_s": 24.092,
+    "p99_s": 28.736,
+    "mean_s": 12.617,
+    "max_s": 29.291
+  },
+  "method": {
+    "accuracy": "correct / all golden tickets (failed requests count as incorrect)",
+    "per_category": "recall: correct / golden tickets of that category",
+    "latency": "client-measured POST /tickets time, sequential requests, nearest-rank"
+  }
+}
