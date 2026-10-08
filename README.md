@@ -1,224 +1,193 @@
-﻿# ICT3113 Assignment 1 — Ticket Triage Service
+# ICT3113 Assignment 1 — Financial Complaint Ticket Triage Service
 
-An unoptimised Python 3.12 baseline for classifying financial complaints with a
-local Ollama model on CPU. The seven categories live in `app/categories.py`.
+**Module:** ICT3113 Performance Optimisation and Design  
+**Team:** Group 7  
+**Project:** CPU-based financial complaint classification and performance evaluation
 
-`Client -> POST /tickets -> synchronous Ollama classification -> SQLite -> response`
+## Project overview
 
-A fresh database is empty. Successful submissions persist across restarts.
-Classification failure returns HTTP 502 and does not store a ticket. The API can
-start with no model configured; submissions require a team-selected local model.
-There is no CSV import endpoint, cache, queue, batching, or background classification.
+This project investigates whether a financial services company can automatically route customer complaint tickets using a locally hosted language model. The client requires customer data to remain within its own infrastructure and has CPU-only servers, so the service uses Ollama locally rather than a public model API.
 
-## Directory structure
+We developed a Python 3.12 web API with SQLite storage and Docker support. Each new ticket is classified synchronously: the request waits for the model's response before the ticket is stored and the assigned category returned. The Assignment 1 baseline deliberately does not use caching, queues, batching or background classification.
 
-- `app/routes/`: POST /tickets, GET /search, GET /stats
-- `app/services/`: classifier interface, blocking Ollama client, JSON request logging
-- `app/database/`: SQLAlchemy models, sessions, and database operations
-- `app/schemas/`: request and response validation
-- `scripts/`: dataset preparation and evaluation tooling
-- `tests/`: isolated SQLite and mocked Ollama tests
-- `data/`: dataset workspace and runtime SQLite database
-- `jmeter/`: open-loop JMeter plan, result-format properties and prepared input data
-- `results/{accuracy,load,stress}/`: completed accuracy, load and reconciled stress evidence
-- `logs/`: structured request logs
-- `docs/`: requirements, completed analysis and preserved team development plan
+```text
+Client / JMeter
+      |
+      v
+Python API (POST /tickets)
+      |
+      v
+Local Ollama model (CPU)
+      |
+      v
+SQLite storage -> HTTP response
 
-## Install and run locally
+GET /search -> Search stored tickets
+GET /stats  -> Counts by category
+```
 
-Install Python **3.12** and Ollama first. From the repository root in PowerShell:
+The seven supported categories are **Credit reporting, Debt collection, Mortgage, Credit card, Bank account or service, Consumer loan,** and **Money transfer or service**. Tickets enter the service only through `POST /tickets`; the assignment dataset is not directly imported into the database.
+
+## Team members and contributions
+
+| Member | Role | Main contributions |
+|---|---|---|
+| **Owen (Person 1)** | Backend and platform | Implemented the API endpoints, SQLite integration, Docker configuration, request logging, backend/integration tests and project structure. |
+| **Alyssa (Person 2)** | Model and classification | Developed the Ollama client, classification prompt and output validation; configured model switching and documented candidate models and digests. |
+| **Shaqeel (Person 3)** | Golden test set | Prepared the team dataset, labelling protocol, independent annotation sheets, agreement calculations, disagreement records and final golden set. |
+| **Shamik (Person 4)** | Workload and requirements | Developed the workload estimates, performance and accuracy requirements, and pre-test prediction record. |
+| **Daffa (Person 5)** | Performance testing | Prepared and executed the JMeter load/stress and accuracy testing workflows, processed results, reconciled logs and documented test procedures. |
+
+The division of work is described further in [the team development plan](docs/team_development_plan.md).
+
+## Project files
+
+| Location | Purpose |
+|---|---|
+| `app/` | API routes, classification services, schemas and database |
+| `tests/` | Automated API, classifier and integration tests |
+| `scripts/` | Dataset preparation, accuracy evaluation, benchmarking and analysis |
+| `data/` | Team dataset, labelling files, golden test set and local database |
+| `jmeter/` | Open-loop JMeter test plan and inputs |
+| `results/` | Accuracy, load, stress and supporting measurement evidence |
+| `logs/` | Structured API request logs |
+| `docs/` | Models, workload, requirements, predictions, playbook and recommendations |
+
+## Setup instructions (Windows)
+
+### 1. Prerequisites
+
+Install **Python 3.12**, **Docker Desktop** and **Ollama**. Git is useful for cloning the repository. For formal performance testing, install **Apache JMeter 5.6.3** and Java on a **separate load-generator machine**; running JMeter on the service machine would interfere with CPU measurements.
+
+Clone this repository and open PowerShell in its root directory:
 
 ```powershell
+git clone https://github.com/MoeMaki33/ICT3113_Assignment_1.git
+cd ICT3113_Assignment_1
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 Copy-Item .env.example .env
 ```
 
-On macOS/Linux use `python3.12 -m venv .venv`, `.venv/bin/python`, and
-`cp .env.example .env` instead. Edit `.env`: set `OLLAMA_MODEL` to the exact
-team-selected local tag and, for a host-run API, set
-`OLLAMA_URL=http://localhost:11434`. No final model has been selected.
+### 2. Install and start a local model
 
-Start Ollama if it is not already running, then pull the selected local model
-in another terminal (replace the placeholder; do not use a cloud model tag):
+The candidate models evaluated in the project are `gemma2:2b`, `llama3.2:3b`, `qwen2.5:7b` and `llama3.1:8b`. For a simple demonstration, use one installed candidate, for example:
 
-```text
-ollama serve
-ollama pull <TEAM_SELECTED_LOCAL_MODEL_TAG>
+```powershell
+ollama pull llama3.2:3b
+ollama list
 ```
 
-The client sends `options: {"num_gpu": 0}` on every generation request to request
-CPU inference. Before later formal tests, verify CPU execution on the host with
-`ollama ps` during inference and record the runtime version. The request format
-follows the [official Ollama API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
+Make sure Ollama is running. On systems where it is not already running as a service, start it with `ollama serve`. The application requests CPU inference with `num_gpu: 0`; verify actual CPU execution with `ollama ps` during a request.
 
-Start the API:
+### 3. Configure the application
+
+Open `.env` and set these values for a **local Python run**:
+
+```dotenv
+OLLAMA_MODEL=llama3.2:3b
+OLLAMA_URL=http://localhost:11434
+OLLAMA_TIMEOUT_SECONDS=120
+```
+
+For a **Docker run** with Ollama running on the host, change `OLLAMA_URL` to `http://host.docker.internal:11434`. Keep other settings from `.env.example` unless your environment requires changes.
+
+### 4. Run the service
+
+**Option A — Docker (recommended for reproducing the deployment):**
+
+```powershell
+docker compose up --build
+```
+
+**Option B — Python directly:**
 
 ```powershell
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --no-access-log
 ```
 
-Open `http://localhost:8000/docs`. SQLite tables are created at startup, without
-seed data. Database access is isolated under `app/database/`; `DATABASE_URL`
-configures the backend (another backend will also need its driver).
+Once started, open **http://localhost:8000/docs** for the interactive API documentation. A new database starts empty. Successful ticket submissions are stored and remain available after a restart.
 
-## Ollama model backend (candidate models)
+Stop Docker with `docker compose down` (this does not delete the mounted data).
 
-Candidates, exact tags and how to record their digests are in `docs/models.md`. The
-model is chosen only by environment variable, so switching needs no code change:
+## Trying the API
 
-```text
-OLLAMA_MODEL=llama3.2:3b     # exact tag; one of gemma2:2b, llama3.2:3b, qwen2.5:7b, llama3.1:8b
-OLLAMA_URL=http://localhost:11434
-OLLAMA_TIMEOUT_SECONDS=120
+Open a second PowerShell terminal while the service is running:
+
+```powershell
+$body = @{ narrative = 'I dispute a charge on my credit card.' } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri http://localhost:8000/tickets -ContentType application/json -Body $body
+Invoke-RestMethod -Uri 'http://localhost:8000/search?q=charge'
+Invoke-RestMethod -Uri http://localhost:8000/stats
 ```
 
-Set it in `.env` (or the shell / `docker compose`), pull the tag with `ollama pull`, and
-restart the API. Each stored ticket and every request-log line records the model used.
-Failures return a generic 502 and store nothing; the request log's `error` field names the
-cause (`OllamaUnavailableError`, `OllamaTimeoutError`, `OllamaModelNotFoundError`,
-`OllamaResponseError`, `InvalidCategoryError`). Narratives and raw model output are never
-logged. Record digests on the test machine with `python scripts/record_model_digests.py`.
+| Endpoint | Purpose | Expected behaviour |
+|---|---|---|
+| `POST /tickets` | Classify and save a complaint | HTTP 201 with ticket ID and category |
+| `GET /search?q=charge` | Find stored tickets containing a term | Matching stored ticket records |
+| `GET /stats` | Summarise saved classifications | Counts for all seven categories, including zeros |
 
-## Docker
+Invalid narratives or empty search terms return HTTP 400. Classification backend failures return HTTP 502 and do not save the ticket. Each request is recorded in `logs/service.log` with a request ID and timing information; full complaint narratives are excluded from logs.
 
-Start Docker Desktop/Engine and host Ollama. Set `.env` to use
-`OLLAMA_URL=http://host.docker.internal:11434` and the selected model tag.
-If host Ollama is inaccessible from Docker, configure its listening address
-(e.g. `OLLAMA_HOST=0.0.0.0:11434` before starting it) and restrict access to the
-local machine/Docker network through the host firewall.
+## Running tests and reviewing evidence
 
-```text
-docker compose up --build
-```
-
-The container uses Python 3.12, exposes port 8000, and mounts `data/` and `logs/`
-for persistence. Ollama runs externally; no GPU configuration is included.
-`docker compose down` stops the service and keeps the mounted data.
-
-## Tests
+Run automated tests without requiring a real Ollama model:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-Or use `docker compose run --rm api python -m pytest -q` after building.
-Tests use temporary SQLite databases and mocked classification/HTTP responses;
-no real Ollama model is needed. The real integration check is opt-in and uses a
-temporary test database and one handwritten complaint (no benchmark metrics):
-
-```powershell
-$env:RUN_OLLAMA_INTEGRATION = '1'
-$env:OLLAMA_URL = 'http://localhost:11434'
-$env:OLLAMA_MODEL = '<pulled-local-tag>'
-.\.venv\Scripts\python.exe -m pytest -q tests/test_integration.py
-Remove-Item Env:RUN_OLLAMA_INTEGRATION
-```
-
-Tests do not populate the service database.
-
-## API examples
-
-After configuring a local model, these PowerShell requests exercise the API:
-
-```powershell
-$ticketBody = @{ narrative = 'I dispute a charge on my credit card.' } | ConvertTo-Json
-Invoke-RestMethod -Method Post -Uri http://localhost:8000/tickets -ContentType application/json -Body $ticketBody
-Invoke-RestMethod -Uri 'http://localhost:8000/search?q=charge'
-Invoke-RestMethod -Uri http://localhost:8000/stats
-```
-
-`POST /tickets` returns HTTP 201 with `id` and `category`; empty/whitespace-only
-narratives return 400. Missing/null/non-string narratives and malformed JSON also
-return 400. Missing, empty, or whitespace-only search queries return 400. `GET /search?q=...` returns matching stored ticket records,
-including narrative, model, and creation timestamp. Search is a literal substring
-match using the database's collation. `GET /stats` returns counts for all seven
-categories, including zeros.
-
-Every request writes a JSON line to `logs/service.log`, with request ID, UTC
-timestamps, endpoint, method, model, duration, status, ticket ID, predicted category, and
-error where applicable. Responses carry `X-Request-ID` for JMeter correlation.
-Full narratives, query strings, and raw model errors are excluded from these
-logs. Uvicorn access logging is disabled to avoid logging search queries.
-`LOG_LEVEL` controls general application logging; request audit records are
-always retained. Service logs and `.jtl` evidence are not ignored by Git.
-
-## Team responsibilities
-
-| Person | Responsibility |
-|---|---|
-| Person 1 | Backend/API, database, Docker, configuration, logging, integration tests |
-| Person 2 | Ollama/Classification, candidate models |
-| Person 3 | Golden test set, labelling protocol, agreement |
-| Person 4 | Workload model, requirements, prediction record |
-| Person 5 | JMeter load/stress tests, accuracy tests, result processing, log reconciliation |
-
-The full division of work is in `docs/team_development_plan.md`.
-
-Person 1 calls `classify_ticket(narrative: str) -> str`; Person 2 maintains that
-interface and rejects invalid model output. See `data/README.md` for preparation
-commands and `jmeter/README.md` for future performance test requirements.
-Team-row extraction, deterministic golden-set selection, separate blank
-annotator sheets, agreement calculation, disagreement reporting, and
-freeze-protected golden-set finalization are implemented. The accuracy test,
-JMeter load/stress tooling, result processing and log reconciliation are
-implemented (see "Testing (Person 5)" below). See `data/README.md`
-and `docs/labelling_protocol.md` for the human workflow. Labels are never
-generated automatically; agreement is calculated only from completed human
-annotation sheets.
-
-## Testing (Person 5)
-
-All official tests follow [`docs/test_playbook.md`](docs/test_playbook.md): machines, setup,
-JMeter configuration, arrival rates, repetitions, stress-test steps and stopping criteria,
-metric definitions and output locations. Every runner refuses official runs until the freeze
-gate is met (golden set and prediction record committed, record no longer DRAFT); `--smoke`
-checks the tooling only and writes to `results/smoke/`.
-
-| Step | Command (`python -m ...`) | Output |
-|---|---|---|
-| Prepare JMeter data | `scripts.prepare_jmeter_data data/team.csv` | `jmeter/data/` |
-| Record a machine | `scripts.record_test_environment --role service\|loadgen` | `results/environment/` |
-| One load run | `scripts.run_load_test --model <tag> --rate 250 --search-rate 450 --host <ip>` | `results/load/<model>/rate-250_search-450/run-N.jtl` |
-| Stress test | `scripts.run_stress_test --model <tag> --host <ip>` | `results/stress/<model>/` |
-| Accuracy test | `scripts.accuracy_test data/golden_set_final.csv --model <tag> --api-url http://<ip>:8000` | `results/accuracy/<model>/run-N/` |
-| Process results | `scripts.process_jmeter_results results/load` | `summary.csv/.json/.md`, `summary_all.csv` |
-| Reconcile with log | `scripts.reconcile_logs <config-dir> --service-log <copy of logs/service.log>` | `run-N.reconciliation.json` |
-
-## Completed benchmark and analysis
-
-The repository includes 36 formal load runs, four 180-ticket accuracy runs, and two Qwen stress steps. The prediction record and requirements were frozen before benchmarking.
-
-| Requirement | Gemma | Llama 3.2 | Qwen | Llama 3.1 |
-|---|---|---|---|---|
-| R1 POST latency | FAIL | PASS | FAIL | FAIL |
-| R2 throughput/errors in every run | FAIL | FAIL | FAIL | FAIL |
-| R3 overall and category accuracy | FAIL | FAIL | PASS | FAIL |
-| R4 mixed-load search latency | PASS | PASS | PASS | PASS |
-
-No candidate is fully compliant on the tested configuration. Qwen is the
-quality-focused candidate for future hardware/optimisation evaluation.
-The small models' R2 failures reflect below-threshold completions in the
-second Poisson arrival window, despite means above 245/h. The consolidated
-load indexes contain Gemma only; use each model's configuration summaries.
-
-- [Requirement decisions and per-run evidence](docs/recommendation.md)
-- [Requirements evaluation](docs/requirements_evaluation.md)
-- [Frozen predictions versus results](docs/prediction_vs_results.md)
-- [Bottleneck observations and limitations](docs/bottleneck_analysis.md)
-- [Completion audit and evidence gaps](docs/completion_audit.md)
-- [Environment](docs/test_environment.md), [slide evidence](docs/slide_data.md)
-  and [references](docs/references.md)
-
-The historical selection-source byte hash remains unexplained, with verified
-selection/label integrity documented in [provenance review](docs/golden_set_provenance.md).
-Runtime CPU/resource captures and fresh PC1 model digests remain unavailable.
-The Qwen stress evidence establishes no maximum sustainable throughput.
-
-Read-only validation (no benchmark traffic):
+To validate the golden test set and benchmark prerequisites without generating new test traffic:
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.validate_golden_set
 .\.venv\Scripts\python.exe -m scripts.perf_common
 ```
 
+For the full performance-testing procedure, machine configuration, open-loop arrival rates, repeat runs and commands, see [Test Playbook](docs/test_playbook.md). The load generator must run on a separate machine from the API and Ollama.
+
+## Results and findings
+
+The repository records **36 formal load runs**, **four accuracy runs of 180 tickets each**, and **two Qwen stress steps**. The golden test set and prediction record were frozen before benchmarking. The following table summarises evaluation against the team's requirements; see the linked reports for exact thresholds and raw evidence.
+
+| Requirement | Gemma 2B | Llama 3.2 3B | Qwen 2.5 7B | Llama 3.1 8B |
+|---|---|---|---|---|
+| R1: POST latency | Fail | Pass | Fail | Fail |
+| R2: Throughput and error rate in every run | Fail | Fail | Fail | Fail |
+| R3: Overall and per-category accuracy | Fail | Fail | Pass | Fail |
+| R4: Mixed-load search latency | Pass | Pass | Pass | Pass |
+
+**Conclusion:** No candidate met every requirement on the tested configuration. Qwen 2.5 7B was the accuracy-focused option for further evaluation, but its latency and throughput results prevent claiming full compliance. The stress observations did not establish a verified maximum sustainable throughput.
+
+Supporting reports:
+
+- [Requirement evaluation](docs/requirements_evaluation.md)
+- [Results and recommendation](docs/recommendation.md)
+- [Predictions compared with measurements](docs/prediction_vs_results.md)
+- [Bottleneck analysis](docs/bottleneck_analysis.md)
+- [Test environment](docs/test_environment.md)
+- [References](docs/references.md)
+
+Measurement limitations are documented in [the completion audit](docs/completion_audit.md), including missing runtime CPU/resource captures, fresh test-machine model digests, and a historical dataset source-hash discrepancy. These limitations should be considered when interpreting the findings.
+
+## Troubleshooting
+
+| Problem | What to check or do |
+|---|---|
+| `py -3.12` is not recognised | Install Python 3.12 and ensure the Python launcher is available; check with `py --list`. |
+| Dependencies fail to install | Check that the virtual environment uses Python 3.12, then rerun `python -m pip install -r requirements.txt` using the virtual environment interpreter. |
+| Docker cannot connect to the daemon | Start Docker Desktop and wait until its engine is running; check `docker info`. |
+| Port 8000 is already in use | Stop the existing process/container on port 8000 or adjust the port mapping and request URLs. |
+| HTTP 502 when submitting a ticket | Check that Ollama is running, the selected model is installed, and `OLLAMA_URL` is reachable from the API. Review `logs/service.log` for the error type. |
+| Model not found | Run `ollama list`, pull the exact model tag, and make `OLLAMA_MODEL` match it. Restart the API. |
+| Ollama works on the host but not in Docker | Use `http://host.docker.internal:11434` for `OLLAMA_URL`. If needed, configure Ollama's listening address and restrict network access with the host firewall. |
+| Classification times out | Confirm the model is loaded and the CPU has sufficient memory. Check `OLLAMA_TIMEOUT_SECONDS`; do not change benchmark settings when reproducing recorded results. |
+| `/search` or `/stats` returns no tickets | A fresh database is intentionally empty. Submit a successful `POST /tickets` first. |
+| Golden-set validator reports a source hash mismatch | Review [golden-set provenance](docs/golden_set_provenance.md). The historical discrepancy is documented; do not regenerate labels or silently overwrite evidence. |
+| JMeter measurements differ from the report | Verify the exact model, test machine, arrival-rate configuration and raw `.jtl` files. Compare request IDs with the service logs and follow the test playbook. |
+
+## Data handling and references
+
+The project uses the course-provided extract of the [CFPB Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/). Group 7 uses rows **7000–7999** for its assigned dataset. A manually adjudicated golden set of 180 complaints supports accuracy evaluation; raw consumer-selected labels are not treated as ground truth.
+
+Model details, licence references and other sources are documented in [docs/models.md](docs/models.md) and [docs/references.md](docs/references.md).
