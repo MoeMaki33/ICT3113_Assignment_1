@@ -570,27 +570,7 @@ ICT3113_Assignment_1/
 
 ---
 
-# 15. What NOT To Do
-
-```text
-❌ Do not use OpenAI/Claude/Gemini/public model APIs for classification.
-❌ Do not use GPU inference.
-❌ Do not directly import CSV tickets into the service.
-❌ Do not trust source_label as the golden truth.
-❌ Do not let only one person label the golden set.
-❌ Do not optimise the baseline. No caching, no queues.
-❌ Do not run the load generator on the system-under-test machine.
-❌ Do not run only one JMeter test per configuration.
-❌ Do not use closed-loop JMeter results as latency/throughput evidence.
-❌ Do not delete raw JMeter files, service logs or raw accuracy outputs.
-❌ Do not benchmark before freezing the golden set and committing the prediction record.
-❌ Do not change predictions after seeing results.
-❌ Do not fabricate measurements.
-```
-
----
-
-# 16. Final Responsibility Matrix
+# 15. Final Responsibility Matrix
 
 | Work                  | P1      | P2      | P3       | P4      | P5      |
 | --------------------- | ------- | ------- | -------- | ------- | ------- |
