@@ -148,27 +148,65 @@ For the full performance-testing procedure, machine configuration, open-loop arr
 
 ## Results and findings
 
-The repository records **36 formal load runs**, **four accuracy runs of 180 tickets each**, and **two Qwen stress steps**. The golden test set and prediction record were frozen before benchmarking. The following table summarises evaluation against the team's requirements; see the linked reports for exact thresholds and raw evidence.
+We completed **36 formal JMeter load runs** (four models, three workloads and three repetitions), **four accuracy evaluations of 180 golden-set tickets each**, and **two Qwen stress-test steps**. The golden test set and prediction record were frozen before benchmarking.
+
+### Measured model performance
+
+The latency, throughput, error-rate and search figures below are from the **mixed-load configuration of 250 ticket arrivals/hour and 450 searches/hour**, with three runs per model. The measured window was 10 minutes after a two-minute warm-up. POST p95/p99 and search p95 are **means of the three individual-run percentiles**, not pooled percentiles. Achieved throughput and error rates are shown **per run** to make variations visible.
+
+| Model | Accuracy (180 tickets) | Mean POST p95 / p99 | Successful classifications/hour (runs 1 / 2 / 3) | POST error rate (runs 1 / 2 / 3) | Mean search p95 |
+|---|---:|---:|---:|---:|---:|
+| Gemma 2B (`gemma2:2b`) | 67.2% (121/180) | 18.351 / 23.542 s | 258 / 234 / 270 | 0% / 0% / 0% | 0.055 s |
+| Llama 3.2 3B (`llama3.2:3b`) | 60.6% (109/180) | 12.800 / 16.838 s | 258 / 240 / 270 | 0% / 0% / 0% | 0.111 s |
+| Qwen 2.5 7B (`qwen2.5:7b`) | 80.6% (145/180) | 77.689 / 85.489 s | 228 / 240 / 240 | 0% / 0% / 2.174% | 0.076 s |
+| Llama 3.1 8B (`llama3.1:8b`) | 84.4% (152/180) | 97.311 / 103.680 s | 210 / 234 / 240 | 6.667% / 0% / 0% | 0.063 s |
+
+The accuracy percentages are based on the golden test set, **not** on the JMeter load-test tickets. The POST latency percentiles exclude failed requests, so they must be considered alongside the error rates.
+
+### Evaluation against requirements
+
+The team's frozen acceptance criteria are:
+
+- **R1 — Response time:** mean POST p95 ≤ 15 seconds and mean POST p99 ≤ 30 seconds.
+- **R2 — Throughput and reliability:** at least 245 successful classifications/hour and an error rate below 1% **in every run**.
+- **R3 — Accuracy:** at least 80% correct overall and at least 70% recall for **each of the seven categories**.
+- **R4 — Search performance:** mean GET /search p95 ≤ 1 second under mixed load.
+
+R1, R2 and R4 are evaluated at the mixed-load configuration described above.
 
 | Requirement | Gemma 2B | Llama 3.2 3B | Qwen 2.5 7B | Llama 3.1 8B |
 |---|---|---|---|---|
-| R1: POST latency | Fail | Pass | Fail | Fail |
+| R1: POST latency | Fail | **Pass** | Fail | Fail |
 | R2: Throughput and error rate in every run | Fail | Fail | Fail | Fail |
-| R3: Overall and per-category accuracy | Fail | Fail | Pass | Fail |
-| R4: Mixed-load search latency | Pass | Pass | Pass | Pass |
+| R3: Overall and per-category accuracy | Fail | Fail | **Pass** | Fail |
+| R4: Mixed-load search latency | **Pass** | **Pass** | **Pass** | **Pass** |
 
-**Conclusion:** No candidate met every requirement on the tested configuration. Qwen 2.5 7B was the accuracy-focused option for further evaluation, but its latency and throughput results prevent claiming full compliance. The stress observations did not establish a verified maximum sustainable throughput.
+### Key findings and recommendation
 
-Supporting reports:
+- **Llama 3.2 3B** met the POST latency requirement and had the lowest measured mean POST p95, but its 60.6% classification accuracy did not meet R3.
+- **Llama 3.1 8B** had the highest overall accuracy (84.4%), but it correctly classified only 9 of 17 Debt collection tickets (52.9% recall), below the 70% per-category minimum.
+- **Qwen 2.5 7B** was the only model to meet both parts of R3: 145/180 correct overall (80.6%), with at least 70% recall in every category. However, it failed the latency and throughput requirements.
+- **Gemma 2B** did not meet the latency or accuracy requirements. All four models met the mixed-load search latency requirement.
 
-- [Requirement evaluation](docs/requirements_evaluation.md)
-- [Results and recommendation](docs/recommendation.md)
-- [Predictions compared with measurements](docs/prediction_vs_results.md)
+**Recommendation:** None of the four models is demonstrated to meet all requirements on the tested CPU-only configuration. Qwen 2.5 7B is the preferred candidate for **further optimisation or hardware evaluation** because it meets the classification accuracy criteria; it is **not** recommended as an already-compliant production deployment.
+
+The second load-test run offered only 234 ticket arrivals/hour due to the Poisson arrival schedule. This contributed to R2 failures under the frozen absolute threshold, even for models with no errors; it does not by itself demonstrate insufficient processing capacity. The two Qwen stress steps showed degradation but did **not** establish a verified maximum sustainable throughput.
+
+### Supporting evidence and limitations
+
+Detailed results, methodology and traceable evidence are available in:
+
+- [Measured results and recommendation](docs/recommendation.md)
+- [Requirements evaluation](docs/requirements_evaluation.md)
+- [Accuracy evidence](results/accuracy/accuracy_summary.md)
+- [Per-model JMeter results](results/load/)
+- [Stress-test results](results/stress/)
+- [Predictions compared with results](docs/prediction_vs_results.md)
 - [Bottleneck analysis](docs/bottleneck_analysis.md)
 - [Test environment](docs/test_environment.md)
-- [References](docs/references.md)
+- [Completion audit and evidence limitations](docs/completion_audit.md)
 
-Measurement limitations are documented in [the completion audit](docs/completion_audit.md), including missing runtime CPU/resource captures, fresh test-machine model digests, and a historical dataset source-hash discrepancy. These limitations should be considered when interpreting the findings.
+All 36 formal load runs were reconciled against saved service-log extracts. The consolidated load index files cover Gemma only, so four-model comparisons should use the individual model result directories. Remaining limitations include unavailable runtime CPU/resource captures, unverified fresh model digests on the test machine, limited accuracy sample sizes, and a documented historical dataset source-hash discrepancy. These limitations restrict the conclusions that can be drawn from the measurements.
 
 ## Troubleshooting
 
