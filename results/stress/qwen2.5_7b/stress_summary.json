@@ -1,0 +1,54 @@
+{
+  "plan": {
+    "model": "qwen2.5:7b",
+    "rates_per_hour": [
+      250.0,
+      500.0,
+      750.0,
+      1000.0,
+      1500.0,
+      2000.0,
+      3000.0
+    ],
+    "refine_steps": 2,
+    "criteria": {
+      "max_error_rate": 0.05,
+      "min_throughput_ratio": 0.9,
+      "stop_on_growing_latency": true,
+      "max_p95_s": 120.0
+    },
+    "duration_s": 720,
+    "warmup_s": 120,
+    "cooldown_s": 200,
+    "timeout_ms": 180000,
+    "increment_strategy": "listed rates in order until the first unsustainable step, then 2 bisection step(s) rounded to 25/h",
+    "official": true
+  },
+  "steps": [
+    {
+      "order": 1,
+      "rate_setting_per_hour": 250.0,
+      "official": true,
+      "jtl": "C:/Users/Owen/Desktop/ICT3113_Assignment_1/results/stress/qwen2.5_7b/rate-250/run-1.jtl",
+      "throughput_ratio": 0.511,
+      "offered_per_hour": 270.0,
+      "achieved_per_hour": 138.0,
+      "error_rate": 0.5333,
+      "latency_p50_s": 45.954,
+      "latency_p95_s": 94.447,
+      "latency_p99_s": 99.394,
+      "trend_ratio": 2.25,
+      "trend_slope_s_per_min": 12.617,
+      "growing": true,
+      "errors_by_type": "{\"HTTP 502\": 24}",
+      "verdict": "UNSUSTAINABLE",
+      "reasons": "error rate 53.3% > 5%; achieved/offered 0.51 < 0.9; latency kept growing (last/first third median x2.25)",
+      "observations": ""
+    }
+  ],
+  "highest_sustainable_per_hour": null,
+  "lowest_unsustainable_per_hour": 250.0,
+  "evidence_valid": false,
+  "conclusion": "PROVISIONAL: service-log reconciliation is required for every step. Already unsustainable at the first step (250/h): the limit is below it. Start a new test (--label) with lower rates.",
+  "generated_utc": "2026-10-08T10:15:56.725922+00:00"
+}

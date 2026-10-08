@@ -1,0 +1,2 @@
+order,rate_setting_per_hour,offered_per_hour,achieved_per_hour,throughput_ratio,error_rate,latency_p50_s,latency_p95_s,latency_p99_s,trend_ratio,trend_slope_s_per_min,growing,errors_by_type,verdict,reasons,official,jtl,observations
+1,250.0,270.0,138.0,0.511,0.5333,45.954,94.447,99.394,2.25,12.617,True,"{""HTTP 502"": 24}",UNSUSTAINABLE,error rate 53.3% > 5%; achieved/offered 0.51 < 0.9; latency kept growing (last/first third median x2.25),True,C:/Users/Owen/Desktop/ICT3113_Assignment_1/results/stress/qwen2.5_7b/rate-250/run-1.jtl,

@@ -1,0 +1,23 @@
+{
+  "model": "qwen2.5:7b",
+  "rates_per_hour": [
+    75.0,
+    125.0,
+    175.0,
+    225.0
+  ],
+  "refine_steps": 2,
+  "criteria": {
+    "max_error_rate": 0.05,
+    "min_throughput_ratio": 0.9,
+    "stop_on_growing_latency": true,
+    "max_p95_s": 120.0
+  },
+  "duration_s": 720,
+  "warmup_s": 120,
+  "cooldown_s": 200,
+  "timeout_ms": 180000,
+  "increment_strategy": "listed rates in order until the first unsustainable step, then 2 bisection step(s) rounded to 25/h",
+  "official": true,
+  "created_utc": "2026-10-08T10:16:54.534625+00:00"
+}
