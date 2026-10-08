@@ -1,7 +1,7 @@
 # ICT3113 Assignment 1 — Financial Complaint Ticket Triage Service
 
 **Module:** ICT3113 Performance Optimisation and Design  
-**Team:** P2-7 
+**Team:** P2-7  
 **Project:** CPU-based financial complaint classification and performance evaluation
 
 ## Project overview
