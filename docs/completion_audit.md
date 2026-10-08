@@ -1,4 +1,87 @@
-# Completion audit — 2026-10-07
+# Completion audit - final analysis, 2026-10-08
+
+**DOCUMENTATION ANALYSIS COMPLETE; NO FULLY COMPLIANT CANDIDATE.**
+The pre-benchmark audit below is historical and does not describe current
+benchmark completion. Frozen requirements, predictions and evidence remain unchanged.
+
+## Repository and freeze verification
+
+The initial worktree was clean on `main`. `git fetch origin` succeeded;
+`git rev-list --left-right --count HEAD...origin/main` returned `0 0`.
+Both refs pointed to `93aa4b949a6da5948417a9696a3810854c20db68`
+(Add R1-R4 requirements evaluation and recommendation). No pull was needed.
+
+The final prediction/requirements freeze is
+`2db5306d41a5b8dee9812cec005c4145dfd734fe`; `99cf39b02fdfeedbc80e592e7a621b05ba60adad`
+is the later provenance correction. Prediction content matches the frozen Git
+blob after CRLF/LF normalisation. Working prediction SHA-256 is
+`c0e933fe2b3aba05918dd8be2d42bd03ef05ea8428900db1353654fcdf472497`;
+Git-blob SHA-256 is `9f0ee1d190bead176077cbb06edbaf2f3ba772ec260eb76f9019d39b464c9e1c`.
+Golden SHA-256 is `54ae476fc87e20de9356b55fd741392857bd274c6f48c0f475d1229343a46c2e`.
+See [prediction comparison](prediction_vs_results.md) for execution commits and paths.
+
+## Evidence and decisions
+
+- All 36 formal load JTLs were processed **in memory only** using existing
+  `summarise_run`; measured counts/percentiles were checked against summaries.
+  All 36 reconciliations report true, no contamination or unexplained records;
+  raw client IDs, statuses and endpoints match saved service extracts.
+- Four completed accuracy runs were recomputed in memory from predictions
+  using `compute_metrics`; outputs match their complete stored metrics,
+  including confusion matrices. Gemma run-1 is incomplete and excluded;
+  Gemma run-2 and the other models' run-1 are official complete evidence.
+- Qwen stress raw metrics match the two stored steps. Reconciliations match
+  15/15 and 50/50 requests; no unexplained records. The 75/h step fails only
+  the small-sample trend criterion; no maximum sustainable rate is established.
+- R1: only Llama 3.2 passes. R2: all fail the frozen **every-run** rule.
+  R3: only Qwen passes. R4: all pass. Exact thresholds, raw counts,
+  per-run p95/p99/search and rate/error measurements are in
+  [recommendation.md](recommendation.md). No candidate passes all four.
+
+## Remaining limitations and contradictions
+
+The old Gemma/Llama 3.2 R2 passes were corrected: second-run achieved rates
+are 234/h and 240/h. That window offered 234/h; failure under the absolute
+threshold is not evidence that their processing capacity is below 245/h.
+`summary_all.csv`, `summary_all.md` and `runs_all.csv` cover Gemma only;
+complete per-configuration evidence supports the analysis instead.
+The generated stress claim of a limit below 75/h is a stopping-rule
+interpretation, not a verified maximum; raw/derived artifacts are preserved.
+
+CPU%, memory/paging, Docker stats, per-model runtime `ollama ps`, prefill/decode
+timing and fresh PC1 digests are unavailable. CPU-only is configured, not
+independently verified for every model. Historical digests remain historical.
+Some execution metadata record dirty worktrees; a commit alone does not
+identify every tested file. Accuracy request-log reconciliation artifacts are
+not present alongside the accuracy runs; load/stress reconciliation must not
+be represented as verification of every accuracy request. Small category
+samples and one accuracy run per model limit generalisation.
+
+The golden validator passes with a documented historical source-hash warning;
+the unavailable original source bytes and discrepancy cause remain unknown.
+[golden_set_provenance.md](golden_set_provenance.md) explains verified
+selection/content/annotation integrity without claiming the missing bytes
+were verified. Human annotation independence/attestation and runtime details
+cannot be supplied by this documentation analysis.
+
+## Validation and review boundary
+
+- `scripts.validate_golden_set`: passed; documented source-hash warning only.
+- `scripts.perf_common`: passed; freeze gate true, no problems.
+- Read-only raw load/accuracy comparisons: passed; no outputs regenerated.
+- `git diff --check`: passed after final documentation review.
+- `git diff --name-only`: only README and documentation; no frozen/raw
+  predictions, golden labels, JTLs, model digests or reconciliations changed.
+
+Updated: `prediction_vs_results.md`, `recommendation.md`,
+`bottleneck_analysis.md`, `requirements_evaluation.md`, `completion_audit.md`,
+`test_environment.md`, `slide_data.md` and `README.md`.
+No benchmark traffic, service changes, commits or pushes were performed.
+The edits remain uncommitted for the user's review.
+
+---
+
+# Historical pre-benchmark audit — 2026-10-07
 
 **FORMAL TESTING NOT READY.** The committed prediction record remains DRAFT.
 No formal accuracy, load or stress traffic was run in this audit. No benchmark

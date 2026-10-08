@@ -1,8 +1,13 @@
 # Official test environment record
 
-Owner: Person 5. Status: **PC1 / PC2 HARDWARE AND LAN CONNECTIVITY RECORDED; REMAINING RUNTIME EVIDENCE PENDING**.
-This environment revision is before prediction freeze and before any formal
-accuracy, load or stress benchmark. No benchmark results were generated.
+Owner: Person 5. Status: **BENCHMARK ARTIFACTS COMPLETE; RUNTIME RESOURCE EVIDENCE INCOMPLETE**.
+The setup observations below were recorded before formal benchmarking.
+As of the 2026-10-08 repository verification, 36 load runs, four completed
+accuracy runs and two reconciled stress steps exist; see
+[completion_audit.md](completion_audit.md). No new environment capture was
+made during the final documentation analysis. `results/environment/`, CPU/memory
+observations, Docker stats and per-model runtime processor captures are absent.
+CPU-only remains configured rather than independently runtime-verified.
 
 ### PC1 environment update sign-off
 
@@ -10,8 +15,8 @@ The user approved this PC1 documentation update on 2026-10-07 with the
 instruction "sign off". This records approval of the official i7-10510U
 PC1 hardware and machine-role revision. PC2 hardware/software observations and
 LAN connectivity were subsequently supplied by the user and recorded below.
-Remaining runtime evidence, numerical prediction approval and the formal
-freeze remain separate outstanding steps.
+The final prediction/requirements freeze is recorded in Git at
+`2db5306d41a5b8dee9812cec005c4145dfd734fe`; remaining runtime evidence is separate.
 
 ## 1. Official machine roles
 
@@ -20,9 +25,9 @@ SQLite and host Ollama with CPU-only LLM inference. PC2 is a **different physica
 desktop** that will run Apache JMeter over the local network. The user confirms
 these are separate physical machines; verified PC2 details and session LAN
 observations are recorded in sections 4 and 5. A VM/container on PC1 does not
-fulfil the separate-machine role. All JMeter traffic so far was pre-benchmark
-smoke/readiness testing only. No smoke-test timing, throughput, error rate or
-classification result is recorded here as a formal benchmark result.
+fulfil the separate-machine role. The initial setup traffic was smoke/readiness testing. Subsequent formal
+load and stress artifacts are now available under `results/`; no smoke-test
+measurements are used in the final analysis.
 
 ## 2. Official PC1 hardware
 
@@ -148,11 +153,11 @@ That is the **historical model provenance machine**, not the official formal
 benchmark PC1. The Ryzen 7 8845HS / 13.8 GB / Ollama 0.35.1 values are
 **superseded draft prediction assumptions**, retained as revision context.
 
-The prediction record remains DRAFT. **TEAM REVIEW REQUIRED BEFORE FREEZE**:
-review the unchanged numerical predictions against PC1, complete genuine team
-sign-off, approve workload/requirements and commit the reviewed freeze files.
-The known selection-source hash discrepancy is a separate unresolved provenance
-issue; this environment revision does not modify or bypass golden-set validation.
+The prediction record is frozen and unchanged. The former source-hash blocker
+has a committed [provenance review](golden_set_provenance.md): validation passes
+with a historical byte-hash warning, while the unavailable original source
+bytes and cause remain unknown. Benchmark commits and dirty-worktree flags
+are recorded in run metadata; fresh PC1 model digests are absent.
 
 Future environment evidence collection, on the indicated physical machines:
 

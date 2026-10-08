@@ -1,106 +1,19 @@
-\# Requirements Evaluation (R1–R4)
+# Requirements evaluation (R1-R4)
 
+Status: **COMPLETE - evidence checked on 2026-10-08**.
+The frozen [requirements](requirements.md) govern this evaluation. R1 and R4 use means of three per-run percentiles; R2 must pass in **every** run; R3 uses raw golden-set counts, including failed requests as incorrect.
 
-
-\## 1. Evaluation Overview
-
-
-
-Four locally deployed Ollama models were evaluated using Apache JMeter and a frozen 180-ticket golden dataset. Performance requirements were assessed using three repeated runs at the target workload of 250 ticket submissions per hour and 450 search requests per hour.
-
-
-
-\## 2. Requirements Compliance
-
-
-
-| Requirement | Gemma2 2B | Llama 3.2 3B | Qwen 2.5 7B | Llama 3.1 8B |
-
+| Requirement | Gemma 2 2B | Llama 3.2 3B | Qwen 2.5 7B | Llama 3.1 8B |
 |---|---|---|---|---|
+| R1: mean POST p95 <=15 s and mean p99 <=30 s | FAIL | PASS | FAIL | FAIL |
+| R2: each run >=245 successful/h and errors <1% | FAIL | FAIL | FAIL | FAIL |
+| R3: overall >=80% and every category >=70% recall | FAIL | FAIL | PASS | FAIL |
+| R4: mean search p95 <=1 s at mixed peak | PASS | PASS | PASS | PASS |
 
-| R1: POST p95 ≤15s and p99 ≤30s | Fail | Pass | Fail | Fail |
+The earlier Gemma and Llama 3.2 R2 passes relied on means (254/h and 256/h). Their second runs achieved 234/h and 240/h, so both fail the authoritative per-run rule. That run offered only 234/h due to random arrivals; this explains why the absolute threshold can fail even with zero errors. It does not justify changing the criterion or claiming a processing-capacity limit.
 
-| R2: ≥245 successful tickets/h and errors <1% | Pass | Pass | Fail | Fail |
+[recommendation.md](recommendation.md) contains measured R1 p95/p99, R2 individual rates/errors and raw counts, R3 category minima, R4 search percentiles and exact per-model evidence links. All 36 load runs were verified against raw JTLs and saved reconciled service extracts. Consolidated load indexes contain Gemma only; use per-model files.
 
-| R3: Overall accuracy ≥80% and category recall ≥70% | Fail | Fail | Pass | Fail |
+Qwen's separate stress steps reconcile 15/15 and 50/50 requests. The configured 75/h step fails solely on a 2.096x latency trend (12 measured starts, no errors); the configured 250/h step fails on 53.3% errors, 0.511 achieved/offered and a 2.25x trend. These sessions do not replace formal three-repeat mixed-load results and establish no maximum sustainable rate. See [bottleneck analysis](bottleneck_analysis.md).
 
-| R4: Search p95 ≤1s | Pass | Pass | Pass | Pass |
-
-
-
-\*The table reflects consolidated three-run measurements. Individual-run results should also be reviewed when discussing consistency.\*
-
-
-
-\## 3. Performance Results
-
-
-
-| Model | POST p95 | Achieved tickets/h | Overall accuracy | Lowest category recall |
-
-|---|---:|---:|---:|---:|
-
-| Gemma2 2B | 18.351s | 254 | 67.2% | 15.0% |
-
-| Llama 3.2 3B | 12.800s | 256 | 60.6% | 20.0% |
-
-| Qwen 2.5 7B | 77.689s | 236 | 80.6% | 73.1% |
-
-| Llama 3.1 8B | 97.311s | 228 | 84.4% | 52.9% |
-
-
-
-\## 4. Stress-Test Findings
-
-
-
-Qwen 2.5 7B was subjected to additional stress testing.
-
-
-
-At a configured rate of 75 tickets/hour, no request errors occurred, but the latency trend increased by approximately 2.096 times, triggering the predefined unsustainable criterion.
-
-
-
-At 250 tickets/hour, the measured error rate reached 53.3%, achieved/offered throughput was 0.511, and latency increased by approximately 2.25 times.
-
-
-
-Both runs were successfully reconciled against the service logs, with 15/15 and 50/50 requests matched respectively. The tests demonstrated performance degradation but did not establish a precise maximum sustainable throughput.
-
-
-
-\## 5. Overall Evaluation and Recommendation
-
-
-
-None of the four models satisfied all requirements on the tested CPU-only deployment.
-
-
-
-Qwen 2.5 7B was the only model satisfying R3, achieving 80.6% overall accuracy and at least 73.1% recall in every category. However, it failed the required throughput and response-time targets.
-
-
-
-Llama 3.2 3B satisfied the consolidated R1, R2 and R4 performance targets, but its 60.6% overall classification accuracy was below the required threshold.
-
-
-
-Therefore, no model is recommended for fully compliant production deployment on the existing hardware. Qwen 2.5 7B is the preferred candidate for further performance optimization, potentially through GPU acceleration, followed by repeated benchmarking against all four requirements.
-
-
-
-\## 6. Supporting Evidence
-
-
-
-\- `results/load/` — Three-run JMeter performance results
-
-\- `results/accuracy/` — Golden-set classification evaluation
-
-\- `results/stress/qwen2.5\_7b/` — Stress-test results and service-log reconciliation
-
-\- `data/` — Golden dataset and associated evidence
-
-
-
+No candidate passes all four requirements. Qwen is the quality-focused candidate for future hardware/optimisation evaluation, not an already-compliant production deployment. Resource attribution and the benchmark's exact model digests remain unverified; see [completion audit](completion_audit.md).

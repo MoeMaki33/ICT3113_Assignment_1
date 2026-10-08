@@ -16,13 +16,13 @@ There is no CSV import endpoint, cache, queue, batching, or background classific
 - `app/services/`: classifier interface, blocking Ollama client, JSON request logging
 - `app/database/`: SQLAlchemy models, sessions, and database operations
 - `app/schemas/`: request and response validation
-- `scripts/`: dataset preparation and future evaluation entry points
+- `scripts/`: dataset preparation and evaluation tooling
 - `tests/`: isolated SQLite and mocked Ollama tests
 - `data/`: dataset workspace and runtime SQLite database
 - `jmeter/`: open-loop JMeter plan, result-format properties and prepared input data
-- `results/{accuracy,load,stress}/`: evidence directories (empty until official runs)
+- `results/{accuracy,load,stress}/`: completed accuracy, load and reconciled stress evidence
 - `logs/`: structured request logs
-- `docs/`: assignment placeholders and preserved original team development plan
+- `docs/`: requirements, completed analysis and preserved team development plan
 
 ## Install and run locally
 
@@ -226,42 +226,48 @@ checks the tooling only and writes to `results/smoke/`.
 | Process results | `scripts.process_jmeter_results results/load` | `summary.csv/.json/.md`, `summary_all.csv` |
 | Reconcile with log | `scripts.reconcile_logs <config-dir> --service-log <copy of logs/service.log>` | `run-N.reconciliation.json` |
 
-## Before formal evaluation
+## Completed benchmark and analysis
 
-**DO NOT RUN FORMAL BENCHMARKS UNTIL:**
-- golden test set is finalised and committed
-- labelling work is complete
-- prediction record is complete
-- golden set and prediction record have been committed to Git
+GitHub `origin/main` and local `main` were verified equal at
+`93aa4b949a6da5948417a9696a3810854c20db68` on 2026-10-08 before this
+uncommitted documentation update. All 36 formal load runs, four complete
+180-ticket accuracy runs, and two Qwen stress steps are present. Frozen
+predictions/requirements were finalised at `2db5306d41a5b8dee9812cec005c4145dfd734fe`.
 
-Team 7's 180-ticket golden set, completed annotation sheets, 27 adjudications,
-agreement statistic and all four candidate digests are committed. The prediction
-record remains **DRAFT**, and the workload and requirements need team approval.
-The selection manifest's source hash differs from the current team CSV; the
-selected rows reproduce exactly, but the historical hash needs human review.
-Official PC1 is now the Intel Core i7-10510U @ 1.80 GHz laptop: 4 physical cores,
-8 logical processors, 15.8 GB RAM, Microsoft Windows 11 Home 64-bit, OS
-10.0.26200. PC2 is a separate physical desktop; its hardware/software details
-are **TO BE RECORDED**. The i7-10750H model capture remains historical provenance,
-and the former Ryzen prediction environment is a superseded draft assumption.
-Prediction values remain unchanged pending **TEAM REVIEW REQUIRED BEFORE FREEZE**.
-Record remaining runtime versions, network details and CPU-only observations
-in `docs/test_environment.md`; CPU-only is configured, not yet runtime-verified
-for all four candidates on PC1. JMeter previously tested on PC1 does not verify
-the new PC2 installation.
+| Requirement | Gemma | Llama 3.2 | Qwen | Llama 3.1 |
+|---|---|---|---|---|
+| R1 POST latency | FAIL | PASS | FAIL | FAIL |
+| R2 throughput/errors in every run | FAIL | FAIL | FAIL | FAIL |
+| R3 overall and category accuracy | FAIL | FAIL | PASS | FAIL |
+| R4 mixed-load search latency | PASS | PASS | PASS | PASS |
 
-Read-only checks (a nonzero exit identifies unfinished evidence):
+No candidate is fully compliant on the tested configuration. Qwen is the
+quality-focused candidate for future hardware/optimisation evaluation.
+The small models' R2 failures reflect below-threshold completions in the
+second Poisson arrival window, despite means above 245/h. The consolidated
+load indexes contain Gemma only; use each model's configuration summaries.
+
+- [Requirement decisions and per-run evidence](docs/recommendation.md)
+- [Requirements evaluation](docs/requirements_evaluation.md)
+- [Frozen predictions versus results](docs/prediction_vs_results.md)
+- [Bottleneck observations and limitations](docs/bottleneck_analysis.md)
+- [Completion audit and evidence gaps](docs/completion_audit.md)
+- [Environment](docs/test_environment.md), [slide evidence](docs/slide_data.md)
+  and [references](docs/references.md)
+
+The historical selection-source byte hash remains unexplained, with verified
+selection/label integrity documented in [provenance review](docs/golden_set_provenance.md).
+Runtime CPU/resource captures and fresh PC1 model digests remain unavailable.
+The Qwen stress evidence establishes no maximum sustainable throughput.
+
+Read-only validation (no benchmark traffic):
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.validate_golden_set
 .\.venv\Scripts\python.exe -m scripts.perf_common
 ```
 
-See [completion audit](docs/completion_audit.md) for remaining actions,
-[slide preparation](docs/slide_data.md) for the 12-slide evidence map, and
-[references](docs/references.md) for dataset, model, licence and workload sources.
-
-The team development plan, revised to the team's actual division of work, is
-`docs/team_development_plan.md`. No benchmarks, accuracy measurements, or candidate-model results have
-been generated as formal evidence in this repository. Existing development logs
-and disclosed setup observations are retained and are not formal measurements.
+The team development plan remains `docs/team_development_plan.md`. Frozen
+predictions, raw samples, labels, model provenance and reconciliations were
+preserved in this analysis update. No benchmarks were rerun, and no changes
+were committed or pushed.
