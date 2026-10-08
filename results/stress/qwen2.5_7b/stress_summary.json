@@ -48,7 +48,7 @@
   ],
   "highest_sustainable_per_hour": null,
   "lowest_unsustainable_per_hour": 250.0,
-  "evidence_valid": false,
-  "conclusion": "PROVISIONAL: service-log reconciliation is required for every step. Already unsustainable at the first step (250/h): the limit is below it. Start a new test (--label) with lower rates.",
-  "generated_utc": "2026-10-08T10:15:56.725922+00:00"
+  "evidence_valid": true,
+  "conclusion": "Already unsustainable at the first step (250/h): the limit is below it. Start a new test (--label) with lower rates.",
+  "generated_utc": "2026-10-08T10:35:41.618208+00:00"
 }

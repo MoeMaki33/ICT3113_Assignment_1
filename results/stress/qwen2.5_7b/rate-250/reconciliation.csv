@@ -1,0 +1,2 @@
+client_file,reconciled,contaminated,client_samples,matched,client_successful,matched_service_2xx,status_mismatch_count,model_mismatch_count,request_ids_missing_from_log_count,extra_log_lines_in_window,extra_preflight,extra_abandoned_by_client,extra_unexplained
+results/stress/qwen2.5_7b/rate-250/run-1.jtl,True,False,50,50,26,26,0,0,0,0,0,0,0

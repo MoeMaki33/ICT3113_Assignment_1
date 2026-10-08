@@ -1,6 +1,6 @@
 # Stress test: `qwen2.5:7b`
 
-**PROVISIONAL: service-log reconciliation is required for every step. Already unsustainable at the first step (75/h): the limit is below it. Start a new test (--label) with lower rates.**
+**Already unsustainable at the first step (75/h): the limit is below it. Start a new test (--label) with lower rates.**
 
 Stopping criteria (fixed before the first step): error rate > 5%; achieved/offered < 0.9; continuously growing latency; p95 > 120.0 s. Each step: 720 s schedule, first 120 s excluded, 200 s cool-down between steps.
 
