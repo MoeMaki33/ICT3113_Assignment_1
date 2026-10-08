@@ -1,0 +1,4 @@
+model,official,rate_setting_per_hour,search_setting_per_hour,run,label,samples_in_window,offered_per_hour,achieved_per_hour,error_rate,latency_p50_s,latency_p95_s,latency_p99_s,latency_mean_s,latency_max_s,trend_ratio,trend_slope_s_per_min,growing,errors_by_type,jtl
+qwen2.5:7b,True,500.0,0,1,POST /tickets,88,528.0,186.0,0.6705,106.561,118.392,119.375,94.954,119.375,1.749,5.566,True,"{""HTTP 502"": 59}",results/load/qwen2.5_7b/rate-500/run-1.jtl
+qwen2.5:7b,True,500.0,0,2,POST /tickets,82,492.0,174.0,0.7195,111.088,119.025,119.18,108.778,119.18,1.051,1.398,False,"{""HTTP 502"": 59}",results/load/qwen2.5_7b/rate-500/run-2.jtl
+qwen2.5:7b,True,500.0,0,3,POST /tickets,92,552.0,150.0,0.7065,54.884,118.822,119.048,65.763,119.048,3.842,11.406,True,"{""HTTP 502"": 65}",results/load/qwen2.5_7b/rate-500/run-3.jtl

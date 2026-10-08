@@ -1,0 +1,7 @@
+model,official,rate_setting_per_hour,search_setting_per_hour,run,label,samples_in_window,offered_per_hour,achieved_per_hour,error_rate,latency_p50_s,latency_p95_s,latency_p99_s,latency_mean_s,latency_max_s,trend_ratio,trend_slope_s_per_min,growing,errors_by_type,jtl
+qwen2.5:7b,True,250.0,450.0,1,GET /search,72,432.0,432.0,0.0,0.022,0.05,0.081,0.026,0.081,1.0,-0.0,False,{},results/load/qwen2.5_7b/rate-250_search-450/run-1.jtl
+qwen2.5:7b,True,250.0,450.0,1,POST /tickets,45,270.0,228.0,0.0,20.924,78.844,97.471,32.574,97.471,5.088,6.27,True,{},results/load/qwen2.5_7b/rate-250_search-450/run-1.jtl
+qwen2.5:7b,True,250.0,450.0,2,GET /search,77,462.0,462.0,0.0,0.028,0.056,0.075,0.031,0.075,0.929,-0.0,False,{},results/load/qwen2.5_7b/rate-250_search-450/run-2.jtl
+qwen2.5:7b,True,250.0,450.0,2,POST /tickets,39,234.0,240.0,0.0,25.439,44.692,46.198,24.614,46.198,2.697,2.008,True,{},results/load/qwen2.5_7b/rate-250_search-450/run-2.jtl
+qwen2.5:7b,True,250.0,450.0,3,GET /search,76,456.0,456.0,0.0,0.037,0.121,0.296,0.051,0.296,0.577,-0.002,False,{},results/load/qwen2.5_7b/rate-250_search-450/run-3.jtl
+qwen2.5:7b,True,250.0,450.0,3,POST /tickets,46,276.0,240.0,0.0217,55.722,109.53,112.798,50.406,112.798,12.935,12.741,True,"{""HTTP 502"": 1}",results/load/qwen2.5_7b/rate-250_search-450/run-3.jtl

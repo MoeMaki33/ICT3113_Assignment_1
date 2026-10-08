@@ -1,0 +1,414 @@
+2026-10-08 10:53:08,890 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2026-10-08 10:53:08,898 INFO o.a.j.JMeter: Loading user properties from: user.properties
+2026-10-08 10:53:08,898 INFO o.a.j.JMeter: Loading system properties from: system.properties
+2026-10-08 10:53:08,898 INFO o.a.j.JMeter: Loading additional properties from: C:\Users\Owen\Desktop\ICT3113_Assignment_1\jmeter\results.properties
+2026-10-08 10:53:08,898 INFO o.a.j.JMeter: Setting JMeter property: host=192.168.1.170
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: port=8000
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: protocol=http
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: rate=500
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: duration_s=720
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: drain_s=190
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: search_schedule=pause(1s)
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: seed=311303
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: search_seed=311353
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: data_file=C:\Users\Owen\Desktop\ICT3113_Assignment_1\jmeter\data\team_narratives.tsv
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: search_file=C:\Users\Owen\Desktop\ICT3113_Assignment_1\jmeter\data\search_terms.txt
+2026-10-08 10:53:08,899 INFO o.a.j.JMeter: Setting JMeter property: timeout_ms=180000
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: Version 5.6.3
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: java.version=1.8.0_333
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: os.name=Windows 11
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: os.arch=amd64
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: os.version=10.0
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: file.encoding=Cp1252
+2026-10-08 10:53:08,903 INFO o.a.j.JMeter: java.awt.headless=true
+2026-10-08 10:53:08,904 INFO o.a.j.JMeter: Max memory     =1073741824
+2026-10-08 10:53:08,904 INFO o.a.j.JMeter: Available Processors =16
+2026-10-08 10:53:08,906 INFO o.a.j.JMeter: Default Locale=English (EN)
+2026-10-08 10:53:08,906 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2026-10-08 10:53:08,906 INFO o.a.j.JMeter: JMeterHome=C:\Users\Owen\Downloads\apache-jmeter-5.6.3\apache-jmeter-5.6.3
+2026-10-08 10:53:08,906 INFO o.a.j.JMeter: user.dir  =C:\Users\Owen\Downloads\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin
+2026-10-08 10:53:08,907 INFO o.a.j.JMeter: PWD       =C:\Users\Owen\Downloads\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin
+2026-10-08 10:53:13,876 INFO o.a.j.JMeter: IP: 10.5.0.2 Name: DESKTOP-AK5RA9C FullName: DESKTOP-AK5RA9C
+2026-10-08 10:53:13,887 INFO o.a.j.s.FileServer: Default base='C:\Users\Owen\Downloads\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin'
+2026-10-08 10:53:13,888 INFO o.a.j.s.FileServer: Set new base='C:\Users\Owen\Desktop\ICT3113_Assignment_1\jmeter'
+2026-10-08 10:53:13,982 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2026-10-08 10:53:13,996 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2026-10-08 10:53:13,999 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2026-10-08 10:53:14,004 INFO o.a.j.s.SaveService: Loading file: C:\Users\Owen\Desktop\ICT3113_Assignment_1\jmeter\ticket_load_test.jmx
+2026-10-08 10:53:14,057 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-10-08 10:53:14,057 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-10-08 10:53:14,057 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-10-08 10:53:14,057 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-10-08 10:53:14,057 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2026-10-08 10:53:14,057 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2026-10-08 10:53:14,241 INFO o.a.j.JMeter: Creating summariser <summary>
+2026-10-08 10:53:14,256 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2026-10-08 10:53:14,256 INFO o.a.j.s.SampleEvent: List of sample_variables: [request_id, ticket_row]
+2026-10-08 10:53:14,256 INFO o.a.j.s.SampleEvent: List of sample_variables: [request_id, ticket_row]
+2026-10-08 10:53:14,261 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2026-10-08 10:53:14,261 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2026-10-08 10:53:14,478 INFO o.a.j.JMeter: Running test (1791427994478)
+2026-10-08 10:53:14,508 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Tickets (open model)
+2026-10-08 10:53:14,508 INFO o.a.j.e.StandardJMeterEngine: Starting 0 threads for group Tickets (open model).
+2026-10-08 10:53:14,508 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2026-10-08 10:53:14,508 INFO o.a.j.t.o.OpenModelThreadGroup: Starting OpenModelThreadGroup#1 with schedule rate(500/hour) random_arrivals(720 s) pause(190 s)
+2026-10-08 10:53:14,544 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Searches (open model)
+2026-10-08 10:53:14,544 INFO o.a.j.e.StandardJMeterEngine: Starting 0 threads for group Searches (open model).
+2026-10-08 10:53:14,545 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2026-10-08 10:53:14,545 INFO o.a.j.t.o.OpenModelThreadGroup: Starting OpenModelThreadGroup#2 with schedule pause(1s)
+2026-10-08 10:53:14,545 INFO o.a.j.t.o.OpenModelThreadGroup: Thread starting init
+2026-10-08 10:53:14,545 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2026-10-08 10:53:14,545 INFO o.a.j.t.o.OpenModelThreadGroup: Thread starting init
+2026-10-08 10:53:14,548 INFO o.a.j.t.o.EvenArrivalsRamp: Generating 0 events, beginRate = 0.0 / sec, endRate = 0.0 / sec, duration = 1.0 sec
+2026-10-08 10:53:14,548 INFO o.a.j.t.o.OpenModelThreadGroup: There will be no more events, so will wait for 0 sec till the end of the schedule
+2026-10-08 10:53:14,548 INFO o.a.j.t.o.PoissonArrivalsRamp: Generating 100 events, beginRate = 0.1388888888888889 / sec, endRate = 0.1388888888888889 / sec, duration = 720.0 sec
+2026-10-08 10:53:15,263 INFO o.a.j.t.o.OpenModelThreadGroup: There will be no more events, will shutdown the thread pool
+2026-10-08 10:53:15,263 INFO o.a.j.t.o.OpenModelThreadGroup: Thread starting done
+2026-10-08 10:53:21,522 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-1
+2026-10-08 10:53:21,523 INFO o.a.j.s.FileServer: Stored: C:\Users\Owen\Desktop\ICT3113_Assignment_1\jmeter\data\team_narratives.tsv
+2026-10-08 10:53:21,549 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = DESKTOP-AK5RA9C
+2026-10-08 10:53:21,555 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2026-10-08 10:53:21,557 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2026-10-08 10:53:21,557 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2026-10-08 10:53:21,557 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2026-10-08 10:53:21,557 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2026-10-08 10:53:29,963 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-2
+2026-10-08 10:53:43,355 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-1
+2026-10-08 10:53:43,356 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-1
+2026-10-08 10:53:50,652 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-2
+2026-10-08 10:53:50,652 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-2
+2026-10-08 10:53:51,980 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-3
+2026-10-08 10:53:54,645 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-4
+2026-10-08 10:53:59,320 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-5
+2026-10-08 10:54:03,761 INFO o.a.j.r.Summariser: summary +      3 in 00:00:49 =    0.1/s Avg: 18070 Min: 11777 Max: 21747 Err:     0 (0.00%) Active: 3 Started: 5 Finished: 2
+2026-10-08 10:54:03,762 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-3
+2026-10-08 10:54:03,762 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-3
+2026-10-08 10:54:04,697 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-6
+2026-10-08 10:54:08,293 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-7
+2026-10-08 10:54:22,918 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-4
+2026-10-08 10:54:22,918 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-4
+2026-10-08 10:54:27,157 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-5
+2026-10-08 10:54:27,157 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-5
+2026-10-08 10:54:34,295 INFO o.a.j.r.Summariser: summary +      3 in 00:00:31 =    0.1/s Avg: 28567 Min: 27835 Max: 29597 Err:     0 (0.00%) Active: 2 Started: 7 Finished: 5
+2026-10-08 10:54:34,296 INFO o.a.j.r.Summariser: summary =      6 in 00:01:20 =    0.1/s Avg: 23318 Min: 11777 Max: 29597 Err:     0 (0.00%)
+2026-10-08 10:54:34,296 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-6
+2026-10-08 10:54:34,296 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-6
+2026-10-08 10:54:42,159 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-8
+2026-10-08 10:54:48,780 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-7
+2026-10-08 10:54:48,780 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-7
+2026-10-08 10:54:56,212 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-8
+2026-10-08 10:54:56,212 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-8
+2026-10-08 10:55:23,134 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-9
+2026-10-08 10:55:25,486 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-10
+2026-10-08 10:55:30,176 INFO o.a.j.r.Summariser: summary +      3 in 00:00:56 =    0.1/s Avg: 20525 Min:  7040 Max: 40486 Err:     0 (0.00%) Active: 2 Started: 10 Finished: 8
+2026-10-08 10:55:30,177 INFO o.a.j.r.Summariser: summary =      9 in 00:02:16 =    0.1/s Avg: 22387 Min:  7040 Max: 40486 Err:     0 (0.00%)
+2026-10-08 10:55:30,177 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-9
+2026-10-08 10:55:30,177 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-9
+2026-10-08 10:55:35,951 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-10
+2026-10-08 10:55:35,952 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-10
+2026-10-08 10:55:37,505 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-11
+2026-10-08 10:55:37,918 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-12
+2026-10-08 10:55:40,517 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-13
+2026-10-08 10:55:53,280 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-14
+2026-10-08 10:55:56,597 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-15
+2026-10-08 10:56:01,523 INFO o.a.j.r.Summariser: summary +      2 in 00:00:31 =    0.1/s Avg: 17239 Min: 10463 Max: 24015 Err:     0 (0.00%) Active: 5 Started: 15 Finished: 10
+2026-10-08 10:56:01,523 INFO o.a.j.r.Summariser: summary =     11 in 00:02:47 =    0.1/s Avg: 21451 Min:  7040 Max: 40486 Err:     0 (0.00%)
+2026-10-08 10:56:01,524 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-11
+2026-10-08 10:56:01,524 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-11
+2026-10-08 10:56:05,834 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-12
+2026-10-08 10:56:05,834 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-12
+2026-10-08 10:56:08,181 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-16
+2026-10-08 10:56:15,504 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-13
+2026-10-08 10:56:15,505 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-13
+2026-10-08 10:56:22,135 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-14
+2026-10-08 10:56:22,135 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-14
+2026-10-08 10:56:30,289 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-17
+2026-10-08 10:56:30,325 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-18
+2026-10-08 10:56:39,416 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-15
+2026-10-08 10:56:39,416 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-15
+2026-10-08 10:56:49,064 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-19
+2026-10-08 10:56:49,207 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-20
+2026-10-08 10:56:59,319 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-16
+2026-10-08 10:56:59,319 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-16
+2026-10-08 10:57:06,174 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-21
+2026-10-08 10:57:06,907 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-17
+2026-10-08 10:57:06,907 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-17
+2026-10-08 10:57:14,291 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-22
+2026-10-08 10:57:15,938 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-23
+2026-10-08 10:57:16,709 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-18
+2026-10-08 10:57:16,709 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-18
+2026-10-08 10:57:25,175 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-19
+2026-10-08 10:57:25,175 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-19
+2026-10-08 10:57:25,312 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-24
+2026-10-08 10:57:27,713 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-25
+2026-10-08 10:57:37,754 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-26
+2026-10-08 10:57:39,276 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-27
+2026-10-08 10:57:41,566 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-20
+2026-10-08 10:57:41,566 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-20
+2026-10-08 10:57:42,308 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-28
+2026-10-08 10:57:47,307 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-21
+2026-10-08 10:57:47,307 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-21
+2026-10-08 10:57:51,178 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-29
+2026-10-08 10:57:53,547 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-30
+2026-10-08 10:57:59,716 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-31
+2026-10-08 10:58:05,385 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-32
+2026-10-08 10:58:09,177 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-22
+2026-10-08 10:58:09,177 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-22
+2026-10-08 10:58:17,719 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-33
+2026-10-08 10:58:18,137 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-23
+2026-10-08 10:58:18,137 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-23
+2026-10-08 10:58:24,362 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-34
+2026-10-08 10:58:26,502 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-35
+2026-10-08 10:58:27,935 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-24
+2026-10-08 10:58:27,935 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-24
+2026-10-08 10:58:30,175 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-36
+2026-10-08 10:58:35,977 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-37
+2026-10-08 10:58:38,230 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-38
+2026-10-08 10:58:41,533 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-25
+2026-10-08 10:58:41,533 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-25
+2026-10-08 10:58:55,565 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-39
+2026-10-08 10:58:56,751 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-40
+2026-10-08 10:58:58,298 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-41
+2026-10-08 10:59:04,770 INFO o.a.j.r.Summariser: summary +     15 in 00:03:03 =    0.1/s Avg: 49255 Min: 27914 Max: 87013 Err:     0 (0.00%) Active: 16 Started: 41 Finished: 25
+2026-10-08 10:59:04,771 INFO o.a.j.r.Summariser: summary =     26 in 00:05:50 =    0.1/s Avg: 37492 Min:  7040 Max: 87013 Err:     0 (0.00%)
+2026-10-08 10:59:04,771 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-26
+2026-10-08 10:59:04,771 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-26
+2026-10-08 10:59:22,710 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-27
+2026-10-08 10:59:22,710 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-27
+2026-10-08 10:59:23,871 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-28
+2026-10-08 10:59:23,871 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-28
+2026-10-08 10:59:26,880 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-42
+2026-10-08 10:59:28,357 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-43
+2026-10-08 10:59:29,247 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-44
+2026-10-08 10:59:29,812 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-45
+2026-10-08 10:59:31,987 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-46
+2026-10-08 10:59:34,880 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-47
+2026-10-08 10:59:35,340 INFO o.a.j.r.Summariser: summary +      3 in 00:00:31 =    0.1/s Avg: 103050 Min: 101560 Max: 104160 Err:     0 (0.00%) Active: 19 Started: 47 Finished: 28
+2026-10-08 10:59:35,340 INFO o.a.j.r.Summariser: summary =     29 in 00:06:21 =    0.1/s Avg: 44274 Min:  7040 Max: 104160 Err:     0 (0.00%)
+2026-10-08 10:59:35,341 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-29
+2026-10-08 10:59:35,341 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-29
+2026-10-08 10:59:36,963 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-48
+2026-10-08 10:59:46,045 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-49
+2026-10-08 10:59:52,052 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-50
+2026-10-08 10:59:53,681 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-30
+2026-10-08 10:59:53,681 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-30
+2026-10-08 10:59:59,852 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-31
+2026-10-08 10:59:59,852 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-31
+2026-10-08 11:00:04,419 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-51
+2026-10-08 11:00:05,468 INFO o.a.j.r.Summariser: summary +      3 in 00:00:30 =    0.1/s Avg: 120115 Min: 120082 Max: 120135 Err:     3 (100.00%) Active: 20 Started: 51 Finished: 31
+2026-10-08 11:00:05,469 INFO o.a.j.r.Summariser: summary =     32 in 00:06:51 =    0.1/s Avg: 51384 Min:  7040 Max: 120135 Err:     3 (9.38%)
+2026-10-08 11:00:05,469 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-32
+2026-10-08 11:00:05,469 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-32
+2026-10-08 11:00:17,799 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-33
+2026-10-08 11:00:17,799 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-33
+2026-10-08 11:00:20,122 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-52
+2026-10-08 11:00:20,842 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-53
+2026-10-08 11:00:21,469 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-54
+2026-10-08 11:00:24,444 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-34
+2026-10-08 11:00:24,444 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-34
+2026-10-08 11:00:26,644 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-35
+2026-10-08 11:00:26,644 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-35
+2026-10-08 11:00:30,296 INFO o.a.j.r.Summariser: summary +      4 in 00:00:25 =    0.2/s Avg: 120104 Min: 120078 Max: 120140 Err:     4 (100.00%) Active: 19 Started: 54 Finished: 35
+2026-10-08 11:00:30,297 INFO o.a.j.r.Summariser: summary =     36 in 00:07:16 =    0.1/s Avg: 59020 Min:  7040 Max: 120140 Err:     7 (19.44%)
+2026-10-08 11:00:30,297 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-36
+2026-10-08 11:00:30,297 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-36
+2026-10-08 11:00:31,157 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-55
+2026-10-08 11:00:35,003 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-56
+2026-10-08 11:00:36,103 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-37
+2026-10-08 11:00:36,103 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-37
+2026-10-08 11:00:38,372 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-38
+2026-10-08 11:00:38,372 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-38
+2026-10-08 11:00:54,018 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-57
+2026-10-08 11:00:55,693 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-39
+2026-10-08 11:00:55,693 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-39
+2026-10-08 11:00:56,840 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-40
+2026-10-08 11:00:56,840 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-40
+2026-10-08 11:00:58,438 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-41
+2026-10-08 11:00:58,438 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-41
+2026-10-08 11:00:59,850 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-58
+2026-10-08 11:01:05,446 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-59
+2026-10-08 11:01:06,401 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-60
+2026-10-08 11:01:17,740 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-42
+2026-10-08 11:01:17,740 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-42
+2026-10-08 11:01:18,478 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-61
+2026-10-08 11:01:22,367 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-62
+2026-10-08 11:01:23,045 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-63
+2026-10-08 11:01:25,921 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-64
+2026-10-08 11:01:28,497 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-43
+2026-10-08 11:01:28,497 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-43
+2026-10-08 11:01:29,383 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-44
+2026-10-08 11:01:29,383 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-44
+2026-10-08 11:01:29,858 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-45
+2026-10-08 11:01:29,858 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-45
+2026-10-08 11:01:32,127 INFO o.a.j.r.Summariser: summary +     10 in 00:01:02 =    0.2/s Avg: 119192 Min: 110857 Max: 120140 Err:     9 (90.00%) Active: 19 Started: 64 Finished: 45
+2026-10-08 11:01:32,127 INFO o.a.j.r.Summariser: summary =     46 in 00:08:18 =    0.1/s Avg: 72101 Min:  7040 Max: 120140 Err:    16 (34.78%)
+2026-10-08 11:01:32,127 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-46
+2026-10-08 11:01:32,128 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-46
+2026-10-08 11:01:35,004 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-47
+2026-10-08 11:01:35,004 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-47
+2026-10-08 11:01:37,095 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-48
+2026-10-08 11:01:37,095 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-48
+2026-10-08 11:01:45,159 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-65
+2026-10-08 11:01:46,079 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-49
+2026-10-08 11:01:46,079 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-49
+2026-10-08 11:01:52,185 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-50
+2026-10-08 11:01:52,185 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-50
+2026-10-08 11:01:53,071 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-66
+2026-10-08 11:02:03,376 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-67
+2026-10-08 11:02:04,481 INFO o.a.j.r.Summariser: summary +      5 in 00:00:32 =    0.2/s Avg: 120095 Min: 120032 Max: 120131 Err:     5 (100.00%) Active: 17 Started: 67 Finished: 50
+2026-10-08 11:02:04,482 INFO o.a.j.r.Summariser: summary =     51 in 00:08:50 =    0.1/s Avg: 76806 Min:  7040 Max: 120140 Err:    21 (41.18%)
+2026-10-08 11:02:04,482 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-51
+2026-10-08 11:02:04,482 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-51
+2026-10-08 11:02:09,469 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-68
+2026-10-08 11:02:10,404 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-69
+2026-10-08 11:02:11,864 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-70
+2026-10-08 11:02:13,442 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-71
+2026-10-08 11:02:18,665 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-72
+2026-10-08 11:02:19,173 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-52
+2026-10-08 11:02:19,173 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-52
+2026-10-08 11:02:20,927 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-53
+2026-10-08 11:02:20,928 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-53
+2026-10-08 11:02:21,615 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-54
+2026-10-08 11:02:21,615 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-54
+2026-10-08 11:02:22,806 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-73
+2026-10-08 11:02:26,780 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-74
+2026-10-08 11:02:29,980 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-55
+2026-10-08 11:02:29,980 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-55
+2026-10-08 11:02:35,131 INFO o.a.j.r.Summariser: summary +      5 in 00:00:31 =    0.2/s Avg: 119644 Min: 118822 Max: 120144 Err:     3 (60.00%) Active: 19 Started: 74 Finished: 55
+2026-10-08 11:02:35,132 INFO o.a.j.r.Summariser: summary =     56 in 00:09:21 =    0.1/s Avg: 80631 Min:  7040 Max: 120144 Err:    24 (42.86%)
+2026-10-08 11:02:35,132 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-56
+2026-10-08 11:02:35,132 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-56
+2026-10-08 11:02:37,775 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-75
+2026-10-08 11:02:44,849 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-76
+2026-10-08 11:02:46,198 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-77
+2026-10-08 11:02:53,885 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-78
+2026-10-08 11:02:54,055 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-57
+2026-10-08 11:02:54,055 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-57
+2026-10-08 11:02:57,369 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-79
+2026-10-08 11:02:59,977 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-58
+2026-10-08 11:02:59,977 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-58
+2026-10-08 11:03:04,914 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-80
+2026-10-08 11:03:05,575 INFO o.a.j.r.Summariser: summary +      3 in 00:00:30 =    0.1/s Avg: 120096 Min: 120036 Max: 120127 Err:     3 (100.00%) Active: 22 Started: 80 Finished: 58
+2026-10-08 11:03:05,575 INFO o.a.j.r.Summariser: summary =     59 in 00:09:51 =    0.1/s Avg: 82637 Min:  7040 Max: 120144 Err:    27 (45.76%)
+2026-10-08 11:03:05,576 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-59
+2026-10-08 11:03:05,576 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-59
+2026-10-08 11:03:06,534 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-60
+2026-10-08 11:03:06,534 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-60
+2026-10-08 11:03:15,424 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-81
+2026-10-08 11:03:18,603 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-61
+2026-10-08 11:03:18,603 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-61
+2026-10-08 11:03:22,217 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-82
+2026-10-08 11:03:22,449 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-62
+2026-10-08 11:03:22,450 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-62
+2026-10-08 11:03:23,175 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-63
+2026-10-08 11:03:23,175 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-63
+2026-10-08 11:03:24,612 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-83
+2026-10-08 11:03:24,658 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-84
+2026-10-08 11:03:26,002 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-64
+2026-10-08 11:03:26,002 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-64
+2026-10-08 11:03:31,593 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-85
+2026-10-08 11:03:33,165 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-86
+2026-10-08 11:03:34,520 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-87
+2026-10-08 11:03:34,904 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-88
+2026-10-08 11:03:41,375 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-89
+2026-10-08 11:03:43,376 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-65
+2026-10-08 11:03:43,376 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-65
+2026-10-08 11:03:45,696 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-90
+2026-10-08 11:03:47,789 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-91
+2026-10-08 11:03:50,015 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-92
+2026-10-08 11:03:53,201 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-66
+2026-10-08 11:03:53,201 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-66
+2026-10-08 11:04:03,452 INFO o.a.j.r.Summariser: summary +      8 in 00:00:58 =    0.1/s Avg: 119870 Min: 118214 Max: 120132 Err:     7 (87.50%) Active: 26 Started: 92 Finished: 66
+2026-10-08 11:04:03,452 INFO o.a.j.r.Summariser: summary =     67 in 00:10:49 =    0.1/s Avg: 87083 Min:  7040 Max: 120144 Err:    34 (50.75%)
+2026-10-08 11:04:03,453 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-67
+2026-10-08 11:04:03,453 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-67
+2026-10-08 11:04:07,633 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-93
+2026-10-08 11:04:09,610 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-68
+2026-10-08 11:04:09,610 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-68
+2026-10-08 11:04:10,512 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-69
+2026-10-08 11:04:10,512 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-69
+2026-10-08 11:04:11,998 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-70
+2026-10-08 11:04:11,998 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-70
+2026-10-08 11:04:13,570 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-71
+2026-10-08 11:04:13,570 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-71
+2026-10-08 11:04:14,104 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-94
+2026-10-08 11:04:18,795 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-72
+2026-10-08 11:04:18,795 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-72
+2026-10-08 11:04:22,930 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-73
+2026-10-08 11:04:22,930 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-73
+2026-10-08 11:04:26,845 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-74
+2026-10-08 11:04:26,845 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-74
+2026-10-08 11:04:37,918 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-75
+2026-10-08 11:04:37,918 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-75
+2026-10-08 11:04:42,023 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-95
+2026-10-08 11:04:42,760 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-96
+2026-10-08 11:04:44,911 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-76
+2026-10-08 11:04:44,911 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-76
+2026-10-08 11:04:46,330 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-77
+2026-10-08 11:04:46,330 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-77
+2026-10-08 11:04:48,784 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-97
+2026-10-08 11:04:53,921 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-98
+2026-10-08 11:04:54,018 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-78
+2026-10-08 11:04:54,018 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-78
+2026-10-08 11:04:57,499 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-79
+2026-10-08 11:04:57,499 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-79
+2026-10-08 11:05:03,477 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-99
+2026-10-08 11:05:05,004 INFO o.a.j.r.Summariser: summary +     13 in 00:01:02 =    0.2/s Avg: 120115 Min: 120061 Max: 120142 Err:    13 (100.00%) Active: 20 Started: 99 Finished: 79
+2026-10-08 11:05:05,005 INFO o.a.j.r.Summariser: summary =     80 in 00:11:51 =    0.1/s Avg: 92451 Min:  7040 Max: 120144 Err:    47 (58.75%)
+2026-10-08 11:05:05,005 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-80
+2026-10-08 11:05:05,005 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-80
+2026-10-08 11:05:08,772 INFO o.a.j.t.JMeterThread: Thread started: Tickets (open model) 1-100
+2026-10-08 11:05:08,772 INFO o.a.j.t.o.EvenArrivalsRamp: Generating 0 events, beginRate = 0.0 / sec, endRate = 0.0 / sec, duration = 190.0 sec
+2026-10-08 11:05:08,772 INFO o.a.j.t.o.OpenModelThreadGroup: There will be no more events, so will wait for 195 sec till the end of the schedule
+2026-10-08 11:05:15,581 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-81
+2026-10-08 11:05:15,581 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-81
+2026-10-08 11:05:22,300 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-82
+2026-10-08 11:05:22,300 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-82
+2026-10-08 11:05:24,691 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-83
+2026-10-08 11:05:24,692 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-83
+2026-10-08 11:05:24,805 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-84
+2026-10-08 11:05:24,805 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-84
+2026-10-08 11:05:31,739 INFO o.a.j.r.Summariser: summary +      5 in 00:00:27 =    0.2/s Avg: 120121 Min: 120077 Max: 120157 Err:     5 (100.00%) Active: 16 Started: 100 Finished: 84
+2026-10-08 11:05:31,740 INFO o.a.j.r.Summariser: summary =     85 in 00:12:17 =    0.1/s Avg: 94078 Min:  7040 Max: 120157 Err:    52 (61.18%)
+2026-10-08 11:05:31,740 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-85
+2026-10-08 11:05:31,740 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-85
+2026-10-08 11:05:33,307 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-86
+2026-10-08 11:05:33,307 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-86
+2026-10-08 11:05:34,668 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-87
+2026-10-08 11:05:34,668 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-87
+2026-10-08 11:05:34,986 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-88
+2026-10-08 11:05:34,986 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-88
+2026-10-08 11:05:41,474 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-89
+2026-10-08 11:05:41,474 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-89
+2026-10-08 11:05:45,729 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-90
+2026-10-08 11:05:45,729 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-90
+2026-10-08 11:05:47,929 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-91
+2026-10-08 11:05:47,929 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-91
+2026-10-08 11:05:50,191 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-92
+2026-10-08 11:05:50,191 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-92
+2026-10-08 11:06:07,775 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-93
+2026-10-08 11:06:07,775 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-93
+2026-10-08 11:06:14,164 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-94
+2026-10-08 11:06:14,164 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-94
+2026-10-08 11:06:23,811 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-95
+2026-10-08 11:06:23,811 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-95
+2026-10-08 11:06:40,140 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-96
+2026-10-08 11:06:40,140 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-96
+2026-10-08 11:06:48,916 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-97
+2026-10-08 11:06:48,916 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-97
+2026-10-08 11:06:54,064 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-98
+2026-10-08 11:06:54,064 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-98
+2026-10-08 11:07:03,678 INFO o.a.j.r.Summariser: summary +     14 in 00:01:32 =    0.2/s Avg: 118617 Min: 101786 Max: 120199 Err:    12 (85.71%) Active: 2 Started: 100 Finished: 98
+2026-10-08 11:07:03,678 INFO o.a.j.r.Summariser: summary =     99 in 00:13:49 =    0.1/s Avg: 97548 Min:  7040 Max: 120199 Err:    64 (64.65%)
+2026-10-08 11:07:03,678 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-99
+2026-10-08 11:07:03,679 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-99
+2026-10-08 11:07:08,858 INFO o.a.j.t.JMeterThread: Thread is done: Tickets (open model) 1-100
+2026-10-08 11:07:08,858 INFO o.a.j.t.JMeterThread: Thread finished: Tickets (open model) 1-100
+2026-10-08 11:08:24,259 INFO o.a.j.t.o.OpenModelThreadGroup: There will be no more events, will shutdown the thread pool
+2026-10-08 11:08:24,259 INFO o.a.j.t.o.OpenModelThreadGroup: Thread starting done
+2026-10-08 11:08:24,259 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2026-10-08 11:08:24,259 INFO o.a.j.s.FileServer: Close: C:\Users\Owen\Desktop\ICT3113_Assignment_1\jmeter\data\team_narratives.tsv
+2026-10-08 11:08:24,260 INFO o.a.j.r.Summariser: summary +      1 in 00:01:21 =    0.0/s Avg: 120085 Min: 120085 Max: 120085 Err:     1 (100.00%) Active: 0 Started: 100 Finished: 100
+2026-10-08 11:08:24,261 INFO o.a.j.r.Summariser: summary =    100 in 00:15:10 =    0.1/s Avg: 97774 Min:  7040 Max: 120199 Err:    65 (65.00%)

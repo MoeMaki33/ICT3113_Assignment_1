@@ -1,0 +1,4 @@
+model,official,rate_setting_per_hour,search_setting_per_hour,run,label,samples_in_window,offered_per_hour,achieved_per_hour,error_rate,latency_p50_s,latency_p95_s,latency_p99_s,latency_mean_s,latency_max_s,trend_ratio,trend_slope_s_per_min,growing,errors_by_type,jtl
+qwen2.5:7b,True,125.0,0,1,POST /tickets,22,132.0,132.0,0.0,10.759,20.947,21.9,11.215,21.9,1.041,0.144,False,{},results/load/qwen2.5_7b/rate-125/run-1.jtl
+qwen2.5:7b,True,125.0,0,2,POST /tickets,19,114.0,114.0,0.0,12.216,19.846,19.846,12.008,19.846,1.261,0.263,False,{},results/load/qwen2.5_7b/rate-125/run-2.jtl
+qwen2.5:7b,True,125.0,0,3,POST /tickets,23,138.0,132.0,0.0,9.721,21.709,24.081,10.642,24.081,1.471,0.308,False,{},results/load/qwen2.5_7b/rate-125/run-3.jtl

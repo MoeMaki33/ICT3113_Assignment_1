@@ -1,0 +1,4 @@
+client_file,reconciled,contaminated,client_samples,matched,client_successful,matched_service_2xx,status_mismatch_count,model_mismatch_count,request_ids_missing_from_log_count,extra_log_lines_in_window,extra_preflight,extra_abandoned_by_client,extra_unexplained
+results/load/qwen2.5_7b/rate-125/run-1.jtl,True,False,25,25,25,25,0,0,0,0,0,0,0
+results/load/qwen2.5_7b/rate-125/run-2.jtl,True,False,25,25,25,25,0,0,0,0,0,0,0
+results/load/qwen2.5_7b/rate-125/run-3.jtl,True,False,25,25,25,25,0,0,0,0,0,0,0
